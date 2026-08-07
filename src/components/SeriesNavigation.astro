@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { getPostUrl } from "@utils/url-utils";
+
+interface Props {
+	currentId: string;
+	posts: CollectionEntry<"posts">[];
+}
+
+const { currentId, posts } = Astro.props;
+const series = posts[0]?.data.series;
+---
+
+{series && posts.length > 1 && (
+    <aside class="mb-7 rounded-2xl border border-[var(--primary)]/20 bg-[var(--primary)]/[0.07] p-4 md:p-5 onload-animation">
+        <div class="flex items-center justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2 min-w-0">
+                <Icon name="material-symbols:book-5-outline-rounded" class="text-xl text-[var(--primary)] shrink-0" />
+                <a href={`/series/${series.slug}/`} class="font-bold text-90 hover:text-[var(--primary)] transition truncate">
+                    {series.name}
+                </a>
+            </div>
+            <span class="text-xs text-50 shrink-0">共 {posts.length} 篇</span>
+        </div>
+        <ol class="grid gap-1.5">
+            {posts.map((post) => {
+                const active = post.id === currentId;
+                return (
+                    <li>
+                        <a
+                            href={getPostUrl(post.slug, post.data.published, post.data.permalink)}
+                            aria-current={active ? "page" : undefined}
+                            class:list={[
+                                "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
+                                active ? "bg-[var(--primary)] text-[var(--btn-content)] font-semibold" : "text-75 hover:bg-[var(--primary)]/10",
+                            ]}
+                        >
+                            <span class:list={["size-6 rounded-lg flex items-center justify-center text-xs font-bold shrink-0", active ? "bg-white/20" : "bg-[var(--primary)]/15 text-[var(--primary)]"]}>
+                                {post.data.series?.order}
+                            </span>
+                            <span class="line-clamp-1">{post.data.title}</span>
+                            {active && <span class="ml-auto text-xs shrink-0">正在阅读</span>}
+                        </a>
+                    </li>
+                );
+            })}
+        </ol>
+    </aside>
+)}

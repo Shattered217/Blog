@@ -3,11 +3,34 @@
 	"name": "shattered217-blog",
 	"pages_build_output_dir": "./dist",
 	"compatibility_date": "2026-08-07",
+	"d1_databases": [
+		{
+			"binding": "BLOG_DB",
+			"database_name": "nvcc-v-blog-preview",
+			"database_id": "4ceaa5ca-a6ea-4cbc-abdb-64307159853d"
+		}
+	],
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
-			"bucket_name": "nvcc-v-media",
-			"preview_bucket_name": "nvcc-v-media-preview"
+			"bucket_name": "nvcc-v-media-preview"
 		}
-	]
+	],
+	"env": {
+		"production": {
+			"d1_databases": [
+				{
+					"binding": "BLOG_DB",
+					"database_name": "nvcc-v-blog",
+					"database_id": "1138d96d-5dc8-4bf2-9cfd-6e14ecf6133c"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "MEDIA",
+					"bucket_name": "nvcc-v-media"
+				}
+			]
+		}
+	}
 }

@@ -9,6 +9,7 @@ category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN
 permalink: "/2026/01/13/jetson-orin-tensorrt-whl-compilation-guide/"
+series: { slug: "jetson-whl-build", name: "Jetson WHL 自编译", order: 4 }
 ---
 ## 基础信息
 

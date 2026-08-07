@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	path: string;
+	initialViews: number;
+}
+
+const { path, initialViews } = Astro.props;
+---
+
+<post-view-counter data-path={path} data-initial={initialViews} class="flex flex-row items-center">
+    <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
+        <Icon name="material-symbols:visibility-outline-rounded" />
+    </div>
+    <div class="text-sm"><span data-view-value>{initialViews.toLocaleString("zh-CN")}</span> 次阅读</div>
+</post-view-counter>
+
+<script>
+class PostViewCounter extends HTMLElement {
+    controller?: AbortController;
+
+    connectedCallback() {
+        const path = this.dataset.path;
+        const value = this.querySelector<HTMLElement>("[data-view-value]");
+        if (!path || !value) return;
+
+        this.controller?.abort();
+        this.controller = new AbortController();
+        const storageKey = `nvcc-v:viewed:${path}`;
+        const counted = sessionStorage.getItem(storageKey) === "1";
+        if (!counted) sessionStorage.setItem(storageKey, "1");
+
+        fetch(`/api/views?path=${encodeURIComponent(path)}`, {
+            method: counted ? "GET" : "POST",
+            headers: { Accept: "application/json" },
+            signal: this.controller.signal,
+        })
+            .then((response) => response.ok ? response.json() : Promise.reject())
+            .then((data: { views?: number }) => {
+                if (typeof data.views === "number") {
+                    value.textContent = data.views.toLocaleString("zh-CN");
+                }
+            })
+            .catch(() => undefined);
+    }
+
+    disconnectedCallback() {
+        this.controller?.abort();
+    }
+}
+
+if (!customElements.get("post-view-counter")) {
+    customElements.define("post-view-counter", PostViewCounter);
+}
+</script>

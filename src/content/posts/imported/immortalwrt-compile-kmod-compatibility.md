@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2026/01/11/immortalwrt-compile-kmod-compatibility/"
+series: { slug: "immortalwrt-build", name: "ImmortalWrt 编译", order: 2 }
 ---
 ## 前言
 

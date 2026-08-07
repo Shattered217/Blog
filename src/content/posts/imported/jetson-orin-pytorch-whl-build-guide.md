@@ -10,6 +10,7 @@ category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN
 permalink: "/2026/01/13/jetson-orin-pytorch-whl-build-guide/"
+series: { slug: "jetson-whl-build", name: "Jetson WHL 自编译", order: 1 }
 ---
 ## 基础信息
 

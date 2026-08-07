@@ -1,0 +1,121 @@
+---
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "../config";
+
+interface Props {
+	headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const minDepth = Math.min(...headings.map((heading) => heading.depth));
+const visibleHeadings = headings.filter(
+	(heading) => heading.depth < minDepth + siteConfig.toc.depth,
+);
+const cleanHeading = (text: string) => text.endsWith("#") ? text.slice(0, -1) : text;
+let topLevelIndex = 0;
+const numberedHeadings = visibleHeadings.map((heading) => ({
+	...heading,
+	label: heading.depth === minDepth ? String(++topLevelIndex) : "·",
+}));
+---
+
+{visibleHeadings.length > 0 && (
+    <mobile-table-of-contents class="2xl:hidden">
+        <button
+            type="button"
+            data-toc-open
+            aria-expanded="false"
+            aria-controls="mobile-toc-drawer"
+            class="fixed z-[70] right-4 bottom-5 h-12 px-4 rounded-2xl card-base shadow-lg flex items-center gap-2 text-75 font-semibold active:scale-95 transition"
+        >
+            <Icon name="material-symbols:format-list-bulleted-rounded" class="text-xl text-[var(--primary)]" />
+            目录
+        </button>
+
+        <div data-toc-overlay class="hidden fixed inset-0 z-[80] bg-black/35 backdrop-blur-sm">
+            <section
+                id="mobile-toc-drawer"
+                role="dialog"
+                aria-modal="true"
+                aria-label="文章目录"
+                class="absolute inset-x-3 bottom-3 max-h-[72vh] rounded-[1.5rem] bg-[var(--card-bg)] shadow-2xl overflow-hidden"
+            >
+                <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--line-divider)]">
+                    <div>
+                        <p class="text-xs tracking-[0.16em] text-[var(--primary)] font-bold">ON THIS PAGE</p>
+                        <h2 class="text-lg font-bold text-90">文章目录</h2>
+                    </div>
+                    <button type="button" data-toc-close aria-label="关闭目录" class="btn-plain size-10 rounded-xl flex items-center justify-center">
+                        <Icon name="material-symbols:close-rounded" class="text-2xl" />
+                    </button>
+                </div>
+                <nav class="overflow-y-auto overscroll-contain px-3 py-3 max-h-[calc(72vh_-_5rem)]">
+                    {numberedHeadings.map((heading) => (
+                        <a
+                            href={`#${heading.slug}`}
+                            class:list={[
+                                "flex items-start gap-3 px-3 py-2.5 rounded-xl text-75 hover:bg-[var(--toc-btn-hover)] transition",
+                                { "pl-7": heading.depth === minDepth + 1, "pl-11": heading.depth >= minDepth + 2 },
+                            ]}
+                        >
+                            <span class="mt-0.5 size-5 shrink-0 rounded-lg bg-[var(--toc-badge-bg)] text-[var(--btn-content)] text-xs font-bold flex items-center justify-center">
+                                {heading.label}
+                            </span>
+                            <span>{cleanHeading(heading.text)}</span>
+                        </a>
+                    ))}
+                </nav>
+            </section>
+        </div>
+    </mobile-table-of-contents>
+)}
+
+<script>
+class MobileTableOfContents extends HTMLElement {
+    overlay: HTMLElement | null = null;
+    openButton: HTMLButtonElement | null = null;
+
+    open = () => {
+        this.overlay?.classList.remove("hidden");
+        this.openButton?.setAttribute("aria-expanded", "true");
+        document.documentElement.style.overflow = "hidden";
+        this.querySelector<HTMLButtonElement>("[data-toc-close]")?.focus();
+    };
+
+    close = () => {
+        this.overlay?.classList.add("hidden");
+        this.openButton?.setAttribute("aria-expanded", "false");
+        document.documentElement.style.overflow = "";
+        this.openButton?.focus();
+    };
+
+    handleClick = (event: Event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest("[data-toc-open]")) this.open();
+        if (target.closest("[data-toc-close]") || target === this.overlay || target.closest("a[href^='#']")) this.close();
+    };
+
+    handleKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Escape" && !this.overlay?.classList.contains("hidden")) this.close();
+    };
+
+    connectedCallback() {
+        this.overlay = this.querySelector("[data-toc-overlay]");
+        this.openButton = this.querySelector("[data-toc-open]");
+        this.addEventListener("click", this.handleClick);
+        document.addEventListener("keydown", this.handleKeydown);
+    }
+
+    disconnectedCallback() {
+        document.documentElement.style.overflow = "";
+        this.removeEventListener("click", this.handleClick);
+        document.removeEventListener("keydown", this.handleKeydown);
+    }
+}
+
+if (!customElements.get("mobile-table-of-contents")) {
+    customElements.define("mobile-table-of-contents", MobileTableOfContents);
+}
+</script>

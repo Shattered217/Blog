@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/07/19/pve-ubuntu-a100-driver-cuda-tensorrt/"
+series: { slug: "a100-tensorrt-llm", name: "A100 与 TensorRT-LLM 实战", order: 1 }
 ---
 ## 前言
 

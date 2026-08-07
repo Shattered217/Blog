@@ -10,6 +10,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/09/11/cudy-tr3000-immortalwrt-guide/"
+series: { slug: "immortalwrt-build", name: "ImmortalWrt 编译", order: 1 }
 ---
 ## 配置环境
 

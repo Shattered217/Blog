@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/07/19/a100-tensorrt-llm-qwen3-8b/"
+series: { slug: "a100-tensorrt-llm", name: "A100 与 TensorRT-LLM 实战", order: 2 }
 ---
 ## 拉取TensorRT-LLM的docker镜像+LLM镜像
 

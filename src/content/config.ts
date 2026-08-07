@@ -14,6 +14,13 @@ const postsCollection = defineCollection({
 		categoryPermalink: z.string().optional().default(""),
 		lang: z.string().optional().default(""),
 		permalink: z.string().optional().default(""),
+		series: z
+			.object({
+				slug: z.string(),
+				name: z.string(),
+				order: z.number().int().positive(),
+			})
+			.optional(),
 
 		/* For internal use */
 		prevTitle: z.string().default(""),

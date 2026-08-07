@@ -129,7 +129,7 @@ class TableOfContents extends HTMLElement {
 
         if (this.anchorNavTarget || !this.tocEl) return;
         const activeHeading =
-            document.querySelectorAll<HTMLDivElement>(`#toc .${this.visibleClass}`);
+            document.querySelectorAll<HTMLDivElement>(`#toc-desktop .${this.visibleClass}`);
         if (!activeHeading.length) return;
 
         const topmost = activeHeading[0];
@@ -225,7 +225,7 @@ class TableOfContents extends HTMLElement {
         this.activeIndicator = document.getElementById("active-indicator");
 
         this.tocEntries = Array.from(
-            document.querySelectorAll<HTMLAnchorElement>("#toc a[href^='#']")
+            document.querySelectorAll<HTMLAnchorElement>("#toc-desktop a[href^='#']")
         );
 
         if (this.tocEntries.length === 0) return;

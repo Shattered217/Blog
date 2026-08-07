@@ -35,6 +35,86 @@ export async function getSortedPosts() {
 
 	return sorted;
 }
+
+export function getRelatedPosts(
+	current: CollectionEntry<"posts">,
+	posts: CollectionEntry<"posts">[],
+	limit = 3,
+) {
+	const tags = new Set(current.data.tags.map((tag) => tag.toLowerCase()));
+	const category = current.data.category?.toLowerCase();
+	const seriesSlug = current.data.series?.slug;
+
+	return posts
+		.filter((post) => post.id !== current.id)
+		.map((post) => {
+			const sharedTags = post.data.tags.filter((tag) =>
+				tags.has(tag.toLowerCase()),
+			).length;
+			const sameCategory = Boolean(
+				category && post.data.category?.toLowerCase() === category,
+			);
+			const sameSeries = Boolean(
+				seriesSlug && post.data.series?.slug === seriesSlug,
+			);
+			return {
+				post,
+				score: sharedTags * 4 + Number(sameCategory) * 2 + Number(sameSeries) * 6,
+			};
+		})
+		.filter(({ score }) => score > 0)
+		.sort(
+			(a, b) =>
+				b.score - a.score ||
+				b.post.data.published.getTime() - a.post.data.published.getTime(),
+		)
+		.slice(0, limit)
+		.map(({ post }) => post);
+}
+
+export function getSeriesPosts(
+	current: CollectionEntry<"posts">,
+	posts: CollectionEntry<"posts">[],
+) {
+	const seriesSlug = current.data.series?.slug;
+	if (!seriesSlug) return [];
+	return posts
+		.filter((post) => post.data.series?.slug === seriesSlug)
+		.sort(
+			(a, b) =>
+				(a.data.series?.order ?? 0) - (b.data.series?.order ?? 0),
+		);
+}
+
+export type SeriesGroup = {
+	slug: string;
+	name: string;
+	posts: CollectionEntry<"posts">[];
+};
+
+export function getSeriesGroups(
+	posts: CollectionEntry<"posts">[],
+): SeriesGroup[] {
+	const groups = new Map<string, SeriesGroup>();
+	for (const post of posts) {
+		const series = post.data.series;
+		if (!series) continue;
+		const group = groups.get(series.slug) ?? {
+			slug: series.slug,
+			name: series.name,
+			posts: [],
+		};
+		group.posts.push(post);
+		groups.set(series.slug, group);
+	}
+	return Array.from(groups.values()).map((group) => ({
+		...group,
+		posts: group.posts.sort(
+			(a, b) =>
+				(a.data.series?.order ?? 0) - (b.data.series?.order ?? 0),
+		),
+	}));
+}
 export type PostForList = {
 	slug: string;
 	data: CollectionEntry<"posts">["data"];

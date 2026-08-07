@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/07/25/tensorrt-llm-qwq-32b-quantization/"
+series: { slug: "a100-tensorrt-llm", name: "A100 与 TensorRT-LLM 实战", order: 3 }
 ---
 ## 环境
 

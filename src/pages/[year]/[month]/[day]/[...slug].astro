@@ -11,8 +11,13 @@ import { Icon } from "astro-icon/components";
 import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import PostMetadata from "@components/PostMeta.astro";
 import Giscus from "@components/comments/Giscus.astro";
+import PostViewCounter from "@components/PostViewCounter.astro";
+import RelatedPosts from "@components/RelatedPosts.astro";
+import SeriesNavigation from "@components/SeriesNavigation.astro";
 import { licenseConfig, profileConfig, siteConfig } from "@/config";
+import { historicalPostViews } from "@/data/historical-views";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
+import { getRelatedPosts, getSeriesPosts } from "@utils/content-utils";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -36,12 +41,16 @@ export async function getStaticPaths() {
 				day: match[3],
 				slug: match[4],
 			},
-			props: { entry },
+			props: {
+				entry,
+				relatedPosts: getRelatedPosts(entry, blogEntries),
+				seriesPosts: getSeriesPosts(entry, blogEntries),
+			},
 		};
 	});
 }
 
-const { entry } = Astro.props;
+const { entry, relatedPosts, seriesPosts } = Astro.props;
 const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
@@ -50,6 +59,7 @@ const postUrl = new URL(
 	getPostUrl(entry.slug, entry.data.published, entry.data.permalink),
 	Astro.site,
 );
+const initialViews = historicalPostViews[postUrl.pathname] ?? 0;
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -70,6 +80,14 @@ const jsonLd = {
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
+	...(entry.data.series && {
+		isPartOf: {
+			"@type": "CreativeWorkSeries",
+			name: entry.data.series.name,
+			url: new URL(`/series/${entry.data.series.slug}/`, Astro.site),
+		},
+		position: entry.data.series.order,
+	}),
 	// TODO include cover image here
 };
 ---
@@ -80,7 +98,7 @@ const jsonLd = {
             {}
         ]}>
             <!-- word count and reading time -->
-            <div class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation">
+            <div class="flex flex-row flex-wrap text-black/30 dark:text-white/30 gap-x-5 gap-y-2 mb-3 transition onload-animation">
                 <div class="flex flex-row items-center">
                     <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
                         <Icon name="material-symbols:notes-rounded"></Icon>
@@ -95,6 +113,7 @@ const jsonLd = {
                         {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
                     </div>
                 </div>
+                <PostViewCounter path={postUrl.pathname} initialViews={initialViews} />
             </div>
 
             <!-- title -->
@@ -125,6 +144,8 @@ const jsonLd = {
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
 
+            <SeriesNavigation currentId={entry.id} posts={seriesPosts} />
+
             <!-- always show cover as long as it has one -->
 
             {entry.data.image &&
@@ -140,6 +161,8 @@ const jsonLd = {
 
         </div>
     </div>
+
+    <RelatedPosts posts={relatedPosts} />
 
     <Giscus />
 

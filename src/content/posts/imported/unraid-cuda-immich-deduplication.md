@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/07/15/unraid-cuda-immich-deduplication/"
+series: { slug: "unraid-immich", name: "UNRAID 上的 Immich", order: 2 }
 ---
 [上一篇文章](/archives/591 "上一篇文章")介绍了如何在UNRAID下编排部署带GPU加速的Immich容器，这次介绍如何用[immich-mediakit](https://github.com/RazgrizHsu/immich-mediakit)这个项目来实现带GPU加速的相似照片去重
 

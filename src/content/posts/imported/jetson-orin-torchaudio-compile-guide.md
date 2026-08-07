@@ -9,6 +9,7 @@ category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN
 permalink: "/2026/01/13/jetson-orin-torchaudio-compile-guide/"
+series: { slug: "jetson-whl-build", name: "Jetson WHL 自编译", order: 3 }
 ---
 ## **基础信息**
 

@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { friendLinks } from "../data/friends";
+import FriendApplicationForm from "./FriendApplicationForm.astro";
 ---
 
 <div class="space-y-5">
@@ -49,7 +50,5 @@ import { friendLinks } from "../data/friends";
         ))}
     </div>
 
-    <div class="card-base rounded-[var(--radius-large)] px-7 py-5 text-sm text-50">
-        想交换友链，可以通过 <a class="link-lg text-[var(--primary)]" href="mailto:me@shattered.top">Email</a> 联系我。
-    </div>
+    <FriendApplicationForm />
 </div>

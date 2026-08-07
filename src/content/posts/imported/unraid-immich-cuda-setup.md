@@ -9,6 +9,7 @@ category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN
 permalink: "/2025/07/11/unraid-immich-cuda-setup/"
+series: { slug: "unraid-immich", name: "UNRAID 上的 Immich", order: 1 }
 ---
 ## 安装并配置docker-compose
 
