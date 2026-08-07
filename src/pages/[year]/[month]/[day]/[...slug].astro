@@ -6,26 +6,50 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
-import { getDir, getPostUrlBySlug } from "@utils/url-utils";
+import { getDir, getPostUrl } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
-import { licenseConfig } from "src/config";
-import ImageWrapper from "../../components/misc/ImageWrapper.astro";
-import PostMetadata from "../../components/PostMeta.astro";
-import { profileConfig, siteConfig } from "../../config";
-import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import ImageWrapper from "@components/misc/ImageWrapper.astro";
+import PostMetadata from "@components/PostMeta.astro";
+import Giscus from "@components/comments/Giscus.astro";
+import { licenseConfig, profileConfig, siteConfig } from "@/config";
+import { formatDateToYYYYMMDD } from "@utils/date-utils";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+	return blogEntries.map((entry) => {
+		const postUrl = getPostUrl(
+			entry.slug,
+			entry.data.published,
+			entry.data.permalink,
+		);
+		const match = postUrl.match(
+			/^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/$/,
+		);
+		if (!match) {
+			throw new Error(`Unsupported post permalink: ${postUrl}`);
+		}
+
+		return {
+			params: {
+				year: match[1],
+				month: match[2],
+				day: match[3],
+				slug: match[4],
+			},
+			props: { entry },
+		};
+	});
 }
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
+
+const postUrl = new URL(
+	getPostUrl(entry.slug, entry.data.published, entry.data.permalink),
+	Astro.site,
+);
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -39,6 +63,10 @@ const jsonLd = {
 		url: Astro.site,
 	},
 	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	dateModified: formatDateToYYYYMMDD(
+		entry.data.updated ?? entry.data.published,
+	),
+	mainEntityOfPage: postUrl,
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
@@ -90,7 +118,9 @@ const jsonLd = {
                         published={entry.data.published}
                         updated={entry.data.updated}
                         tags={entry.data.tags}
+						tagPermalinks={entry.data.tagPermalinks}
                         category={entry.data.category}
+						categoryPermalink={entry.data.categoryPermalink}
                 ></PostMetadata>
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
@@ -111,8 +141,10 @@ const jsonLd = {
         </div>
     </div>
 
+    <Giscus />
+
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
-        <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
+        <a href={entry.data.nextSlug && entry.data.nextPublished ? getPostUrl(entry.data.nextSlug, entry.data.nextPublished, entry.data.nextPermalink) : "#"}
            class:list={["w-full font-bold overflow-hidden active:scale-95", {"pointer-events-none": !entry.data.nextSlug}]}>
             {entry.data.nextSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4" >
                 <Icon name="material-symbols:chevron-left-rounded" class="text-[2rem] text-[var(--primary)]" />
@@ -122,7 +154,7 @@ const jsonLd = {
             </div>}
         </a>
 
-        <a href={entry.data.prevSlug ? getPostUrlBySlug(entry.data.prevSlug) : "#"}
+        <a href={entry.data.prevSlug && entry.data.prevPublished ? getPostUrl(entry.data.prevSlug, entry.data.prevPublished, entry.data.prevPermalink) : "#"}
            class:list={["w-full font-bold overflow-hidden active:scale-95", {"pointer-events-none": !entry.data.prevSlug}]}>
             {entry.data.prevSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
                 <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">

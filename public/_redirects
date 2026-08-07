@@ -1,0 +1,6 @@
+/feed /rss.xml 301
+/feed/ /rss.xml 301
+/sitemap_index.xml /sitemap-index.xml 301
+/wp-sitemap.xml /sitemap-index.xml 301
+/about/ /%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99/ 301
+/links/ /%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/ 301

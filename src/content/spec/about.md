@@ -1,9 +1,12 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 关于本站
 
-::github{repo="saicaca/fuwari"}
+这里是 Shattered217 的个人技术博客，主要记录高性能计算、边缘计算、模型、云与网络相关的实践。
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+```text
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2026 NVIDIA Corporation
+Cuda compilation tools, release 13.2, V13.2.78
+```
+
+- [GitHub](https://github.com/Shattered217)
+- [Bilibili](https://space.bilibili.com/284936847)

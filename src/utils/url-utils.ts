@@ -12,22 +12,42 @@ function joinUrl(...parts: string[]): string {
 	return joined.replace(/\/+/g, "/");
 }
 
-export function getPostUrlBySlug(slug: string): string {
-	return url(`/posts/${slug}/`);
+export function getPostUrl(
+	slug: string,
+	published: Date,
+	permalink?: string,
+): string {
+	if (permalink?.trim()) {
+		return url(`/${permalink.trim().replace(/^\/+|\/+$/g, "")}/`);
+	}
+
+	const year = published.getFullYear();
+	const month = String(published.getMonth() + 1).padStart(2, "0");
+	const day = String(published.getDate()).padStart(2, "0");
+	return url(`/${year}/${month}/${day}/${slug}/`);
 }
 
-export function getTagUrl(tag: string): string {
+export function getTagUrl(tag: string, permalink?: string): string {
 	if (!tag) return url("/archive/");
+	if (permalink?.trim()) {
+		return url(`/${permalink.trim().replace(/^\/+|\/+$/g, "")}/`);
+	}
 	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);
 }
 
-export function getCategoryUrl(category: string | null): string {
+export function getCategoryUrl(
+	category: string | null,
+	permalink?: string,
+): string {
 	if (
 		!category ||
 		category.trim() === "" ||
 		category.trim().toLowerCase() === i18n(I18nKey.uncategorized).toLowerCase()
 	)
 		return url("/archive/?uncategorized=true");
+	if (permalink?.trim()) {
+		return url(`/${permalink.trim().replace(/^\/+|\/+$/g, "")}/`);
+	}
 	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
 }
 

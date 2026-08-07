@@ -1,0 +1,13 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "shattered217-blog",
+	"pages_build_output_dir": "./dist",
+	"compatibility_date": "2026-08-07",
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "nvcc-v-media",
+			"preview_bucket_name": "nvcc-v-media-preview"
+		}
+	]
+}

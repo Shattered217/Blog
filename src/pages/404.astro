@@ -1,0 +1,15 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout title="页面不存在" description="请求的页面不存在">
+	<meta slot="head" name="robots" content="noindex, follow" />
+	<div class="card-base px-8 py-12 text-center">
+		<div class="text-6xl font-bold text-[var(--primary)] mb-4">404</div>
+		<h1 class="text-2xl font-bold text-90 mb-3">页面不存在</h1>
+		<p class="text-50 mb-6">链接可能已经失效，或者地址输入有误。</p>
+		<a href="/" class="btn-regular inline-flex rounded-xl px-5 h-11 font-medium">
+			返回首页
+		</a>
+	</div>
+</MainGridLayout>

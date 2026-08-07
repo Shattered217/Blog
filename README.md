@@ -1,99 +1,102 @@
-# 🍥Fuwari  
-![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
-![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue) 
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-saicaca%2Ffuwari-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/saicaca/fuwari)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_shield&issueType=license)
+# Shattered217 Blog
 
-A static blog template built with [Astro](https://astro.build).
+`nvcc-v.com` 的静态博客源码，基于 [Fuwari](https://github.com/saicaca/fuwari) 和 Astro。
 
-[**🖥️ Live Demo (Vercel)**](https://fuwari.vercel.app)
+## 架构
 
-![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+- Astro 在构建阶段生成完整 HTML，文章不依赖客户端渲染。
+- Cloudflare Pages 托管 HTML、CSS、JavaScript、RSS 和 Sitemap。
+- Cloudflare R2 保存 WordPress 媒体文件。
+- Pages Function 将原来的 `/wp-content/uploads/...` 路径映射到 R2，并在边缘缓存响应。
+- Pagefind 提供静态全文搜索，Giscus 提供新评论。
 
-🌏 README in
-[**中文**](https://github.com/saicaca/fuwari/blob/main/docs/README.zh-CN.md) /
-[**日本語**](https://github.com/saicaca/fuwari/blob/main/docs/README.ja.md) /
-[**한국어**](https://github.com/saicaca/fuwari/blob/main/docs/README.ko.md) /
-[**Español**](https://github.com/saicaca/fuwari/blob/main/docs/README.es.md) /
-[**ไทย**](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md) /
-[**Tiếng Việt**](https://github.com/saicaca/fuwari/blob/main/docs/README.vi.md) /
-[**Bahasa Indonesia**](https://github.com/saicaca/fuwari/blob/main/docs/README.id.md) (Provided by the community and may not always be up-to-date)
+所有 WordPress 文章、分类、标签和媒体 URL 都保持原路径。未知路径返回真正的 `404`，不会回退到首页。
 
-## ✨ Features
+## 本地开发
 
-- [x] Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
-- [x] Smooth animations and page transitions
-- [x] Light / dark mode
-- [x] Customizable theme colors & banner
-- [x] Responsive design
-- [x] Search functionality with [Pagefind](https://pagefind.app/)
-- [x] [Markdown extended features](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
-- [x] Table of contents
-- [x] RSS feed
-
-## 🚀 Getting Started
-
-1. Create your blog repository:
-    - [Generate a new repository](https://github.com/saicaca/fuwari/generate) from this template or fork this repository.
-    - Or run one of the following commands:
-       ```sh
-       npm create fuwari@latest
-       yarn create fuwari
-       pnpm create fuwari@latest
-       bun create fuwari@latest
-       deno run -A npm:create-fuwari@latest
-       ```
-2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
-    - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
-3. Edit the config file `src/config.ts` to customize your blog.
-4. Run `pnpm new-post <filename>` to create a new post and edit it in `src/content/posts/`.
-5. Deploy your blog to Vercel, Netlify, GitHub Pages, etc. following [the guides](https://docs.astro.build/en/guides/deploy/). You need to edit the site configuration in `astro.config.mjs` before deployment.
-
-## 📝 Frontmatter of Posts
-
-```yaml
----
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpg
-tags: [Foo, Bar]
-category: Front-end
-draft: false
-lang: jp      # Set only if the post's language differs from the site's language in `config.ts`
----
+```bash
+corepack pnpm install
+corepack pnpm dev
 ```
 
-## 🧩 Markdown Extended Syntax
+完整检查和构建：
 
-In addition to Astro's default support for [GitHub Flavored Markdown](https://github.github.com/gfm/), several extra Markdown features are included:
+```bash
+corepack pnpm check
+corepack pnpm type-check
+corepack pnpm build
+```
 
-- Admonitions ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
-- GitHub repository cards ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
-- Enhanced code blocks with Expressive Code ([Preview](https://fuwari.vercel.app/posts/expressive-code/) / [Docs](https://expressive-code.com/))
+要连同 Pages Function 和本地 R2 一起预览：
 
-## ⚡ Commands
+```bash
+corepack pnpm exec wrangler pages dev dist
+```
 
-All commands are run from the root of the project, from a terminal:
+## WordPress 导入
 
-| Command                    | Action                                              |
-|:---------------------------|:----------------------------------------------------|
-| `pnpm install`             | Installs dependencies                               |
-| `pnpm dev`                 | Starts local dev server at `localhost:4321`         |
-| `pnpm build`               | Build your production site to `./dist/`             |
-| `pnpm preview`             | Preview your build locally, before deploying        |
-| `pnpm check`               | Run checks for errors in your code                  |
-| `pnpm format`              | Format your code using Biome                        |
-| `pnpm new-post <filename>` | Create a new post                                   |
-| `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
-| `pnpm astro --help`        | Get help using the Astro CLI                        |
+从公开 REST API 重新导入最多 100 篇已发布文章：
 
-## ✏️ Contributing
+```bash
+corepack pnpm import-wordpress 100
+```
 
-Check out the [Contributing Guide](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) for details on how to contribute to this project.
+媒体源文件位于本地 `media/wp-content/uploads/`，该目录不会提交到 Git。媒体清单可重新生成：
 
-## 📄 License
+```bash
+corepack pnpm media:manifest
+```
 
-This project is licensed under the MIT License.
+## Cloudflare Pages 与 R2
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)
+Wrangler 配置使用两个 R2 存储桶：
+
+- 正式环境：`nvcc-v-media`
+- 预览环境：`nvcc-v-media-preview`
+- Pages Function 绑定名：`MEDIA`
+
+登录 Cloudflare、创建存储桶并上传正式媒体：
+
+```bash
+corepack pnpm exec wrangler login
+corepack pnpm exec wrangler r2 bucket create nvcc-v-media
+corepack pnpm exec wrangler r2 bucket create nvcc-v-media-preview
+corepack pnpm media:upload
+```
+
+上传预览环境媒体时指定存储桶：
+
+```bash
+R2_BUCKET=nvcc-v-media-preview corepack pnpm media:upload
+```
+
+Cloudflare Pages 项目连接 `Shattered217/Blog`，使用以下构建设置：
+
+- 构建命令：`corepack pnpm build`
+- 输出目录：`dist`
+- Node.js：22
+
+`wrangler.jsonc` 是 Pages Function 和 R2 绑定的配置源。
+
+## Giscus
+
+Giscus 要求 Discussions 仓库公开。启用 Discussions 并安装 Giscus App 后，在 Pages 构建环境中设置：
+
+```text
+PUBLIC_GISCUS_REPO_ID
+PUBLIC_GISCUS_CATEGORY_ID
+```
+
+变量修改后需要重新部署，文章评论按 pathname 映射。
+
+## 推荐的 Cloudflare 设置
+
+- 启用 Web Analytics，观察 Core Web Vitals 和真实访问性能。
+- 启用 Crawler Hints，帮助支持 IndexNow 的搜索引擎发现更新。
+- 保持 Brotli、HTTP/3 和 TLS 1.3 开启。
+- 暂不引入 KV、D1 或 Durable Objects；静态内容和评论不需要数据库。
+- 如需浏览量统计，再单独使用 Workers Analytics Engine 或 Durable Objects，避免给文章请求增加无意义的动态依赖。
+
+## 许可
+
+主题部分沿用 Fuwari 的 MIT License，详见 `LICENSE`。

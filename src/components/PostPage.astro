@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getPostUrlBySlug } from "@utils/url-utils";
+import { getPostUrl } from "@utils/url-utils";
 import PostCard from "./PostCard.astro";
 
 const { page } = Astro.props;
@@ -13,11 +13,13 @@ const interval = 50;
         <PostCard
                 entry={entry}
                 title={entry.data.title}
-                tags={entry.data.tags}
-                category={entry.data.category}
+				tags={entry.data.tags}
+				tagPermalinks={entry.data.tagPermalinks}
+				category={entry.data.category}
+				categoryPermalink={entry.data.categoryPermalink}
                 published={entry.data.published}
                 updated={entry.data.updated}
-                url={getPostUrlBySlug(entry.slug)}
+				url={getPostUrl(entry.slug, entry.data.published, entry.data.permalink)}
                 image={entry.data.image}
                 description={entry.data.description}
                 draft={entry.data.draft}

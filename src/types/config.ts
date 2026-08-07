@@ -88,13 +88,20 @@ export type BlogPostData = {
 	published: Date;
 	description: string;
 	tags: string[];
+	tagPermalinks?: string[];
 	draft?: boolean;
 	image?: string;
 	category?: string;
+	categoryPermalink?: string;
+	permalink?: string;
 	prevTitle?: string;
 	prevSlug?: string;
+	prevPublished?: Date;
+	prevPermalink?: string;
 	nextTitle?: string;
 	nextSlug?: string;
+	nextPublished?: Date;
+	nextPermalink?: string;
 };
 
 export type ExpressiveCodeConfig = {
