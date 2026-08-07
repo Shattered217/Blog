@@ -4,8 +4,8 @@ published: 2026-01-17
 updated: 2026-06-09
 description: "想在Jetson边缘设备上高效运行最新的YOLOv26目标检测模型？本文提供如何利用容器技术，在Jetson平台上构建一个集成了PyTorch和TensorRT的“高大全”推理环境的指南。手把手带你完成部署，显著提"
 image: "/wp-content/uploads/2026/01/1768647505-Gemini_Generated_Image_e5ctiee5ctiee5ct-scaled.png"
-tags: ["Docker部署","Jetson开发","TensorRT","YOLO部署","容器技术"]
-tagPermalinks: ["/tag/docker-deployment/","/tag/jetson-development/","/tag/tensorrt/","/tag/yolo-deployment/","/tag/%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af/"]
+tags: ["Jetson","TensorRT"]
+tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

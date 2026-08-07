@@ -4,8 +4,8 @@ published: 2026-03-18
 updated: 2026-06-08
 description: "你是否正在忍受某输入法不断弹窗、偷窥隐私的困扰，想换开源方案，却被“多端同步配置”的繁琐步骤吓退？本文通过本打通所有设备，让Windows，安卓和iPad的词库实时保持一致。"
 image: "/wp-content/uploads/2026/03/1773807566-Gemini_Generated_Image_htcbcrhtcbcrhtcb-scaled.png"
-tags: ["Rime输入法","多端同步","输入法配置"]
-tagPermalinks: ["/tag/rime-input-method/","/tag/cross-platform-sync/","/tag/input-method-configuration/"]
+tags: ["开发工具"]
+tagPermalinks: ["/tag/dev-tools/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

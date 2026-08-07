@@ -4,8 +4,8 @@ published: 2024-05-10
 updated: 2026-02-07
 description: "为解决Easyconnect兼容性问题，项目通过Docker运行此VPN软件，提供socks5和http代理服务。需要服务器安装Docker，配置特定端口及验证信息，再通过VNC连接和配置VPN。此外，个人可在Gi"
 image: "/wp-content/uploads/2024/05/1200x630wa.png"
-tags: ["Docker代理","内网穿透","校园VPN"]
-tagPermalinks: ["/tag/docker-proxy/","/tag/%e5%86%85%e7%bd%91%e7%a9%bf%e9%80%8f/","/tag/campus-vpn/"]
+tags: ["网络","Docker"]
+tagPermalinks: ["/tag/network/","/tag/docker/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

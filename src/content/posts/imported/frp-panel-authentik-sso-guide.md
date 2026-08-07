@@ -3,8 +3,8 @@ title: "FRP 面板(Basic Auth)接入 Authentik 单点登录指南"
 published: 2026-01-23
 description: "本文用 Authentik 搭配NGINX，完整演示从 Proxy Provider 创建、应用绑定到嵌入式 Outpost 配置，再到 NGINX 配置的每一步，让你实现一次点击即登录的单点认证，告别密码填充烦恼"
 image: "/wp-content/uploads/2026/01/1769168468-Gemini_Generated_Image_ocvw1kocvw1kocvw-scaled.png"
-tags: ["Authentik集成","frp内网穿透"]
-tagPermalinks: ["/tag/authentik-integration/","/tag/frp-internal-penetration/"]
+tags: ["网络","安全"]
+tagPermalinks: ["/tag/network/","/tag/security/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

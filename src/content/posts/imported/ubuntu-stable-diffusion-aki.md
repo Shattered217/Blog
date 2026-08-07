@@ -3,8 +3,8 @@ title: "Ubuntu使用stable-diffusion秋叶整合包-cu128+PyTorch"
 published: 2025-07-20
 description: "在 Ubuntu 中安装并运行 stable-diffusion-webui 的秋叶整合包，内容包括下载、虚拟环境创建、依赖安装以及路径修复等操作步骤，适合深度学习爱好者探索。"
 image: "/wp-content/uploads/2025/07/1753007580-00008-3463615227.webp"
-tags: ["CUDA12.8","PyTorch部署","秋叶整合包"]
-tagPermalinks: ["/tag/cuda-12-8/","/tag/pytorch-deployment/","/tag/aki-integration-pack/"]
+tags: ["AI","CUDA"]
+tagPermalinks: ["/tag/ai/","/tag/cuda/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

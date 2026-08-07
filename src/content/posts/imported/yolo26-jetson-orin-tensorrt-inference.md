@@ -4,8 +4,8 @@ published: 2026-01-17
 updated: 2026-06-10
 description: "还在为边缘设备上部署YOLO模型时，推理速度慢、掉帧严重而烦恼吗？本文教你如何在JetsonOrin平台上，将最新的YOLO26模型通过TensorRT实现极速推理。从环境搭建、依赖安装，到一键导出TRT引擎并完成"
 image: "/wp-content/uploads/2026/01/1768636472-Gemini_Generated_Image_iwzs2biwzs2biwzs-scaled.png"
-tags: ["TensorRT加速","YOLO推理","边缘计算"]
-tagPermalinks: ["/tag/tensorrt-acceleration/","/tag/yolo-inference/","/tag/%e8%be%b9%e7%bc%98%e8%ae%a1%e7%ae%97/"]
+tags: ["Jetson","TensorRT"]
+tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

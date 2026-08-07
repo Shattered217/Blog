@@ -3,8 +3,8 @@ title: "UNRAID部署Immich并启用cuda加速"
 published: 2025-07-11
 description: "这篇文章讲述了如何在 UNRAID 系统中配置 Immich，并启用 CUDA 加速功能。内容包括安装 Docker Compose、编辑配置文件以及调用 GPU。"
 image: "/wp-content/uploads/2025/07/1752212557-65d97ac1c14b36223.png_fo742.webp"
-tags: ["CUDA加速","Immich应用","UNRAID部署"]
-tagPermalinks: ["/tag/cuda-acceleration/","/tag/immich-application/","/tag/unraid-deployment/"]
+tags: ["NAS","CUDA"]
+tagPermalinks: ["/tag/nas/","/tag/cuda/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

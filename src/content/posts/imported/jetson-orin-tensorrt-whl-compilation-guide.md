@@ -3,8 +3,8 @@ title: "Jetson Orin TensorRT whl 自编译指南"
 published: 2026-01-13
 description: "这篇教程将带你，在Orin设备上成功编译出专属的TensorRT包。我们不仅会列出所需的环境参数和构建步骤，更会帮你避开依赖路径、架构兼容性等常见“坑”，确保你能顺利安装并完成核心功能验证。"
 image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
-tags: ["Jetson开发","TensorRT编译"]
-tagPermalinks: ["/tag/jetson-development/","/tag/tensorrt-compilation/"]
+tags: ["Jetson","TensorRT"]
+tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

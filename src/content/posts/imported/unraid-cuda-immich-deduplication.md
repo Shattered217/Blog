@@ -3,8 +3,8 @@ title: "UNRAID下调用cuda实现Immich相似照片去重by Immich-Mediakit"
 published: 2025-07-15
 description: "这篇文章分享了如何在 UNRAID 系统下，通过 CUDA 调用实现 Immich 的相似照片去重功能，基于 Immich-Mediakit 的实现。"
 image: "/wp-content/uploads/2025/07/1752570293-immich-mediakit.webp"
-tags: ["GPU加速","UNRAID部署","照片去重"]
-tagPermalinks: ["/tag/gpu-acceleration/","/tag/unraid-deployment/","/tag/photo-deduplication/"]
+tags: ["NAS","CUDA"]
+tagPermalinks: ["/tag/nas/","/tag/cuda/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

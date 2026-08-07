@@ -4,8 +4,8 @@ published: 2025-10-05
 updated: 2026-01-10
 description: "在Ubuntu 20.04系统中安装配置XRDP远程桌面使用默认桌面的方法。"
 image: "/wp-content/uploads/2025/10/1768031767-Gemini_Generated_Image_y0lvmjy0lvmjy0lv-scaled.png"
-tags: ["Ubuntu优化","XRDP配置","远程桌面"]
-tagPermalinks: ["/tag/ubuntu-tuning/","/tag/xrdp-config/","/tag/remote-desktop/"]
+tags: ["网络","系统运维"]
+tagPermalinks: ["/tag/network/","/tag/sysadmin/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

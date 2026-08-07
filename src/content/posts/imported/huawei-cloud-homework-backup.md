@@ -3,8 +3,8 @@ title: "\\[新手向\\]大学生白嫖华为云搭建作业备份网盘"
 published: 2024-11-25
 description: "文章介绍了大学生如何通过华为云免费获取轻量云服务器，用于搭建个人作业备份网盘。作者分享了从注册账号、申请学习代金券，到购买FlexusL实例云服务器的全过程，并说明如何通过更改安全组设置和登录管理界面使用可道云网盘"
 image: "/wp-content/uploads/2024/11/image-21.png"
-tags: ["华为云白嫖","可道云网盘","学生云实践"]
-tagPermalinks: ["/tag/huawei-cloud-free/","/tag/kodbox-setup/","/tag/student-cloud-practice/"]
+tags: ["系统运维","NAS"]
+tagPermalinks: ["/tag/sysadmin/","/tag/nas/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

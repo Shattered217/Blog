@@ -3,8 +3,8 @@ title: "Jetson Orin TorchAudio whl 自编译指南"
 published: 2026-01-13
 description: "只需跟随文中的构建步骤，你不仅能解决libsox、CUDA等关键依赖，还能获得在aarch64架构下完美运行的GPU加速音频处理能力。"
 image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
-tags: ["深度学习","环境编译","音频处理"]
-tagPermalinks: ["/tag/%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0/","/tag/environment-compilation/","/tag/audio-processing/"]
+tags: ["Jetson","AI"]
+tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

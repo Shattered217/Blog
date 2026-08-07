@@ -2,6 +2,7 @@ import { access, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import TurndownService from "turndown";
 import { gfm } from "turndown-plugin-gfm";
+import { compactTags, stripAiSummary } from "./content-rules.mjs";
 
 const siteUrl = process.env.WORDPRESS_URL || "https://nvcc-v.com";
 const requestedLimit = Number.parseInt(process.argv[2] || "3", 10);
@@ -88,8 +89,14 @@ async function importPost(post) {
 	const tags = termsByTaxonomy(post, "post_tag");
 	const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 	const permalink = new URL(post.link).pathname;
-	const markdown = await repairImportedContent(
-		normalizeInternalUrls(turndown.turndown(post.content?.rendered || "")),
+	const markdown = stripAiSummary(
+		await repairImportedContent(
+			normalizeInternalUrls(turndown.turndown(post.content?.rendered || "")),
+		),
+	);
+	const compactedTags = compactTags(
+		post.slug,
+		tags.map((tag) => tag.name),
 	);
 
 	const frontmatter = [
@@ -99,8 +106,8 @@ async function importPost(post) {
 		...(updated !== published ? [`updated: ${updated}`] : []),
 		`description: ${frontmatterValue(plainText(post.excerpt?.rendered))}`,
 		`image: ${frontmatterValue(featuredImage ? normalizeInternalUrls(featuredImage) : "")}`,
-		`tags: ${frontmatterValue(tags.map((tag) => tag.name))}`,
-		`tagPermalinks: ${frontmatterValue(tags.map((tag) => new URL(tag.link).pathname))}`,
+		`tags: ${frontmatterValue(compactedTags.map((tag) => tag.name))}`,
+		`tagPermalinks: ${frontmatterValue(compactedTags.map((tag) => tag.permalink))}`,
 		`category: ${frontmatterValue(categories[0]?.name || "")}`,
 		`categoryPermalink: ${frontmatterValue(categories[0] ? new URL(categories[0].link).pathname : "")}`,
 		"lang: zh_CN",

@@ -18,10 +18,18 @@ const contentTypes: Record<string, string> = {
 };
 
 function mediaKey(pathParam: string | string[] | undefined): string | null {
-	const relativePath = Array.isArray(pathParam)
+	const encodedPath = Array.isArray(pathParam)
 		? pathParam.join("/")
 		: pathParam;
-	if (!relativePath || relativePath.split("/").includes("..")) return null;
+	if (!encodedPath) return null;
+
+	let relativePath: string;
+	try {
+		relativePath = decodeURIComponent(encodedPath);
+	} catch {
+		return null;
+	}
+	if (relativePath.split("/").includes("..")) return null;
 	return `wp-content/uploads/${relativePath}`;
 }
 

@@ -3,8 +3,8 @@ title: "单卡A100通过TensorRT-LLM量化推理Qwen3-8B简单教程"
 published: 2025-07-19
 description: "这篇文章讲解如何在单卡 A100 上，通过 TensorRT-LLM 实现 Qwen3-8B 模型的量化推理，内容涵盖环境设置、模型转换及推理运行，适合关注高性能计算的开发者。"
 image: "/wp-content/uploads/2025/07/1752912947-Gemini_Generated_Image_jwfzf4jwfzf4jwfz-scaled-1.webp"
-tags: ["Qwen3-8B","TensorRT","模型量化"]
-tagPermalinks: ["/tag/qwen3-8b-model/","/tag/tensorrt/","/tag/model-quantization/"]
+tags: ["AI","TensorRT"]
+tagPermalinks: ["/tag/ai/","/tag/tensorrt/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

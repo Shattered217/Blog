@@ -4,8 +4,8 @@ published: 2025-09-26
 updated: 2026-01-10
 description: "国内雨云宁波节点 Headscale 0.26.1 组网教程：含 Docker 部署、HeadPlane 面板与反向代理。"
 image: "/wp-content/uploads/2025/09/1768031773-Gemini_Generated_Image_9a4rn49a4rn49a4r-scaled.png"
-tags: ["Docker部署","国内云服务器","自建私有网络"]
-tagPermalinks: ["/tag/docker-deployment/","/tag/cloud-server-headscale/","/tag/self-hosted-vpn/"]
+tags: ["网络","Docker"]
+tagPermalinks: ["/tag/network/","/tag/docker/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

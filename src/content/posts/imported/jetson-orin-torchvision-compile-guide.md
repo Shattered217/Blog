@@ -3,8 +3,8 @@ title: "Jetson Orin TorchVision whl 自编译指南"
 published: 2026-01-13
 description: "这份指南，将带你一步步从源码构建出torchvision whl。从环境变量设置、依赖库安装到最终测试验证，跟随指南，你将彻底摆脱依赖困境，在边缘设备上自主部署完整的PyTorch视觉生态。"
 image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
-tags: ["深度学习","边缘计算"]
-tagPermalinks: ["/tag/%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0/","/tag/%e8%be%b9%e7%bc%98%e8%ae%a1%e7%ae%97/"]
+tags: ["Jetson","AI"]
+tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

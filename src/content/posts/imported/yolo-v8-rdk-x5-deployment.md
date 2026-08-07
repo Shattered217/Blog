@@ -4,8 +4,8 @@ published: 2025-09-22
 updated: 2026-01-10
 description: "生成专用YOLOv8二进制文件并在RDK-x5平台上部署模型以实现摄像头视频流的实时量化推理。"
 image: "/wp-content/uploads/2025/09/1768031798-Gemini_Generated_Image_541q1x541q1x541q-scaled.png"
-tags: ["RDK-x5部署","YOLO量化","摄像头推理"]
-tagPermalinks: ["/tag/rdk-x5-deployment/","/tag/yolo-quantization/","/tag/camera-inference/"]
+tags: ["AI"]
+tagPermalinks: ["/tag/ai/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

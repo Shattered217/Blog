@@ -4,8 +4,8 @@ published: 2025-07-02
 updated: 2026-02-11
 description: "在 NVIDIA Jetson Orin Nano Super 上进行 NVMe 刷机的完整过程。内容包括使用 SDK Manager 安装驱动、配置系统以及设置轻量化桌面和 VNC 远程的方法、"
 image: "/wp-content/uploads/2025/07/1751454902-JETSON-ORIN-NANO-4G-DEV-KIT-details-1.webp"
-tags: ["NVMe刷机","Orin Nano","刷机教程"]
-tagPermalinks: ["/tag/nvme-flash-process/","/tag/orin-nano-setup/","/tag/jetson-flash-guide/"]
+tags: ["Jetson","系统运维"]
+tagPermalinks: ["/tag/jetson/","/tag/sysadmin/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

@@ -3,8 +3,8 @@ title: "Jellyfin和Emby刮削小姐姐插件-MetaTube使用方法"
 published: 2023-12-30
 description: "Jellyfin和Emby刮削小姐姐插件"
 image: "/wp-content/uploads/2023/12/68747470733a2f2f6d657461747562652d636f6d6d756e6974792e6769746875622e696f2f696d616765732f62616e6e65722d6461726b2e706e67.png"
-tags: ["Jellyfin","媒体管理","插件教程"]
-tagPermalinks: ["/tag/jellyfin/","/tag/media-management/","/tag/plugin-tutorial/"]
+tags: ["媒体服务"]
+tagPermalinks: ["/tag/media-server/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

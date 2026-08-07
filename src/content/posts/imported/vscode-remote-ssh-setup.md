@@ -4,8 +4,8 @@ published: 2025-06-25
 updated: 2026-03-31
 description: "这篇文章介绍了如何使用 Visual Studio Code 的 Remote-SSH 插件，实现基于 SSH 的远程开发。内容涵盖创建 SSH 密钥对、导入 Linux 并配置连接设置的详细步骤，帮助用户在本地高"
 image: "/wp-content/uploads/2025/06/1750849665-feb3d01245f3e9efe0ee578e2f24c296.webp"
-tags: ["SSH配置","VSCode插件","远程开发"]
-tagPermalinks: ["/tag/ssh-configuration/","/tag/vscode-plugins/","/tag/remote-development/"]
+tags: ["开发工具","网络"]
+tagPermalinks: ["/tag/dev-tools/","/tag/network/"]
 category: "Windows"
 categoryPermalink: "/windows/"
 lang: zh_CN

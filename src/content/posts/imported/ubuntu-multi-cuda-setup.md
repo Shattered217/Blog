@@ -4,8 +4,8 @@ published: 2025-07-20
 updated: 2026-01-01
 description: "在 Ubuntu 24.04 上安装和配置多版本 CUDA 工具包。内容涵盖了下载安装包到设置环境变量、验证安装的全过程。以及如何通过别名管理不同版本的 CUDA，便于开发者灵活切换。"
 image: "/wp-content/uploads/2025/07/1753006266-Gemini_Generated_Image_9nf0ld9nf0ld9nf0-scaled-1.webp"
-tags: ["CUDA安装","多版本CUDA","环境变量配置"]
-tagPermalinks: ["/tag/cuda-installation/","/tag/multi-version-cuda/","/tag/environment-variables-setup/"]
+tags: ["CUDA","系统运维"]
+tagPermalinks: ["/tag/cuda/","/tag/sysadmin/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

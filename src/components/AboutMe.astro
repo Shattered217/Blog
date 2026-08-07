@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon/components";
+import { profileConfig } from "../config";
+
+const cards = [
+	{
+		title: "正在折腾",
+		icon: "material-symbols:deployed-code-outline",
+		items: ["Ultralytics / TensorRT", "DIY NAS（UNRAID）", "RPi / Jetson / RDK", "VPS 羊毛机"],
+	},
+	{
+		title: "我的设备",
+		icon: "material-symbols:devices-outline-rounded",
+		items: ["iPhone 17 Pro Max", "iPad Air 7 M3 11 inch", "OMEN 17 · 12700H + 3070 Ti", "NAS · 8600T + Tesla P4 + 14T"],
+	},
+	{
+		title: "网络与系统",
+		icon: "material-symbols:lan-outline-rounded",
+		items: ["萌新 PTer（10/11）", "SingBox + mihomo", "KernelSU", "CTFer"],
+	},
+	{
+		title: "生活边角",
+		icon: "material-symbols:interests-outline-rounded",
+		items: ["Ubisoft 与 FPS 游戏", "可口可乐与麦当劳", "轨道交通", "快递行业观察"],
+	},
+];
+---
+
+<div class="space-y-4">
+    <section class="card-base rounded-[var(--radius-large)] overflow-hidden relative">
+        <div class="h-28 bg-[linear-gradient(120deg,var(--primary),color-mix(in_srgb,var(--primary)_30%,transparent))] opacity-70"></div>
+        <div class="px-7 md:px-9 pb-7 -mt-12 relative">
+            <img
+                src={profileConfig.avatar}
+                alt="Shattered217"
+                class="size-24 rounded-3xl object-cover ring-4 ring-[var(--card-bg)] shadow-lg bg-[var(--card-bg)]"
+            />
+            <div class="mt-4 md:flex md:items-end md:justify-between gap-5">
+                <div>
+                    <p class="text-sm font-medium text-[var(--primary)] mb-1">HELLO, I'M</p>
+                    <h1 class="text-4xl font-bold text-90">Shattered217</h1>
+                    <p class="text-50 mt-2 max-w-xl">大学生，一个有趣的白日梦想家。喜欢聊天交友、探讨技术，也喜欢把折腾过程中踩过的坑写下来。</p>
+                    <div class="flex flex-wrap gap-2 mt-4 text-sm">
+                        <span class="rounded-full bg-[var(--primary)]/15 text-[var(--primary)] px-3 py-1">ENFJ</span>
+                        <span class="rounded-full bg-black/5 dark:bg-white/10 text-50 px-3 py-1">夜猫子</span>
+                        <span class="rounded-full bg-black/5 dark:bg-white/10 text-50 px-3 py-1">技术杂食</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-5 md:mt-0">
+                    {profileConfig.links.map((link) => (
+                        <a
+                            href={link.url}
+                            target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                            rel="noopener noreferrer"
+                            aria-label={link.name}
+                            title={link.name}
+                            class="btn-regular size-10 rounded-xl"
+                        >
+                            <Icon name={link.icon} class="text-xl" />
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {cards.map((card) => (
+            <article class="card-base rounded-[var(--radius-large)] p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="size-10 rounded-xl bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center">
+                        <Icon name={card.icon} class="text-2xl" />
+                    </div>
+                    <h2 class="text-xl font-bold text-90">{card.title}</h2>
+                </div>
+                <ul class="space-y-2 text-50">
+                    {card.items.map((item) => (
+                        <li class="flex gap-2"><span class="text-[var(--primary)]">—</span><span>{item}</span></li>
+                    ))}
+                </ul>
+            </article>
+        ))}
+    </section>
+
+    <section class="card-base rounded-[var(--radius-large)] px-7 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+            <h2 class="font-bold text-90">关于这个站点</h2>
+            <p class="text-sm text-50 mt-1">从 blog.shattered.top 到 nvcc-v.com，继续记录折腾与实践。</p>
+        </div>
+        <a href="/about-site/" class="btn-regular rounded-xl px-4 py-2 text-sm font-medium">查看关于本站</a>
+    </section>
+</div>

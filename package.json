@@ -12,6 +12,7 @@
 		"type-check": "tsc --noEmit",
 		"new-post": "node scripts/new-post.js",
 		"import-wordpress": "node scripts/import-wordpress.mjs",
+		"content:compact": "node scripts/compact-imported-content.mjs",
 		"media:manifest": "node scripts/media-manifest.mjs",
 		"media:upload": "node scripts/upload-media-r2.mjs",
 		"validate:migration": "node scripts/validate-migration.mjs",

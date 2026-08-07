@@ -3,8 +3,8 @@ title: "\\[PVE\\]Ubuntu24.04直通A100安装驱动+CUDA+TensorRT教程"
 published: 2025-07-19
 description: "在PVE系统中，为Ubuntu虚拟机直通 A100 显卡、安装 NVIDIA 驱动、CUDA Toolkit 和 TensorRT。内容涵盖虚拟机设置、环境配置到深度学习工具的完整安装流程。"
 image: "/wp-content/uploads/2025/07/1752892481-Gemini_Generated_Image_zbc58ezbc58ezbc5-scaled-1.webp"
-tags: ["CUDA安装","PVE直通","TensorRT","显卡驱动"]
-tagPermalinks: ["/tag/cuda-installation/","/tag/pve-passthrough/","/tag/tensorrt/","/tag/nvidia-driver/"]
+tags: ["CUDA","TensorRT"]
+tagPermalinks: ["/tag/cuda/","/tag/tensorrt/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

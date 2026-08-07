@@ -4,8 +4,8 @@ published: 2023-12-02
 updated: 2025-12-26
 description: "基于群晖VPN Server的OpenVPN服务端实现异地组网部署教程"
 image: "/wp-content/uploads/2023/12/OIP.jpg"
-tags: ["OpenVPN设置","内网穿透","群晖部署"]
-tagPermalinks: ["/tag/openvpn-setup/","/tag/%e5%86%85%e7%bd%91%e7%a9%bf%e9%80%8f/","/tag/synology-deployment/"]
+tags: ["NAS","网络"]
+tagPermalinks: ["/tag/nas/","/tag/network/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

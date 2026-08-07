@@ -4,8 +4,8 @@ published: 2025-09-11
 updated: 2026-01-10
 description: "本地编译ImmortalWrt固件，包括环境配置、代码拉取、菜单配置、自定义软件源添加及固件编译方法。"
 image: "/wp-content/uploads/2025/09/1768031947-Gemini_Generated_Image_8ugg808ugg808ugg-scaled.png"
-tags: ["ImmortalWrt","固件编译","路由器刷机"]
-tagPermalinks: ["/tag/immortalwrt-tutorial/","/tag/firmware-compilation/","/tag/router-flashing/"]
+tags: ["OpenWrt","网络"]
+tagPermalinks: ["/tag/openwrt/","/tag/network/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

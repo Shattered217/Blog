@@ -46,7 +46,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "友链",
-			url: "/友情链接/",
+			url: "/friends/",
 		},
 		{
 			name: "GitHub",
@@ -59,7 +59,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "/wp-content/uploads/2026/01/1769071791-250x250nobk.webp",
 	name: "Shattered217",
-	bio: "记录高性能计算、边缘计算、模型与云技术实践。",
+	bio: "一个有趣的白日梦想家",
 	links: [
 		{
 			name: "Bilibili",
@@ -70,6 +70,21 @@ export const profileConfig: ProfileConfig = {
 			name: "GitHub",
 			icon: "fa6-brands:github",
 			url: "https://github.com/Shattered217",
+		},
+		{
+			name: "Steam",
+			icon: "fa6-brands:steam",
+			url: "https://steamcommunity.com/id/Shattered217/",
+		},
+		{
+			name: "小红书",
+			icon: "material-symbols:menu-book-outline-rounded",
+			url: "https://www.xiaohongshu.com/user/profile/678be992000000000e010c44",
+		},
+		{
+			name: "Email",
+			icon: "material-symbols:mail-outline-rounded",
+			url: "mailto:me@shattered.top",
 		},
 	],
 };

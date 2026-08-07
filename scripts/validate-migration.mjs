@@ -45,6 +45,7 @@ for (const postFile of postFiles) {
 	const markdown = await readFile(postFile, "utf8");
 	const permalink = frontmatterJson(markdown, "permalink");
 	const categoryPermalink = frontmatterJson(markdown, "categoryPermalink");
+	const tags = frontmatterJson(markdown, "tags") ?? [];
 	const tagPermalinks = frontmatterJson(markdown, "tagPermalinks") ?? [];
 	if (!permalink) {
 		failures.push(`${postFile}: missing permalink`);
@@ -52,6 +53,12 @@ for (const postFile of postFiles) {
 	}
 
 	articleUrls.push(permalink);
+	if (tags.length > 2) {
+		failures.push(`${permalink}: has ${tags.length} tags; expected at most 2`);
+	}
+	if (/AI智能摘要|AI\s*生成的文章内容摘要/.test(markdown)) {
+		failures.push(`${permalink}: contains an AI summary block`);
+	}
 	if (categoryPermalink) taxonomyUrls.add(categoryPermalink);
 	for (const tagPermalink of tagPermalinks) taxonomyUrls.add(tagPermalink);
 
@@ -86,13 +93,30 @@ for (const taxonomyUrl of taxonomyUrls) {
 	}
 }
 
+const redirects = await readFile(path.resolve("public/_redirects"), "utf8");
+const legacyTagRedirects = redirects
+	.split("\n")
+	.map((line) => line.trim().split(/\s+/))
+	.filter(
+		([source, target, status]) =>
+			source?.startsWith("/tag/") && target?.startsWith("/tag/") && status === "301",
+	);
+for (const [source, target] of legacyTagRedirects) {
+	if (taxonomyUrls.has(source)) {
+		failures.push(`${source}: retained taxonomy must not also redirect`);
+	}
+	if (!(await exists(outputPath(target)))) {
+		failures.push(`${source}: redirect target ${target} is missing`);
+	}
+}
+
 for (const mediaPath of referencedMedia) {
 	if (!(await exists(path.join(mediaRoot, mediaPath)))) {
 		failures.push(`/${mediaPath}: missing R2 source object`);
 	}
 }
 
-for (const legacyPath of ["关于本站", "友情链接"]) {
+for (const legacyPath of ["about", "about-site", "friends"]) {
 	if (!(await exists(path.join(distRoot, legacyPath, "index.html")))) {
 		failures.push(`/${legacyPath}/: missing legacy page`);
 	}
@@ -124,6 +148,6 @@ if (failures.length > 0) {
 	process.exitCode = 1;
 } else {
 	console.log(
-		`Validated ${postFiles.length} posts, ${taxonomyUrls.size} taxonomy pages, and ${referencedMedia.size} referenced media objects.`,
+		`Validated ${postFiles.length} posts, ${taxonomyUrls.size} taxonomy pages, ${legacyTagRedirects.length} legacy tag redirects, and ${referencedMedia.size} referenced media objects.`,
 	);
 }

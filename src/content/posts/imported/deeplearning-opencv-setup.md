@@ -4,8 +4,8 @@ published: 2025-03-14
 updated: 2025-12-26
 description: "本指南介绍如何构建深度学习环境，使用AnaConda创建虚拟环境，以及安装PyTorch、CUDA和C++编译工具。为避免网络问题，建议购买加速服务，并启用tun模式以优化连接流量。完成后安装Jupyter以完成环"
 image: "/wp-content/uploads/2025/03/1FTw5KFD6ApDigX1J1i4KhA.jpg"
-tags: ["CUDA安装","OpenCV配置","深度学习环境"]
-tagPermalinks: ["/tag/cuda-installation/","/tag/opencv-config-guide/","/tag/deep-learning-environment/"]
+tags: ["AI","CUDA"]
+tagPermalinks: ["/tag/ai/","/tag/cuda/"]
 category: "Windows"
 categoryPermalink: "/windows/"
 lang: zh_CN

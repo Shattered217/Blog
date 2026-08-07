@@ -4,8 +4,8 @@ published: 2023-10-17
 updated: 2025-12-26
 description: "你的NAS-Tool还停留在基础功能？别再忍受官方索引的局限和手动刷流的繁琐了。本文将手把手教你安装第三方插件包，解锁两大核心进阶玩法：一键添加任何PT站的索引规则，让你轻松搜遍全网资源；并自定义精准的自动刷流策略"
 image: "/wp-content/uploads/2023/10/logo-blue.png"
-tags: ["NAS工具插件","索引器配置","自定义刷流"]
-tagPermalinks: ["/tag/nas-tools-plugin/","/tag/indexer-config/","/tag/custom-brush-rules/"]
+tags: ["NAS","媒体服务"]
+tagPermalinks: ["/tag/nas/","/tag/media-server/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

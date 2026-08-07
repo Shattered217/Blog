@@ -4,8 +4,8 @@ published: 2026-01-01
 updated: 2026-01-10
 description: "通过Jetson边缘计算设备部署Obico视觉检测服务，结合HA实现全自动监控。当打印机出现挤丝异常时，系统会立即暂停打印并推送通知到你的手机，有效避免耗材浪费。"
 image: "/wp-content/uploads/2026/01/1767261352-Gemini_Generated_Image_qnv4cwqnv4cwqnv4-scaled.png"
-tags: ["3D打印","智能家居","边缘计算"]
-tagPermalinks: ["/tag/3d-printing-technology/","/tag/smart-home-automation/","/tag/%e8%be%b9%e7%bc%98%e8%ae%a1%e7%ae%97/"]
+tags: ["智能家居","AI"]
+tagPermalinks: ["/tag/smart-home/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

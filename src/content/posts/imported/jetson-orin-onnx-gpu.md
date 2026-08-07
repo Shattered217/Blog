@@ -4,8 +4,8 @@ published: 2025-11-03
 updated: 2026-06-09
 description: "在 Jetson Orin Nano 上从源码编译并运行 Immich 深度学习模块的全过程，介绍了如何构建支持 CUDA 的 ONNX Runtime。"
 image: "/wp-content/uploads/2025/11/1768031675-Gemini_Generated_Image_z76cp0z76cp0z76c-scaled.png"
-tags: ["GPU加速","深度学习","编译环境"]
-tagPermalinks: ["/tag/gpu-acceleration/","/tag/%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0/","/tag/compilation-environment/"]
+tags: ["Jetson","AI"]
+tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

@@ -3,8 +3,8 @@ title: "ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容"
 published: 2026-01-11
 description: "本文将为你揭秘一个进阶技巧，通过一个关键配置文件，实现自定义编译的固件与官方源内核模块的完美兼容，将一劳永逸地解决这个痛点，构建出既灵活又便捷的个性化路由器系统。"
 image: "/wp-content/uploads/2026/01/1768100612-Gemini_Generated_Image_7jlexa7jlexa7jle-scaled.png"
-tags: ["兼容优化","内核模块","固件编译"]
-tagPermalinks: ["/tag/compatibility-optimization/","/tag/kernel-modules/","/tag/firmware-compilation/"]
+tags: ["OpenWrt","系统运维"]
+tagPermalinks: ["/tag/openwrt/","/tag/sysadmin/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

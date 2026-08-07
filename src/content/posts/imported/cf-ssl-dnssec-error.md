@@ -3,8 +3,8 @@ title: "记一次CloudFlare小云朵代理网站SSL错误事故"
 published: 2025-07-10
 description: "这篇文章记录了一次解决 CloudFlare 网站 SSL 错误的经历。博主排查了源服务器证书、尝试替换证书并搜索解决方法，但发现问题出在 DNSSEC 的配置上。通过修复加密算法配置和调整 CloudFlare"
 image: "/wp-content/uploads/2025/07/1752139659-cloudflare-logo-scaled-1.webp"
-tags: ["CDN故障","CloudFlare问题","证书验证"]
-tagPermalinks: ["/tag/cdn-troubleshooting/","/tag/cloudflare-issues/","/tag/ssl-verification/"]
+tags: ["网络","安全"]
+tagPermalinks: ["/tag/network/","/tag/security/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

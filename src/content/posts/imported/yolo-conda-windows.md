@@ -3,8 +3,8 @@ title: "Windows 使用Anaconda 搭建 YOLO环境 教程"
 published: 2025-08-08
 description: "本教程详细指导在Windows系统安装并配置Anaconda搭建包含CUDA的YOLO环境。"
 image: "/wp-content/uploads/2025/08/1754640927-Gemini_Generated_Image_s0n0tcs0n0tcs0n0.webp"
-tags: ["YOLO部署","环境搭建"]
-tagPermalinks: ["/tag/yolo-deployment/","/tag/environment-setup/"]
+tags: ["AI","开发工具"]
+tagPermalinks: ["/tag/ai/","/tag/dev-tools/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

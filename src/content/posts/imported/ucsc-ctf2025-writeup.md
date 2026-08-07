@@ -3,8 +3,8 @@ title: "UCSC\\_CTF2025高校网络安全联合选拔赛 WP"
 published: 2025-04-20
 description: "这篇文章分享了 UCSC\\_CTF2025高校网络安全联合选拔赛 的比赛题解，涵盖了 MISC、Web、Crypto、Reverse 和 Pwn 五个领域的具体解题方法。内容包括代码分析、解密算法，以及题目背后的思路"
 image: "/wp-content/uploads/2025/04/02169529E69E633A9A52953240D607AC.jpg"
-tags: ["CTF解题","加密解密","网络安全"]
-tagPermalinks: ["/tag/ctf-solutions/","/tag/encryption-decryption/","/tag/cyber-security/"]
+tags: ["安全"]
+tagPermalinks: ["/tag/security/"]
 category: "CTF"
 categoryPermalink: "/ctf/"
 lang: zh_CN

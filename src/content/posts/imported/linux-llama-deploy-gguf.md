@@ -3,8 +3,8 @@ title: "Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf"
 published: 2025-08-09
 description: "在Linux系统上编译llama.cpp源码部署gpt-oss-20b-Q8\\_0.gguf模型，并可通过Cherry Studio接入服务。"
 image: "/wp-content/uploads/2025/08/1754739210-d4ab2b97339545a4bc12e4b067611aad.webp"
-tags: ["AI部署","llama.cpp","模型推理"]
-tagPermalinks: ["/tag/ai-deployment/","/tag/llama-cpp/","/tag/model-inference/"]
+tags: ["AI","系统运维"]
+tagPermalinks: ["/tag/ai/","/tag/sysadmin/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

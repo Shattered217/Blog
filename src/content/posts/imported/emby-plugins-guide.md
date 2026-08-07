@@ -4,8 +4,8 @@ published: 2023-08-12
 updated: 2025-12-26
 description: "给你的EMBY赋予一起看和弹幕功能！"
 image: "/wp-content/uploads/2023/08/image-1.png"
-tags: ["Docker教程","EMBY插件","媒体服务器"]
-tagPermalinks: ["/tag/docker-tutorial/","/tag/emby-plugins/","/tag/media-server/"]
+tags: ["媒体服务","Docker"]
+tagPermalinks: ["/tag/media-server/","/tag/docker/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

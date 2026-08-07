@@ -2,6 +2,7 @@
 import type { GetStaticPaths, Page } from "astro";
 import { getEntry, render, type CollectionEntry } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
+import FriendLinks from "../components/FriendLinks.astro";
 import Pagination from "../components/control/Pagination.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
@@ -47,8 +48,8 @@ export const getStaticPaths = (async ({ paginate }) => {
 		props: { taxonomy },
 	}));
 	const legacyPaths = [
-		{ params: { page: "关于本站" }, props: { legacy: "about" } },
-		{ params: { page: "友情链接" }, props: { legacy: "friends" } },
+		{ params: { page: "about-site" }, props: { legacy: "about" } },
+		{ params: { page: "friends" }, props: { legacy: "friends" } },
 	];
 
 	return [...paginationPaths, ...taxonomyPaths, ...legacyPaths];
@@ -85,11 +86,13 @@ const len = listPage?.data.length ?? 0;
 
 {legacy && LegacyContent ? (
     <MainGridLayout title={legacy === "about" ? "关于本站" : "友情链接"}>
-        <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-            <div class="card-base z-10 px-9 py-6 relative w-full">
-                <Markdown class="mt-2"><LegacyContent /></Markdown>
+        {legacy === "friends" ? <FriendLinks /> : (
+            <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+                <div class="card-base z-10 px-9 py-6 relative w-full">
+                    <Markdown class="mt-2"><LegacyContent /></Markdown>
+                </div>
             </div>
-        </div>
+        )}
     </MainGridLayout>
 ) : (
     <MainGridLayout title={taxonomyTitle} description={taxonomyTitle}>

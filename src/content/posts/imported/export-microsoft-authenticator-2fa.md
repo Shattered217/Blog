@@ -3,8 +3,8 @@ title: "手动导出 Microsoft Authenticator 中的2FA密钥"
 published: 2024-01-29
 description: "手动导出 Microsoft Authenticator 中的2FA密钥"
 image: "/wp-content/uploads/2024/01/OIP-C.jpg"
-tags: ["2FA导出","Authenticator","密钥备份"]
-tagPermalinks: ["/tag/2fa-export/","/tag/microsoft-authenticator/","/tag/secret-key-backup/"]
+tags: ["安全"]
+tagPermalinks: ["/tag/security/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

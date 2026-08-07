@@ -4,8 +4,8 @@ published: 2026-01-10
 updated: 2026-01-25
 description: "这篇教程将手把手带你完成从环境搭建到TensorRT量化推理的全流程，提供有效的避坑指南和优化技巧，让你在边缘上部署SAM3成为可能。"
 image: "/wp-content/uploads/2026/01/1768029966-Gemini_Generated_Image_j1sfi6j1sfi6j1sf-scaled.png"
-tags: ["Jetson推理","SAM3部署","TensorRT量化"]
-tagPermalinks: ["/tag/jetson-inference/","/tag/sam3-deployment/","/tag/tensorrt-quantization/"]
+tags: ["Jetson","TensorRT"]
+tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN

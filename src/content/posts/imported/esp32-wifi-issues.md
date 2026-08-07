@@ -3,8 +3,8 @@ title: "ESP32连不上wifi的解决方案"
 published: 2025-02-07
 description: "学习单片机网络时遇到WiFi连接问题，建议将SSID改为英文或数字，选择混合加密并开启WiFi5兼容模式，最后附上MicroPython网络排查状态。"
 image: "/wp-content/uploads/2025/02/61w5cKenUL._AC_SL1500_.jpg"
-tags: ["ESP32故障","MicroPython网络","WiFi排障"]
-tagPermalinks: ["/tag/esp32-troubleshooting/","/tag/micropython-network/","/tag/wifi-troubleshooting/"]
+tags: ["MCU","网络"]
+tagPermalinks: ["/tag/mcu/","/tag/network/"]
 category: "MCU"
 categoryPermalink: "/mcu/"
 lang: zh_CN

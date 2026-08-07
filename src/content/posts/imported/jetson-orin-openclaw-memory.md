@@ -3,19 +3,13 @@ title: "Jetson Orin 部署 OpenClaw 开启 Memory Search"
 published: 2026-06-14
 description: "你的Jetson Orin刚部署好记忆搜索，结果发现llama.cpp在ARM上死活不调用CUDA——推理速度慢到像在用CPU跑大模型。别急着换硬件，问题出在官方预编译产物上。实测自编译CUDA支持后，batch"
 image: "/wp-content/uploads/2026/06/1781372812-ChatGPT-Image-2026年6月14日-01_46_41.png"
-tags: ["CUDA加速","Jetson推理","llama.cpp"]
-tagPermalinks: ["/tag/cuda-acceleration/","/tag/jetson-inference/","/tag/llama-cpp/"]
+tags: ["Jetson","AI"]
+tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN
 permalink: "/2026/06/14/jetson-orin-openclaw-memory/"
 ---
-AI智能摘要
-
-你的Jetson Orin刚部署好记忆搜索，结果发现llama.cpp在ARM上死活不调用CUDA——推理速度慢到像在用CPU跑大模型。别急着换硬件，问题出在官方预编译产物上。实测自编译CUDA支持后，batch size直接拉到1024，GPU占用飙满，推理延迟骤降。但你知道编译时那个\`CMAKE\_CUDA\_ARCHITECTURES=87\`的参数设错了会有多致命吗？这篇手把手教程把坑都踩平了，照着做就能让小龙虾的记忆搜索跑出桌面级性能——省下你至少三天瞎折腾的时间。
-
-— AI 生成的文章内容摘要
-
 主播最近把小龙虾迁移到 Orin NX 上了，然后发现小龙虾的记忆搜索功能依托的是 node.llama.cpp，但是在 ARM 设备上编译出的产物似乎不支持 CUDA 加速，故决定自编译以支持高性能计算推理
 
 ## 编译llama.cpp

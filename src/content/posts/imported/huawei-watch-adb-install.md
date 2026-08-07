@@ -4,8 +4,8 @@ published: 2023-06-14
 updated: 2025-12-26
 description: "想摆脱每次安装手表应用都要连接电脑的繁琐吗？别再用传统方法了。本文为你揭秘一个基于无线ADB的“黑科技”方案，让你能在华为Watch 3上独立安装任意第三方应用。只需几个步骤，通过Shizuku和WearOS工具箱"
 image: "/wp-content/uploads/2023/06/R-C-1.jpg"
-tags: ["ADB调试","华为手表","应用安装","系统优化"]
-tagPermalinks: ["/tag/adb-debugging/","/tag/huawei-watch/","/tag/app-installation/","/tag/system-optimization/"]
+tags: ["开发工具"]
+tagPermalinks: ["/tag/dev-tools/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

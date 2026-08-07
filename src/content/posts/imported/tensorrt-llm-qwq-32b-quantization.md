@@ -3,8 +3,8 @@ title: "Tensor-LLM 1.0.0rc4 量化推理QwQ-32B int4"
 published: 2025-07-25
 description: "基于TensorRT-LLM，在A100环境下对QwQ-32B模型进行int4量化推理。通过转换检查点并构建TensorRT引擎，成功运行吞吐基准测试，使用合成数据集评估性能。"
 image: "/wp-content/uploads/2025/07/1753435410-Google_AI_Studio_2025-07-25T09_23_11.933Z.webp"
-tags: ["TensorRT-LLM","模型部署","量化推理"]
-tagPermalinks: ["/tag/tensorrt-llm/","/tag/model-deployment/","/tag/quantitative-inference/"]
+tags: ["AI","TensorRT"]
+tagPermalinks: ["/tag/ai/","/tag/tensorrt/"]
 category: "Linux"
 categoryPermalink: "/linux/"
 lang: zh_CN

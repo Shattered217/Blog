@@ -4,8 +4,8 @@ published: 2023-11-03
 updated: 2025-12-26
 description: "大学生专属福利！阿里云服务器免费领一年，手把手教你搭建私人DNS加密服务。无需技术基础，跟着教程从零开始配置AdGuard Home，实现全网广告拦截+隐私保护。学会用DoT/DoH加密DNS查询，彻底告别网络追踪"
 image: "/wp-content/uploads/2023/11/fm.png"
-tags: ["DNS加密","学生优惠","服务器搭建"]
-tagPermalinks: ["/tag/dns-encryption/","/tag/student-discounts/","/tag/server-setup/"]
+tags: ["网络","安全"]
+tagPermalinks: ["/tag/network/","/tag/security/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

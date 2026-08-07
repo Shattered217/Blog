@@ -4,8 +4,8 @@ published: 2023-06-14
 updated: 2025-12-26
 description: "想打造一个能硬解4K原盘、聚合全网云盘资源的私人影库，却苦于技术门槛？别再羡慕别人的完美方案了。本文将手把手教你，如何在PVE虚拟机上安装黑群晖，并直通核显给Jellyfin实现强悍的硬件解码。你将学会通过Alis"
 image: "/wp-content/uploads/2023/06/cover.png"
-tags: ["云盘挂载","影音媒体库","虚拟机直通"]
-tagPermalinks: ["/tag/cloud-drive-mount/","/tag/media-library-management/","/tag/virtual-machine-passthrough/"]
+tags: ["NAS","系统运维"]
+tagPermalinks: ["/tag/nas/","/tag/sysadmin/"]
 category: "Android"
 categoryPermalink: "/android/"
 lang: zh_CN

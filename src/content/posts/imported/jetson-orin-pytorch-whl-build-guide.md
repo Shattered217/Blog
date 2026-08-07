@@ -4,8 +4,8 @@ published: 2026-01-13
 updated: 2026-06-08
 description: "本文将为你提供一份详尽的whl自编译指南，教你编译出专为Orin架构优化的PyTorch包。告别通用版本的限制，获得最适合你边缘计算设备的深度学习框架。"
 image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
-tags: ["AI环境部署","Jetson开发","PyTorch编译"]
-tagPermalinks: ["/tag/ai-environment-deployment/","/tag/jetson-development/","/tag/pytorch-compilation/"]
+tags: ["Jetson","AI"]
+tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
 categoryPermalink: "/linux/jetson/"
 lang: zh_CN
