@@ -2,7 +2,7 @@
 title: "给NAS-Tool添加拓展功能，自定义刷流、索引规则"
 published: 2023-10-17
 updated: 2025-12-26
-description: "你的NAS-Tool还停留在基础功能？别再忍受官方索引的局限和手动刷流的繁琐了。本文将手把手教你安装第三方插件包，解锁两大核心进阶玩法：一键添加任何PT站的索引规则，让你轻松搜遍全网资源；并自定义精准的自动刷流策略"
+description: "为 NAS-Tool 安装第三方插件扩展，配置自定义 PT 站索引与自动刷流规则。"
 image: "/wp-content/uploads/2023/10/logo-blue.png"
 tags: ["NAS","媒体服务"]
 tagPermalinks: ["/tag/nas/","/tag/media-server/"]
@@ -68,7 +68,7 @@ curl -O https://github.com/Mattoids/nas-tools-plugin/raw/master/package/unload.s
 https://github.com/Mattoids/nas-tools-plugin/raw/master/source.json
 ```
 
-![](http://154.17.6.113/wp-content/uploads/2023/10/image-1024x513.png)
+![安装第三方插件拓展包 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](/wp-content/uploads/2023/10/image-1024x513.png)
 
 打开第三方插件-点击设置按钮-填入地址-保存即可
 
@@ -76,7 +76,7 @@ https://github.com/Mattoids/nas-tools-plugin/raw/master/source.json
 
 通过配置此插件以对NT不支持的站点进行索引，搜索影片
 
-![](http://154.17.6.113/wp-content/uploads/2023/10/image-1-1024x690.png)
+![配置自定义索引器 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](/wp-content/uploads/2023/10/image-1-1024x690.png)
 
 第一个框填写你需要添加的站点，第二框填写NT已经支持的站点，用于替换数据，然后点击第三个框，双击复制所有内容，打开JSON处理网站
 

@@ -2,7 +2,7 @@
 title: "Jetson Orin TensorRT 量化推理 SAM3 示例教程"
 published: 2026-01-10
 updated: 2026-01-25
-description: "这篇教程将手把手带你完成从环境搭建到TensorRT量化推理的全流程，提供有效的避坑指南和优化技巧，让你在边缘上部署SAM3成为可能。"
+description: "在 Jetson Orin 上部署 SAM3，完成模型转换、TensorRT 量化和推理验证，并记录常见环境问题。"
 image: "/wp-content/uploads/2026/01/1768029966-Gemini_Generated_Image_j1sfi6j1sfi6j1sf-scaled.png"
 tags: ["Jetson","TensorRT"]
 tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
@@ -29,11 +29,11 @@ sudo jtop
 
 按下 6 键或直接点击 CTRL 进入控制面板
 
-![](/wp-content/uploads/2026/01/1768028418-image-1024x640.png)
+![调整最佳性能模式 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 1](/wp-content/uploads/2026/01/1768028418-image-1024x640.png)
 
 将风扇配置调为 cool，Jetson Clocks 开启，能耗模式调整为 MAXN
 
-![](/wp-content/uploads/2026/01/1768028481-image-1024x640.png)
+![调整最佳性能模式 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 2](/wp-content/uploads/2026/01/1768028481-image-1024x640.png)
 
 输入以下命令暂时关闭桌面节省内存
 
@@ -88,11 +88,11 @@ python3 python/onnxexport.py
 /usr/src/tensorrt/bin/trtexec --onnx=onnx_weights/sam3_static.onnx --saveEngine=sam3_fp16.plan --fp16 --verbose
 ```
 
-![](/wp-content/uploads/2026/01/1768030114-image-1024x640.png)
+![trt 量化编译 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 1](/wp-content/uploads/2026/01/1768030114-image-1024x640.png)
 
 出现 **PASSED** 即测试通过，如果 FAILED 也没事，一般是内存不够导致测试失败了，只要 .plan 生成成功即可
 
-![](/wp-content/uploads/2026/01/1768030191-image-1024x678.png)
+![trt 量化编译 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 2](/wp-content/uploads/2026/01/1768030191-image-1024x678.png)
 
 ## 编译并运行测试程序
 
@@ -112,13 +112,13 @@ root@jetson-orin-nx:/workspace/cpp/build# ./sam3_pcs_app test/ ../../sam3_fp16.p
 
 ## 效果展示
 
-![](/wp-content/uploads/2026/01/1768030771-image-1024x683.png)
+![效果展示 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 1](/wp-content/uploads/2026/01/1768030771-image-1024x683.png)
 
-![](/wp-content/uploads/2026/01/1768030787-dog-1024x683.jpeg)
+![效果展示 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 2](/wp-content/uploads/2026/01/1768030787-dog-1024x683.jpeg)
 
-![](/wp-content/uploads/2026/01/1768030838-n02091831_573.jpg)
+![效果展示 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 3](/wp-content/uploads/2026/01/1768030838-n02091831_573.jpg)
 
-![](/wp-content/uploads/2026/01/1768030822-n02091831_573.jpg)
+![效果展示 - Jetson Orin TensorRT 量化推理 SAM3 示例教程 操作截图 4](/wp-content/uploads/2026/01/1768030822-n02091831_573.jpg)
 
 特别感谢以下项目
 

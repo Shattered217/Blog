@@ -1,7 +1,7 @@
 ---
 title: "ESP32连不上wifi的解决方案"
 published: 2025-02-07
-description: "学习单片机网络时遇到WiFi连接问题，建议将SSID改为英文或数字，选择混合加密并开启WiFi5兼容模式，最后附上MicroPython网络排查状态。"
+description: "排查 ESP32 无法连接 Wi-Fi 的常见原因，涉及 SSID、加密模式、Wi-Fi 5 兼容设置和 MicroPython 网络状态。"
 image: "/wp-content/uploads/2025/02/61w5cKenUL._AC_SL1500_.jpg"
 tags: ["MCU","网络"]
 tagPermalinks: ["/tag/mcu/","/tag/network/"]

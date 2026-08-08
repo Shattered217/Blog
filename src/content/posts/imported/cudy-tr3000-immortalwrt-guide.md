@@ -1,8 +1,8 @@
 ---
-title: "\\[Cudy TR3000 256M v1\\]本地自编译immortalWrt 24.10指南"
+title: "Cudy TR3000 v1 编译 ImmortalWrt 24.10"
 published: 2025-09-11
 updated: 2026-01-10
-description: "本地编译ImmortalWrt固件，包括环境配置、代码拉取、菜单配置、自定义软件源添加及固件编译方法。"
+description: "记录 Cudy TR3000 v1 本地编译 ImmortalWrt 24.10 的环境准备、源码配置、软件源定制和固件构建步骤。"
 image: "/wp-content/uploads/2025/09/1768031947-Gemini_Generated_Image_8ugg808ugg808ugg-scaled.png"
 tags: ["OpenWrt","网络"]
 tagPermalinks: ["/tag/openwrt/","/tag/network/"]
@@ -58,11 +58,11 @@ make menuconfig
 
 前三项如图所示，即为Cudy TR3000 256M v1的固件选项，注意 空格是选择，双击esc是返回上一页
 
-![](/wp-content/uploads/2025/09/1757574973-image-867x1024.webp)
+![编译默认纯净固件 - Cudy TR3000 v1 编译 ImmortalWrt 24.10 操作截图 1](/wp-content/uploads/2025/09/1757574973-image-867x1024.webp)
 
 主菜单双击esc后回车保存配置
 
-![](/wp-content/uploads/2025/09/1757575111-image.webp)
+![编译默认纯净固件 - Cudy TR3000 v1 编译 ImmortalWrt 24.10 操作截图 2](/wp-content/uploads/2025/09/1757575111-image.webp)
 
 下载编译软件包源码后开始编译，注意64是CPU核心数，可按自身配置自行决定
 
@@ -101,7 +101,7 @@ make menuconfig
 
 例如Argon主题位于 LuCI > Themes，双击空格选中Argon主题即可
 
-![](/wp-content/uploads/2025/09/1757575755-image-1024x300.webp)
+![添加自定义软件源以及定制OP固件 - Cudy TR3000 v1 编译 ImmortalWrt 24.10 操作截图](/wp-content/uploads/2025/09/1757575755-image-1024x300.webp)
 
 nikki和momo位于 LuCI > Application，找到后双击选中即可，需要的依赖如kmod也会自动勾选
 

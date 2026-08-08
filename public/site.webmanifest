@@ -1,0 +1,21 @@
+{
+  "name": "Shattered217のBlog",
+  "short_name": "Shattered217",
+  "description": "一个在校大学生的个人技术博客，分享高性能计算、边缘计算、网络、模型与云相关内容。",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#aeade3",
+  "icons": [
+    {
+      "src": "/favicon/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

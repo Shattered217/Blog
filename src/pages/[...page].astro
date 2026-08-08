@@ -7,6 +7,8 @@ import Pagination from "../components/control/Pagination.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { siteConfig } from "../config";
+import { getTaxonomyDescription } from "../data/taxonomy-descriptions";
 import { getSortedPosts } from "../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -14,7 +16,12 @@ export const getStaticPaths = (async ({ paginate }) => {
 	const paginationPaths = paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 	const taxonomyMap = new Map<
 		string,
-		{ name: string; type: "category" | "tag"; posts: typeof allBlogPosts }
+		{
+			name: string;
+			type: "category" | "tag";
+			path: string;
+			posts: typeof allBlogPosts;
+		}
 	>();
 
 	for (const post of allBlogPosts) {
@@ -23,6 +30,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 			const taxonomy = taxonomyMap.get(path) ?? {
 				name: post.data.category,
 				type: "category" as const,
+				path: `/${path}/`,
 				posts: [],
 			};
 			taxonomy.posts.push(post);
@@ -36,6 +44,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 			const taxonomy = taxonomyMap.get(path) ?? {
 				name: tag,
 				type: "tag" as const,
+				path: `/${path}/`,
 				posts: [],
 			};
 			taxonomy.posts.push(post);
@@ -60,6 +69,7 @@ type BlogPostEntry = CollectionEntry<"posts">;
 interface TaxonomyProps {
 	name: string;
 	type: "category" | "tag";
+	path: string;
 	posts: BlogPostEntry[];
 }
 interface Props {
@@ -73,6 +83,19 @@ const listPage = taxonomy ? { data: taxonomy.posts } : page;
 const taxonomyTitle = taxonomy
 	? `${taxonomy.type === "category" ? "分类" : "标签"}：${taxonomy.name}`
 	: undefined;
+const paginationTitle =
+	page && page.currentPage > 1 ? `文章列表 · 第 ${page.currentPage} 页` : undefined;
+const listTitle = taxonomyTitle ?? paginationTitle;
+const listDescription = taxonomy
+	? getTaxonomyDescription(
+			taxonomy.path,
+			taxonomy.name,
+			taxonomy.type,
+			taxonomy.posts.length,
+		)
+	: page && page.currentPage > 1
+		? `${siteConfig.title} 第 ${page.currentPage} 页，继续浏览技术教程、部署记录与排障文章。`
+		: undefined;
 
 let LegacyContent;
 if (legacy) {
@@ -85,7 +108,12 @@ const len = listPage?.data.length ?? 0;
 ---
 
 {legacy && LegacyContent ? (
-    <MainGridLayout title={legacy === "about" ? "关于本站" : "友情链接"}>
+    <MainGridLayout
+		title={legacy === "about" ? "关于本站" : "友情链接"}
+		description={legacy === "about"
+			? "了解 Shattered217のBlog 的内容方向、技术栈与站点运行方式。"
+			: "Shattered217のBlog 的朋友们：独立博客与个人站点推荐。"}
+	>
         {legacy === "friends" ? <FriendLinks /> : (
             <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
                 <div class="card-base z-10 px-9 py-6 relative w-full">
@@ -95,7 +123,31 @@ const len = listPage?.data.length ?? 0;
         )}
     </MainGridLayout>
 ) : (
-    <MainGridLayout title={taxonomyTitle} description={taxonomyTitle}>
+    <MainGridLayout title={listTitle} description={listDescription}>
+		{page?.url.prev && <link slot="head" rel="prev" href={new URL(page.url.prev, Astro.site)} />}
+		{page?.url.next && <link slot="head" rel="next" href={new URL(page.url.next, Astro.site)} />}
+		{taxonomy && (
+			<section class="card-base rounded-[var(--radius-large)] px-7 py-6 md:px-9 mb-4 flex items-start justify-between gap-5">
+				<div>
+					<p class="text-sm font-semibold tracking-[0.14em] text-[var(--primary)] mb-1">
+						{taxonomy.type === "category" ? "CATEGORY" : "TOPIC"}
+					</p>
+					<h1 class="text-3xl font-bold text-90">{taxonomy.name}</h1>
+					<p class="text-50 mt-2 max-w-3xl">{listDescription}</p>
+				</div>
+				<span class="shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold bg-[var(--primary)]/15 text-[var(--primary)]">
+					{taxonomy.posts.length} 篇
+				</span>
+			</section>
+		)}
+		{page && page.currentPage === 1 && <h1 class="sr-only">{siteConfig.title}</h1>}
+		{page && page.currentPage > 1 && (
+			<section class="card-base rounded-[var(--radius-large)] px-7 py-5 md:px-9 mb-4">
+				<p class="text-sm font-semibold tracking-[0.14em] text-[var(--primary)] mb-1">ARTICLE INDEX</p>
+				<h1 class="text-2xl font-bold text-90">第 {page.currentPage} 页</h1>
+				<p class="text-50 mt-2">{listDescription}</p>
+			</section>
+		)}
         <PostPage page={listPage}></PostPage>
         {page && <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>}
     </MainGridLayout>

@@ -1,7 +1,7 @@
 ---
-title: "\\[Tailscale\\]实时监控 Windows 远程桌面(RDP)会话脚本"
+title: "Tailscale 实时监控 Windows RDP 会话"
 published: 2025-05-21
-description: "针对 Tailscale 监控 Windows 远程桌面（RDP）会话的脚本。使用 Python 的 pywin32 库监听 RDP 连接和断开事件，并实时推送到 TG Bot。"
+description: "使用 Python pywin32 监听 Tailscale 网络中的 Windows RDP 连接与断开事件，并实时推送到 Telegram Bot。"
 image: "/wp-content/uploads/2025/05/1747793667-Python.webp"
 tags: ["网络","系统运维"]
 tagPermalinks: ["/tag/network/","/tag/sysadmin/"]
@@ -33,4 +33,4 @@ python monitor.py
 
 ## 效果
 
-![](/wp-content/uploads/2025/05/1747793079-image.webp)
+![效果 - Tailscale 实时监控 Windows RDP 会话 操作截图](/wp-content/uploads/2025/05/1747793079-image.webp)

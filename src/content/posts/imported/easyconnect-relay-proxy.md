@@ -2,7 +2,7 @@
 title: "如何优雅地借助公网服务器访问学校内网(EasyConnect)"
 published: 2024-05-10
 updated: 2026-02-07
-description: "为解决Easyconnect兼容性问题，项目通过Docker运行此VPN软件，提供socks5和http代理服务。需要服务器安装Docker，配置特定端口及验证信息，再通过VNC连接和配置VPN。此外，个人可在Gi"
+description: "通过公网服务器和 Docker EasyConnect 搭建校园内网中继，提供 SOCKS5 与 HTTP 代理并记录 VNC 配置方法。"
 image: "/wp-content/uploads/2024/05/1200x630wa.png"
 tags: ["网络","Docker"]
 tagPermalinks: ["/tag/network/","/tag/docker/"]
@@ -29,9 +29,9 @@ permalink: "/2024/05/10/easyconnect-relay-proxy/"
 docker run --rm --device /dev/net/tun --cap-add NET_ADMIN -ti -e PING_ADDR= xxx.edu.cn -e PASSWORD=xxxx -e URLWIN=1 -e SOCKS_USER=xxx -e SOCKS_PASSWD=xxx -v $HOME/.ecdata:/root -p 127.0.0.1:5901:5901 -p 127.0.0.1:1080:1080 -p 127.0.0.1:8888:8888 hagb/docker-easyconnect:7.6.7
 ```
 
-![](http://154.17.6.113/wp-content/uploads/2024/05/image-1024x514.png)
+![使用指南 - 如何优雅地借助公网服务器访问学校内网(EasyConnect) 操作截图 1](/wp-content/uploads/2024/05/image-1024x514.png)
 
-![](http://154.17.6.113/wp-content/uploads/2024/05/image-2-1024x510.png)
+![使用指南 - 如何优雅地借助公网服务器访问学校内网(EasyConnect) 操作截图 2](/wp-content/uploads/2024/05/image-2-1024x510.png)
 
 配置docker需要注意的几个点是
 

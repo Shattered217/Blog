@@ -4,6 +4,7 @@ import { profileConfig } from "../config";
 import { url } from "../utils/url-utils";
 
 const currentYear = new Date().getFullYear();
+const siteStartedAt = "2023-06-14T00:00:00+08:00";
 ---
 
 <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
@@ -14,8 +15,45 @@ const currentYear = new Date().getFullYear();
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>
+		<a class="transition link text-[var(--primary)] font-medium" target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20264869">萌ICP备20264869号</a>
+		· <site-runtime data-start={siteStartedAt}>运行时间计算中</site-runtime><br>
         Powered by
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
     </div>
 </div>
+
+<script>
+	class SiteRuntime extends HTMLElement {
+		private timer?: number;
+
+		connectedCallback() {
+			this.updateRuntime();
+			this.timer = window.setInterval(() => this.updateRuntime(), 1000);
+		}
+
+		disconnectedCallback() {
+			if (this.timer) window.clearInterval(this.timer);
+		}
+
+		private updateRuntime() {
+			const startedAt = Date.parse(this.dataset.start ?? "");
+			if (Number.isNaN(startedAt)) return;
+
+			const elapsedSeconds = Math.max(
+				0,
+				Math.floor((Date.now() - startedAt) / 1000),
+			);
+			const days = Math.floor(elapsedSeconds / 86400);
+			const hours = Math.floor((elapsedSeconds % 86400) / 3600);
+			const minutes = Math.floor((elapsedSeconds % 3600) / 60);
+			const seconds = elapsedSeconds % 60;
+
+			this.textContent = `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+		}
+	}
+
+	if (!customElements.get("site-runtime")) {
+		customElements.define("site-runtime", SiteRuntime);
+	}
+</script>

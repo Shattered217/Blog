@@ -2,7 +2,7 @@
 title: "在 Jetson 上通过容器 trt 推理 YOLO26 指南"
 published: 2026-01-17
 updated: 2026-06-09
-description: "想在Jetson边缘设备上高效运行最新的YOLOv26目标检测模型？本文提供如何利用容器技术，在Jetson平台上构建一个集成了PyTorch和TensorRT的“高大全”推理环境的指南。手把手带你完成部署，显著提"
+description: "在 Jetson 上使用 jetson-containers 构建 PyTorch 与 TensorRT 环境，完成 YOLO26 导出和 TensorRT 推理验证。"
 image: "/wp-content/uploads/2026/01/1768647505-Gemini_Generated_Image_e5ctiee5ctiee5ct-scaled.png"
 tags: ["Jetson","TensorRT"]
 tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
@@ -27,7 +27,7 @@ jetson_release
 
 示例如下
 
-![](/wp-content/uploads/2026/01/1768638436-image-1024x526.png)
+![构建容器 - 在 Jetson 上通过容器 trt 推理 YOLO26 指南 操作截图 1](/wp-content/uploads/2026/01/1768638436-image-1024x526.png)
 
 如果 L4T \['>=35'\] 前往 [jetson-containers/packages/pytorch at master · dusty-nv/jetson-containers](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ml/pytorch)
 
@@ -49,7 +49,7 @@ jetson-containers run $(autotag pytorch)
 
 如果没找到合适的镜像进行 build 的话可能会遇到以下报错，原因是 Jetson Orin （或更老）上的 docker 不支持 --gpus=all 这个参数
 
-![](/wp-content/uploads/2026/01/1768638805-image-1024x579.png)
+![构建容器 - 在 Jetson 上通过容器 trt 推理 YOLO26 指南 操作截图 2](/wp-content/uploads/2026/01/1768638805-image-1024x579.png)
 
 选择自己喜欢的文件编辑器修改 /etc/docker/daemon.json，在 "default-runtime" 和 "runtimes" 字段中与下面保持一致，然后重新 build，放心，优秀的 docker 有缓存机制，会自中断点后构建，不会重来
 
@@ -69,7 +69,7 @@ jetson-containers run $(autotag pytorch)
 
 等待拉取完成后就会进入容器的命令交互界面
 
-![](/wp-content/uploads/2026/01/1768645543-image-1024x579.png)
+![推理 YOLO - 在 Jetson 上通过容器 trt 推理 YOLO26 指南 操作截图 1](/wp-content/uploads/2026/01/1768645543-image-1024x579.png)
 
 ```
 mkdir -p /root/yolo
@@ -86,7 +86,7 @@ pip3 install "numpy<2" "opencv-python<4.10" -i https://pypi.tuna.tsinghua.edu.cn
 yolo check
 ```
 
-![](/wp-content/uploads/2026/01/1768646743-image.png)
+![推理 YOLO - 在 Jetson 上通过容器 trt 推理 YOLO26 指南 操作截图 2](/wp-content/uploads/2026/01/1768646743-image.png)
 
 使用 Pytorch 推理
 

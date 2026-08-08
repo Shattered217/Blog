@@ -2,7 +2,7 @@
 title: "Jetson Orin PyTorch whl 自编译指南"
 published: 2026-01-13
 updated: 2026-06-08
-description: "本文将为你提供一份详尽的whl自编译指南，教你编译出专为Orin架构优化的PyTorch包。告别通用版本的限制，获得最适合你边缘计算设备的深度学习框架。"
+description: "在 Jetson Orin aarch64 环境中从源码构建 PyTorch whl，记录依赖、编译参数和安装验证。"
 image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]

@@ -1,8 +1,8 @@
 ---
-title: "在 Jetson Orin 上推理 YOLO26 有多简单？YOLO trt 推理指南"
+title: "Jetson Orin 使用 TensorRT 推理 YOLO26"
 published: 2026-01-17
 updated: 2026-06-10
-description: "还在为边缘设备上部署YOLO模型时，推理速度慢、掉帧严重而烦恼吗？本文教你如何在JetsonOrin平台上，将最新的YOLO26模型通过TensorRT实现极速推理。从环境搭建、依赖安装，到一键导出TRT引擎并完成"
+description: "在 Jetson Orin 上配置 PyTorch 与 TensorRT 环境，将 YOLO26 导出为 TensorRT 引擎并完成推理验证。"
 image: "/wp-content/uploads/2026/01/1768636472-Gemini_Generated_Image_iwzs2biwzs2biwzs-scaled.png"
 tags: ["Jetson","TensorRT"]
 tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
@@ -29,7 +29,7 @@ YOLO26 的推理需要 PyTorch（带 CUDA ）和 ultralytics 的包，关于前�
 
 如果不想自编译，可以在 [NVIDIA Developer Forums](https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048) 下载官方提供的预编译 torch 和 torchvision，下面给出安装方案
 
-![](/wp-content/uploads/2026/01/1774501393-image-1024x525.png)
+![搭建环境 - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图](/wp-content/uploads/2026/01/1774501393-image-1024x525.png)
 
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh  # 首先安装 UV，安装过的可跳过
@@ -77,7 +77,7 @@ source .venv/bin/activate
 yolo check
 ```
 
-![](/wp-content/uploads/2026/01/1768634609-image-1024x705.png)
+![验证 YOLO - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图](/wp-content/uploads/2026/01/1768634609-image-1024x705.png)
 
 ## 推理 YOLO26
 
@@ -86,9 +86,9 @@ yolo check
 yolo predict model=yolo26n.pt source='https://ultralytics.com/images/bus.jpg'
 ```
 
-![](/wp-content/uploads/2026/01/1768634848-image.png)
+![推理 YOLO26 - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图 1](/wp-content/uploads/2026/01/1768634848-image.png)
 
-![](/wp-content/uploads/2026/01/1768634866-bus-768x1024.jpg)
+![推理 YOLO26 - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图 2](/wp-content/uploads/2026/01/1768634866-bus-768x1024.jpg)
 
 竟然要 143.8ms ?别急，接下来我们将使用 TensorRT 量化加速模型
 
@@ -109,7 +109,7 @@ python3 -c "import tensorrt; print(f'TensorRT version: {tensorrt.__version__}')"
 
 回显版本则说明链接成功
 
-![](/wp-content/uploads/2026/01/1768635370-image.png)
+![推理 YOLO26 TRT - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图 1](/wp-content/uploads/2026/01/1768635370-image.png)
 
 然后我们可以开始导出 TRT engine（会报错 onnxruntime-GPU 的问题，不用在意，如果硬要装也可以，[自编译](/2025/11/03/jetson-orin-onnx-gpu/) [Jetson Zoo预编译](https://elinux.org/Jetson_Zoo#ONNX_Runtime) [煮包预编译](https://github.com/Shattered217/Jetson-Orin-Nano-Wheels/releases/tag/6.2.1rc1)。另外，煮包的 Github 预编译仓库里面也有 TRT 的预编译包，安装就不用软链接了，不过并没有什么大区别）
 
@@ -117,7 +117,7 @@ python3 -c "import tensorrt; print(f'TensorRT version: {tensorrt.__version__}')"
 yolo export model=yolo26n.pt format=engine half=True device=0
 ```
 
-![](/wp-content/uploads/2026/01/1768635775-image-1024x837.png)
+![推理 YOLO26 TRT - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图 2](/wp-content/uploads/2026/01/1768635775-image-1024x837.png)
 
 导出成功后然后我们可以继续推理了
 
@@ -125,6 +125,6 @@ yolo export model=yolo26n.pt format=engine half=True device=0
 yolo predict task=detect model=yolo26n.engine source='https://ultralytics.com/images/bus.jpg'
 ```
 
-![](/wp-content/uploads/2026/01/1768635917-image-1024x228.png)
+![推理 YOLO26 TRT - Jetson Orin 使用 TensorRT 推理 YOLO26 操作截图 3](/wp-content/uploads/2026/01/1768635917-image-1024x228.png)
 
 可以看到 推理速度已经达到个位数了，实验非常成功 ✌️

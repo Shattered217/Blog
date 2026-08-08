@@ -1,7 +1,7 @@
 ---
 title: "Jetson Orin 部署 OpenClaw 开启 Memory Search"
 published: 2026-06-14
-description: "你的Jetson Orin刚部署好记忆搜索，结果发现llama.cpp在ARM上死活不调用CUDA——推理速度慢到像在用CPU跑大模型。别急着换硬件，问题出在官方预编译产物上。实测自编译CUDA支持后，batch"
+description: "在 Jetson Orin 上自编译带 CUDA 支持的 llama.cpp，为 OpenClaw Memory Search 部署本地向量模型服务并验证 GPU 推理。"
 image: "/wp-content/uploads/2026/06/1781372812-ChatGPT-Image-2026年6月14日-01_46_41.png"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]
@@ -52,7 +52,7 @@ cd llama-ws
 ./llama-server --model /home/ros/llama.cpp/embeddinggemma-300m-qat-Q8_0.gguf --embedding --n-gpu-layers 99 --batch-size 1024 --ubatch-size 1024 --cache-ram 0 --host 127.0.0.1 --port 8080
 ```
 
-![](/wp-content/uploads/2026/06/1781372250-image-1024x976.png)
+![推理模型 - Jetson Orin 部署 OpenClaw 开启 Memory Search 操作截图 1](/wp-content/uploads/2026/06/1781372250-image-1024x976.png)
 
 当然如果你实在想自己接 大概就是这样（ 位于文件 openclaw.json 的 agent.defaults 字段下面
 
@@ -75,4 +75,4 @@ cd llama-ws
 
 设置 1024 的 batchsize 基本能够使用，如果不够后面自己再调大吧，运行占用如下
 
-![](/wp-content/uploads/2026/06/1781372551-image-1024x822.png)
+![推理模型 - Jetson Orin 部署 OpenClaw 开启 Memory Search 操作截图 2](/wp-content/uploads/2026/06/1781372551-image-1024x822.png)

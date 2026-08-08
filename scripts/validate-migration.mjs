@@ -35,15 +35,27 @@ function outputPath(urlPath) {
 	return path.join(distRoot, urlPath.replace(/^\/+|\/+$/g, ""), "index.html");
 }
 
+function normalizeMediaPath(source) {
+	let pathname = source.split(/[?#]/, 1)[0];
+	try {
+		pathname = decodeURIComponent(pathname);
+	} catch {
+		// WordPress filenames are not guaranteed to be URI encoded.
+	}
+	return pathname;
+}
+
 const failures = [];
 const postFiles = await walk(postsRoot, ".md");
 const articleUrls = [];
 const taxonomyUrls = new Set();
 const referencedMedia = new Set();
+const postImages = new Map();
 
 for (const postFile of postFiles) {
 	const markdown = await readFile(postFile, "utf8");
 	const permalink = frontmatterJson(markdown, "permalink");
+	const cover = frontmatterJson(markdown, "image");
 	const categoryPermalink = frontmatterJson(markdown, "categoryPermalink");
 	const tags = frontmatterJson(markdown, "tags") ?? [];
 	const tagPermalinks = frontmatterJson(markdown, "tagPermalinks") ?? [];
@@ -59,6 +71,25 @@ for (const postFile of postFiles) {
 	if (/AI智能摘要|AI\s*生成的文章内容摘要/.test(markdown)) {
 		failures.push(`${permalink}: contains an AI summary block`);
 	}
+	if (/http:\/\/154\.17\.6\.113/i.test(markdown)) {
+		failures.push(`${permalink}: contains a legacy origin URL`);
+	}
+
+	const localImages = new Set();
+	if (cover) localImages.add(normalizeMediaPath(cover));
+	for (const [, alt, source] of markdown.matchAll(
+		/!\[([^\n]*)\]\((\/wp-content\/uploads\/[^)\s]+)(?:\s+["'][^"']*["'])?\)/g,
+	)) {
+		if (!alt.trim()) failures.push(`${permalink}: contains an image without alt text`);
+		localImages.add(normalizeMediaPath(source));
+	}
+	for (const [, source] of markdown.matchAll(
+		/!\[[^\n]*\]\((https?:\/\/[^)\s]+)/gi,
+	)) {
+		failures.push(`${permalink}: contains external image ${source}`);
+	}
+	postImages.set(permalink, localImages);
+	for (const image of localImages) referencedMedia.add(image.replace(/^\//, ""));
 	if (categoryPermalink) taxonomyUrls.add(categoryPermalink);
 	for (const tagPermalink of tagPermalinks) taxonomyUrls.add(tagPermalink);
 
@@ -77,12 +108,7 @@ for (const postFile of postFiles) {
 	}
 
 	for (const match of html.matchAll(/(?:src|href)="(\/wp-content\/uploads\/[^"#?]+)["#?]/g)) {
-		let mediaPath = match[1].replaceAll("&amp;", "&");
-		try {
-			mediaPath = decodeURIComponent(mediaPath);
-		} catch {
-			// WordPress filenames are not guaranteed to be URI encoded.
-		}
+		const mediaPath = normalizeMediaPath(match[1].replaceAll("&amp;", "&"));
 		referencedMedia.add(mediaPath.replace(/^\//, ""));
 	}
 }
@@ -128,11 +154,53 @@ if (rssItems !== postFiles.length) {
 	failures.push(`RSS contains ${rssItems} items; expected ${postFiles.length}`);
 }
 
-const sitemap = await readFile(path.join(distRoot, "sitemap-0.xml"), "utf8");
-for (const articleUrl of articleUrls) {
-	if (!sitemap.includes(new URL(articleUrl, site).href)) {
-		failures.push(`${articleUrl}: missing from sitemap`);
+const sitemapIndex = await readFile(path.join(distRoot, "sitemap-index.xml"), "utf8");
+for (const sitemapName of ["sitemap-pages-0.xml", "sitemap-posts.xml"]) {
+	const sitemapUrl = new URL(sitemapName, site).href;
+	if (!sitemapIndex.includes(`<loc>${sitemapUrl}</loc>`)) {
+		failures.push(`sitemap-index.xml: missing ${sitemapUrl}`);
 	}
+}
+
+const pageSitemap = await readFile(
+	path.join(distRoot, "sitemap-pages-0.xml"),
+	"utf8",
+);
+const sitemap = await readFile(path.join(distRoot, "sitemap-posts.xml"), "utf8");
+const sitemapEntries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(
+	([, entry]) => entry,
+);
+if (sitemapEntries.length !== postFiles.length) {
+	failures.push(
+		`sitemap-posts.xml contains ${sitemapEntries.length} URLs; expected ${postFiles.length}`,
+	);
+}
+for (const articleUrl of articleUrls) {
+	const absoluteArticleUrl = new URL(articleUrl, site).href;
+	const sitemapEntry = sitemapEntries.find((entry) =>
+		entry.includes(`<loc>${absoluteArticleUrl}</loc>`),
+	);
+	if (!sitemapEntry) {
+		failures.push(`${articleUrl}: missing from sitemap`);
+		continue;
+	}
+	if (!/<lastmod>[^<]+<\/lastmod>/.test(sitemapEntry)) {
+		failures.push(`${articleUrl}: sitemap entry is missing lastmod`);
+	}
+	for (const image of postImages.get(articleUrl) ?? []) {
+		const imageUrl = new URL(image, site).href;
+		if (!sitemapEntry.includes(`<image:loc>${imageUrl}</image:loc>`)) {
+			failures.push(`${articleUrl}: sitemap is missing image ${image}`);
+		}
+	}
+	if (pageSitemap.includes(absoluteArticleUrl)) {
+		failures.push(`${articleUrl}: unexpectedly included in page sitemap`);
+	}
+}
+
+const robots = await readFile(path.join(distRoot, "robots.txt"), "utf8");
+if (!robots.includes(`Sitemap: ${new URL("sitemap-index.xml", site).href}`)) {
+	failures.push("robots.txt: missing canonical sitemap index URL");
 }
 
 const notFound = await readFile(path.join(distRoot, "404.html"), "utf8");

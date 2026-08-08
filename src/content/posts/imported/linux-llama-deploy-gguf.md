@@ -1,7 +1,7 @@
 ---
 title: "Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf"
 published: 2025-08-09
-description: "在Linux系统上编译llama.cpp源码部署gpt-oss-20b-Q8\\_0.gguf模型，并可通过Cherry Studio接入服务。"
+description: "在 Linux 上编译 llama.cpp，部署 gpt-oss-20b-Q8_0 GGUF 模型，并通过 Cherry Studio 接入本地推理服务。"
 image: "/wp-content/uploads/2025/08/1754739210-d4ab2b97339545a4bc12e4b067611aad.webp"
 tags: ["AI","系统运维"]
 tagPermalinks: ["/tag/ai/","/tag/sysadmin/"]
@@ -12,7 +12,7 @@ permalink: "/2025/08/09/linux-llama-deploy-gguf/"
 ---
 ## 前言
 
-A100无法推理原生的fp4量化模型，TensorRT-LLM难以部署，故选择了llama.cpp，在使用前记得配置CUDA环境（之前的[教程](/archives/626)有）
+A100无法推理原生的fp4量化模型，TensorRT-LLM难以部署，故选择了llama.cpp，在使用前记得配置CUDA环境（之前的[教程](/2025/07/20/ubuntu-multi-cuda-setup/)有）
 
 ## 编译llama.cpp
 
@@ -37,7 +37,7 @@ cp llama.cpp/build/bin/llama-* llama.cpp
 
 进入[抱脸网](https://huggingface.co/unsloth/gpt-oss-20b-GGUF/tree/main)，选择一个自己想要部署的模型，例如[gpt-oss-20b-Q8\_0.gguf](https://huggingface.co/unsloth/gpt-oss-20b-GGUF/blob/main/gpt-oss-20b-Q8_0.gguf)，如下图点击复制下载链接
 
-![](/wp-content/uploads/2025/08/1754738716-image-1024x514.webp)
+![拉取gguf - Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf 操作截图](/wp-content/uploads/2025/08/1754738716-image-1024x514.webp)
 
 新建一个文件夹用于存放gguf并进入
 
@@ -57,12 +57,12 @@ wget https://huggingface.co/unsloth/gpt-oss-20b-GGUF/resolve/main/gpt-oss-20b-Q8
 llama.cpp/llama-server      --model gguf/gpt-oss-20b-GGUF/gpt-oss-20b-Q8_0.gguf     --n-gpu-layers 99     --host 0.0.0.0     --port 8080
 ```
 
-![](/wp-content/uploads/2025/08/1754739097-image-1024x387.webp)
+![推理gguf模型 - Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf 操作截图](/wp-content/uploads/2025/08/1754739097-image-1024x387.webp)
 
 ## 接入Cherry Studio
 
 注意IP+端口，密钥随便填，点击管理会自动给出正在推理的模型
 
-![](/wp-content/uploads/2025/08/1754739114-image.webp)
+![接入Cherry Studio - Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf 操作截图 1](/wp-content/uploads/2025/08/1754739114-image.webp)
 
-![](/wp-content/uploads/2025/08/1754739149-image-1024x353.webp)
+![接入Cherry Studio - Linux编译llama.cpp部署gpt-oss-20b-Q8-gguf 操作截图 2](/wp-content/uploads/2025/08/1754739149-image-1024x353.webp)

@@ -2,7 +2,7 @@
 title: "在PVE上直通核显给群晖搭配alist挂载实现自建影库"
 published: 2023-06-14
 updated: 2025-12-26
-description: "想打造一个能硬解4K原盘、聚合全网云盘资源的私人影库，却苦于技术门槛？别再羡慕别人的完美方案了。本文将手把手教你，如何在PVE虚拟机上安装黑群晖，并直通核显给Jellyfin实现强悍的硬件解码。你将学会通过Alis"
+description: "在 PVE 中部署黑群晖并直通核显，结合 Alist 与 Jellyfin 搭建支持硬件解码的自建影音库。"
 image: "/wp-content/uploads/2023/06/cover.png"
 tags: ["NAS","系统运维"]
 tagPermalinks: ["/tag/nas/","/tag/sysadmin/"]
@@ -47,9 +47,9 @@ qm importdisk 104 /var/lib/vz/template/iso/ds918.img local
 
 启动后进入控制台选择第二项并回车
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-1024x529.png)
+![安装群晖 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图 1](/wp-content/uploads/2023/06/image-1024x529.png)
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-1-1024x223.png)
+![安装群晖 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图 2](/wp-content/uploads/2023/06/image-1-1024x223.png)
 
 随后这里会卡住，不必惊慌，这是正确的，然后就是耐心等待，前往路由端查看群晖IP后访问，然后根据提示安装提前下好的pat文件，待群晖重启后即可正常访问并设置基本信息。
 
@@ -88,15 +88,15 @@ cd pvetools
 
 重启后再进入该页面选择c 配置显卡直通-a 配置物理机显卡直通支持-根据提示重启
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-2.png)
+![设置核显直通 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图 1](/wp-content/uploads/2023/06/image-2.png)
 
 返回PVE web界面，选定群晖虚拟机-硬件-添加-PCI设备-设备选择核显-勾选四个钩-添加即可。
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-3-1024x512.png)
+![设置核显直通 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图 2](/wp-content/uploads/2023/06/image-3-1024x512.png)
 
 进入jellyfin-控制台-播放-硬件加速选择QSV或者VAAPI，拉到最下方保存即可实现硬解。
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-4-1024x514.png)
+![设置核显直通 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图 3](/wp-content/uploads/2023/06/image-4-1024x514.png)
 
 ## Jellyfin SSL访问
 
@@ -108,7 +108,7 @@ cd pvetools
 
 [SSL证书格式转换工具-中国数字证书CHINASSL](https://www.chinassl.net/ssltools/convert-ssl.html)
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/image-5-1024x483.png)
+![Jellyfin SSL访问 - 在PVE上直通核显给群晖搭配alist挂载实现自建影库 操作截图](/wp-content/uploads/2023/06/image-5-1024x483.png)
 
 ## 挂载云盘
 

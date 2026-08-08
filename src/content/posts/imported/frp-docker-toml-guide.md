@@ -1,7 +1,7 @@
 ---
 title: "frp 0.61 docker(toml配置)新手指北-教程"
 published: 2025-02-11
-description: "本文介绍了frp内网穿透的配置，适用于将必要服务映射到无公网环境的学校服务器。文中详细阐述了frps（服务端）和frpc（客户端）的配置，包括TCP和HTTP流量转发、docker-compose设置及相关鉴权、安"
+description: "使用 Docker Compose 部署 frps 与 frpc 0.61，以 TOML 配置 TCP、HTTP 转发、鉴权和服务端与客户端连接。"
 image: "/wp-content/uploads/2025/02/10-1701342297.jpeg"
 tags: ["网络","Docker"]
 tagPermalinks: ["/tag/network/","/tag/docker/"]

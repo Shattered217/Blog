@@ -2,7 +2,7 @@
 title: "基于无线adb实现的华为手表独立安装应用"
 published: 2023-06-14
 updated: 2025-12-26
-description: "想摆脱每次安装手表应用都要连接电脑的繁琐吗？别再用传统方法了。本文为你揭秘一个基于无线ADB的“黑科技”方案，让你能在华为Watch 3上独立安装任意第三方应用。只需几个步骤，通过Shizuku和WearOS工具箱"
+description: "利用 Shizuku、WearOS 工具箱与无线 ADB，在华为 Watch 3 上脱离电脑安装第三方应用。"
 image: "/wp-content/uploads/2023/06/R-C-1.jpg"
 tags: ["开发工具"]
 tagPermalinks: ["/tag/dev-tools/"]
@@ -29,7 +29,7 @@ permalink: "/2023/06/14/huawei-watch-adb-install/"
 
 首先进入设置中的开发人员选项，找到并打开 HDC调试 以及 通过WLAN调试 ，然后进入shizuku，下拉点击启动，授权同意调试后即可（注意每次重启后都需要重新打开WLAN调试，否则shizuku会找不到该选项）
 
-![](http://154.17.6.113/wp-content/uploads/2023/06/WearOS-Tools-Screenshot_20230614_094756.png)
+![方法如下： - 基于无线adb实现的华为手表独立安装应用 操作截图](/wp-content/uploads/2023/06/WearOS-Tools-Screenshot_20230614_094756.png)
 
 接下来安装 小黑屋 ，用于冻结应用
 

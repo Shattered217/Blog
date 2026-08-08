@@ -1,7 +1,7 @@
 ---
 title: "Jellyfin和Emby刮削小姐姐插件-MetaTube使用方法"
 published: 2023-12-30
-description: "Jellyfin和Emby刮削小姐姐插件"
+description: "在 Jellyfin 和 Emby 中安装配置 MetaTube 插件，用于成人影视资源的元数据刮削与媒体库整理。"
 image: "/wp-content/uploads/2023/12/68747470733a2f2f6d657461747562652d636f6d6d756e6974792e6769746875622e696f2f696d616765732f62616e6e65722d6461726b2e706e67.png"
 tags: ["媒体服务"]
 tagPermalinks: ["/tag/media-server/"]

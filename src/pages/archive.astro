@@ -8,7 +8,11 @@ import { getSortedPostsList } from "../utils/content-utils";
 const sortedPostsList = await getSortedPostsList();
 ---
 
-<MainGridLayout title={i18n(I18nKey.archive)}>
+<MainGridLayout title={i18n(I18nKey.archive)} description="按发布时间浏览 Shattered217のBlog 的全部技术教程、部署记录与问题排查文章。">
+	<section class="card-base rounded-[var(--radius-large)] px-7 py-6 md:px-9 mb-4">
+		<p class="text-sm font-semibold tracking-[0.14em] text-[var(--primary)] mb-1">ARCHIVE</p>
+		<h1 class="text-3xl font-bold text-90">文章归档</h1>
+		<p class="text-50 mt-2">按发布时间浏览全部技术记录，从最新折腾一路翻到建站之初。</p>
+	</section>
     <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
 </MainGridLayout>
-

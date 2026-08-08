@@ -10,6 +10,9 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: "Shattered217のBlog",
 	subtitle: "专注于技术干货分享",
+	description:
+		"一个在校大学生的个人技术博客，可能包含高性能计算、边缘计算、路由交换、模型、云，亦或是杂七杂八~的教程指南",
+	socialImage: "/og-default.png",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 241, // Hue used for surfaces derived from the #aeade3 accent.
@@ -30,13 +33,21 @@ export const siteConfig: SiteConfig = {
 		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	favicon: [
-		// Leave this array empty to use the default favicon
-		// {
-		//   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
-		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-		// }
+		{
+			src: "/favicon/favicon-32.png",
+			sizes: "32x32",
+		},
+		{
+			src: "/favicon/favicon-192.png",
+			sizes: "192x192",
+		},
 	],
+	verification: {
+		baidu: "codeva-Ui2Nl4r8lL",
+	},
+	analytics: {
+		clarity: "vb45sclx4u",
+	},
 };
 
 export const navBarConfig: NavBarConfig = {

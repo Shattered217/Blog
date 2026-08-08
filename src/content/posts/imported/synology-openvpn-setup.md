@@ -2,7 +2,7 @@
 title: "基于群晖VPN Server的OpenVPN服务端部署教程"
 published: 2023-12-02
 updated: 2025-12-26
-description: "基于群晖VPN Server的OpenVPN服务端实现异地组网部署教程"
+description: "在群晖 VPN Server 上配置 OpenVPN 服务端和客户端，并通过静态路由实现不同地点设备之间的安全访问。"
 image: "/wp-content/uploads/2023/12/OIP.jpg"
 tags: ["NAS","网络"]
 tagPermalinks: ["/tag/nas/","/tag/network/"]
@@ -25,7 +25,7 @@ permalink: "/2023/12/02/synology-openvpn-setup/"
 
 这里选择香港地区的官网，我们首先要选择NAS相关，再选择自己的NAS机型，注意然后要选择正确的版本号，再搜索套件（Ctrl+F），不然是安装不上的。
 
-![](http://154.17.6.113/wp-content/uploads/2023/12/image-3-1024x115.png)
+![实现步骤 - 基于群晖VPN Server的OpenVPN服务端部署教程 操作截图 1](/wp-content/uploads/2023/12/image-3-1024x115.png)
 
 下载后打开群晖套件中心，选择手动安装，然后选择刚刚下载好的spk，安装好后打开VPN Server。
 
@@ -33,7 +33,7 @@ permalink: "/2023/12/02/synology-openvpn-setup/"
 
 打开VPN Server后，先检查权限页面是否给齐。然后选择OpenVPN，勾选启动OpenVPN服务器，通讯协议选择TCP（经个人测试UDP会有一些问题），勾上允许客户端访问服务器的LAN，其余可以保持默认，点击应用后，导出配置文件。
 
-![](http://154.17.6.113/wp-content/uploads/2023/12/image-2-1024x575.png)
+![实现步骤 - 基于群晖VPN Server的OpenVPN服务端部署教程 操作截图 2](/wp-content/uploads/2023/12/image-2-1024x575.png)
 
 -   使用
 
@@ -74,11 +74,11 @@ interfaces =192.168.101.0/24 10.8.0.0/24
 
 保存后在群晖控制面板中关闭再开启smb服务
 
-![](http://154.17.6.113/wp-content/uploads/2023/12/image-4-1024x496.png)
+![挂载SMB！ - 基于群晖VPN Server的OpenVPN服务端部署教程 操作截图 1](/wp-content/uploads/2023/12/image-4-1024x496.png)
 
 然后在Windows资源管理器中输入\\\\192.168.x.x（你的群晖IP）就可以访问目录资源了
 
-![](http://154.17.6.113/wp-content/uploads/2023/12/image-5-1024x540.png)
+![挂载SMB！ - 基于群晖VPN Server的OpenVPN服务端部署教程 操作截图 2](/wp-content/uploads/2023/12/image-5-1024x540.png)
 
 ## 体验
 

@@ -2,7 +2,7 @@
 title: "给你的EMBY添加一点小插件"
 published: 2023-08-12
 updated: 2025-12-26
-description: "给你的EMBY赋予一起看和弹幕功能！"
+description: "为 Docker 部署的 Emby 安装 VideoTogether 一起看与弹幕扩展，包含插件配置和实际使用方法。"
 image: "/wp-content/uploads/2023/08/image-1.png"
 tags: ["媒体服务","Docker"]
 tagPermalinks: ["/tag/media-server/","/tag/docker/"]
@@ -19,7 +19,7 @@ permalink: "/2023/08/12/emby-plugins-guide/"
 
 此插件可以赋予你的媒体库多人在线同步观看视频的体验。
 
-![](http://154.17.6.113/wp-content/uploads/2023/08/image.png)
+![VideoTogether插件（VideoTogether | 一起看视频） - 给你的EMBY添加一点小插件 操作截图](/wp-content/uploads/2023/08/image.png)
 
 仅需多端输入相同的房间号、密码即可同步观影，体验还是相当流畅的。
 
@@ -27,9 +27,9 @@ permalink: "/2023/08/12/emby-plugins-guide/"
 
 为EMBY提供弹幕拓展服务，非常有用的追番功能！
 
-![](http://154.17.6.113/wp-content/uploads/2023/08/image-1-1024x513.png)
+![弹幕插件（Emby 弹幕扩展 (movie.kg)） - 给你的EMBY添加一点小插件 操作截图 1](/wp-content/uploads/2023/08/image-1-1024x513.png)
 
-![](http://154.17.6.113/wp-content/uploads/2023/08/image-2-1024x971.png)
+![弹幕插件（Emby 弹幕扩展 (movie.kg)） - 给你的EMBY添加一点小插件 操作截图 2](/wp-content/uploads/2023/08/image-2-1024x971.png)
 
 可选的功能也很多，本地化的哔哩哔哩追番体验！
 
@@ -41,7 +41,7 @@ permalink: "/2023/08/12/emby-plugins-guide/"
 docker ps -a
 ```
 
-![](http://154.17.6.113/wp-content/uploads/2023/08/image-3.png)
+![如何安装 - 给你的EMBY添加一点小插件 操作截图 1](/wp-content/uploads/2023/08/image-3.png)
 
 然后进入该容器（注意要替换成自己的ID）
 
@@ -55,7 +55,7 @@ docker exec -it e71123794726 /bin/ash
 vi /system/dashboard-ui/index.html
 ```
 
-![](http://154.17.6.113/wp-content/uploads/2023/08/image-4-1024x555.png)
+![如何安装 - 给你的EMBY添加一点小插件 操作截图 2](/wp-content/uploads/2023/08/image-4-1024x555.png)
 
 方向键拉到最底下，键入i开启编辑模式在</div>和</body>之间加入相应JS代码即可。
 

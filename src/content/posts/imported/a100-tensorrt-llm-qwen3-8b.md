@@ -1,7 +1,7 @@
 ---
 title: "单卡A100通过TensorRT-LLM量化推理Qwen3-8B简单教程"
 published: 2025-07-19
-description: "这篇文章讲解如何在单卡 A100 上，通过 TensorRT-LLM 实现 Qwen3-8B 模型的量化推理，内容涵盖环境设置、模型转换及推理运行，适合关注高性能计算的开发者。"
+description: "记录单卡 A100 上使用 TensorRT-LLM 对 Qwen3-8B 进行量化推理，涵盖容器环境、检查点转换、引擎构建和运行验证。"
 image: "/wp-content/uploads/2025/07/1752912947-Gemini_Generated_Image_jwfzf4jwfzf4jwfz-scaled-1.webp"
 tags: ["AI","TensorRT"]
 tagPermalinks: ["/tag/ai/","/tag/tensorrt/"]
@@ -144,6 +144,6 @@ print(response)
 
 接入Cherry Studio ↓
 
-![](/wp-content/uploads/2025/07/1752912933-image-1024x598.webp)
+![OpenAI协议通用Server - 单卡A100通过TensorRT-LLM量化推理Qwen3-8B简单教程 操作截图](/wp-content/uploads/2025/07/1752912933-image-1024x598.webp)
 
 后端似乎还不支持enable\_thinking这个Qwen3首发的参数，所以随便填一个其它的模型名就可以了

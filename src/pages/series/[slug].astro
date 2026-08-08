@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { series } = Astro.props as { series: SeriesGroup };
 ---
 
-<MainGridLayout title={series.name} description={`${series.name}系列，共 ${series.posts.length} 篇文章`}>
+<MainGridLayout title={series.name} description={`${series.name}系列按阅读顺序整理，共 ${series.posts.length} 篇文章，集中记录相关环境配置、部署步骤与问题排查。`}>
     <div class="card-base rounded-[var(--radius-large)] px-7 py-6 md:px-9 mb-4 flex items-center justify-between gap-5">
         <div>
             <p class="text-sm font-semibold tracking-[0.14em] text-[var(--primary)] mb-1">ARTICLE SERIES</p>

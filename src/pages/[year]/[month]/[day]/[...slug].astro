@@ -16,7 +16,6 @@ import RelatedPosts from "@components/RelatedPosts.astro";
 import SeriesNavigation from "@components/SeriesNavigation.astro";
 import { licenseConfig, profileConfig, siteConfig } from "@/config";
 import { historicalPostViews } from "@/data/historical-views";
-import { formatDateToYYYYMMDD } from "@utils/date-utils";
 import { getRelatedPosts, getSeriesPosts } from "@utils/content-utils";
 
 export async function getStaticPaths() {
@@ -60,6 +59,11 @@ const postUrl = new URL(
 	Astro.site,
 );
 const initialViews = historicalPostViews[postUrl.pathname] ?? 0;
+const socialImageUrl = new URL(
+	entry.data.image || siteConfig.socialImage,
+	Astro.site,
+);
+const publisherLogoUrl = new URL("/favicon/favicon-512.png", Astro.site);
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -72,11 +76,22 @@ const jsonLd = {
 		name: profileConfig.name,
 		url: Astro.site,
 	},
-	datePublished: formatDateToYYYYMMDD(entry.data.published),
-	dateModified: formatDateToYYYYMMDD(
-		entry.data.updated ?? entry.data.published,
-	),
-	mainEntityOfPage: postUrl,
+	datePublished: entry.data.published.toISOString(),
+	dateModified: (entry.data.updated ?? entry.data.published).toISOString(),
+	url: postUrl.href,
+	image: socialImageUrl.href,
+	mainEntityOfPage: {
+		"@type": "WebPage",
+		"@id": postUrl.href,
+	},
+	publisher: {
+		"@type": "Organization",
+		name: siteConfig.title,
+		logo: {
+			"@type": "ImageObject",
+			url: publisherLogoUrl.href,
+		},
+	},
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
@@ -88,10 +103,9 @@ const jsonLd = {
 		},
 		position: entry.data.series.order,
 	}),
-	// TODO include cover image here
 };
 ---
-<MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
+<MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} image={entry.data.image} imageAlt={`${entry.data.title} 封面`} published={entry.data.published} updated={entry.data.updated} category={entry.data.category} tags={entry.data.tags} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
         <div id="post-container" class:list={["card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ",
@@ -117,8 +131,8 @@ const jsonLd = {
             </div>
 
             <!-- title -->
-            <div class="relative onload-animation">
-                <div
+			<div class="relative onload-animation">
+				<h1
                     data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title"
                     class="transition w-full block font-bold mb-3
                     text-3xl md:text-[2.25rem]/[2.75rem]
@@ -126,8 +140,8 @@ const jsonLd = {
                     md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
                     before:absolute before:top-[0.75rem] before:left-[-1.125rem]
                 ">
-                    {entry.data.title}
-                </div>
+					{entry.data.title}
+				</h1>
             </div>
 
             <!-- metadata -->
@@ -149,7 +163,7 @@ const jsonLd = {
             <!-- always show cover as long as it has one -->
 
             {entry.data.image &&
-                <ImageWrapper id="post-cover" src={entry.data.image} basePath={path.join("content/posts/", getDir(entry.id))} class="mb-8 rounded-xl banner-container onload-animation"/>
+                <ImageWrapper id="post-cover" src={entry.data.image} basePath={path.join("content/posts/", getDir(entry.id))} alt={`${entry.data.title} 封面`} loading="eager" fetchpriority="high" class="mb-8 rounded-xl banner-container onload-animation"/>
             }
 
 

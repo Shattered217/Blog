@@ -1,7 +1,7 @@
 ---
-title: "Ubuntu使用stable-diffusion秋叶整合包-cu128+PyTorch"
+title: "Ubuntu 部署 Stable Diffusion 秋叶整合包"
 published: 2025-07-20
-description: "在 Ubuntu 中安装并运行 stable-diffusion-webui 的秋叶整合包，内容包括下载、虚拟环境创建、依赖安装以及路径修复等操作步骤，适合深度学习爱好者探索。"
+description: "在 Ubuntu 中安装并运行 Stable Diffusion WebUI 秋叶整合包，涵盖下载、虚拟环境、依赖安装和路径修复。"
 image: "/wp-content/uploads/2025/07/1753007580-00008-3463615227.webp"
 tags: ["AI","CUDA"]
 tagPermalinks: ["/tag/ai/","/tag/cuda/"]
@@ -56,7 +56,7 @@ python webui.py --server-name=0.0.0.0 --api
 
 提示有包没安装全，安装就完事了
 
-![](/wp-content/uploads/2025/07/1753002919-image-1024x535.webp)
+![创建并进入虚拟环境 - Ubuntu 部署 Stable Diffusion 秋叶整合包 操作截图](/wp-content/uploads/2025/07/1753002919-image-1024x535.webp)
 
 ## 修复路径错误
 
@@ -73,8 +73,8 @@ ls -l | grep 'outputs\\txt2img-images'
 
 (二编)亦或是在设置这边改就行了
 
-![](/wp-content/uploads/2025/07/1753007252-image-1024x524.webp)
+![修复路径错误 - Ubuntu 部署 Stable Diffusion 秋叶整合包 操作截图 1](/wp-content/uploads/2025/07/1753007252-image-1024x524.webp)
 
 大功告成！Enjoy it~
 
-![](/wp-content/uploads/2025/07/1753005590-image-1024x524.webp)
+![修复路径错误 - Ubuntu 部署 Stable Diffusion 秋叶整合包 操作截图 2](/wp-content/uploads/2025/07/1753005590-image-1024x524.webp)

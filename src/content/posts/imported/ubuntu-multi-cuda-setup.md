@@ -2,7 +2,7 @@
 title: "Ubuntu24.04安装多版本CUDA"
 published: 2025-07-20
 updated: 2026-01-01
-description: "在 Ubuntu 24.04 上安装和配置多版本 CUDA 工具包。内容涵盖了下载安装包到设置环境变量、验证安装的全过程。以及如何通过别名管理不同版本的 CUDA，便于开发者灵活切换。"
+description: "在 Ubuntu 24.04 中安装多个 CUDA Toolkit 版本，配置环境变量与命令别名以便快速切换和验证。"
 image: "/wp-content/uploads/2025/07/1753006266-Gemini_Generated_Image_9nf0ld9nf0ld9nf0-scaled-1.webp"
 tags: ["CUDA","系统运维"]
 tagPermalinks: ["/tag/cuda/","/tag/sysadmin/"]
@@ -13,11 +13,11 @@ permalink: "/2025/07/20/ubuntu-multi-cuda-setup/"
 ---
 进入[官方下载页](https://developer.nvidia.com/cuda-12-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=24.04&target_type=runfile_local)，确认版本无误后开始下载安装
 
-![](/wp-content/uploads/2025/07/1753000067-image-1024x524.webp)
+![Ubuntu24.04安装多版本CUDA 操作截图 1](/wp-content/uploads/2025/07/1753000067-image-1024x524.webp)
 
 按空格取消第一个选项（驱动）的勾选，然后选择Install，下一步会出现yes or no选择no
 
-![](/wp-content/uploads/2025/07/1753000135-image.webp)
+![Ubuntu24.04安装多版本CUDA 操作截图 2](/wp-content/uploads/2025/07/1753000135-image.webp)
 
 等待出现以下代码表示安装成功
 
@@ -72,4 +72,4 @@ cuda129 #用于切换到CUDA12.9版本
 nvcc --version
 ```
 
-![](/wp-content/uploads/2025/07/1753000728-image.webp)
+![Ubuntu24.04安装多版本CUDA 操作截图 3](/wp-content/uploads/2025/07/1753000728-image.webp)

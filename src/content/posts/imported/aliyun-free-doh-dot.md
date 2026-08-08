@@ -2,7 +2,7 @@
 title: "大学生白嫖阿里云服务器搭建私人DOT/DOH"
 published: 2023-11-03
 updated: 2025-12-26
-description: "大学生专属福利！阿里云服务器免费领一年，手把手教你搭建私人DNS加密服务。无需技术基础，跟着教程从零开始配置AdGuard Home，实现全网广告拦截+隐私保护。学会用DoT/DoH加密DNS查询，彻底告别网络追踪"
+description: "记录使用阿里云学生优惠服务器部署 AdGuard Home，并配置 DoT 与 DoH 加密 DNS 服务的完整过程。"
 image: "/wp-content/uploads/2023/11/fm.png"
 tags: ["网络","安全"]
 tagPermalinks: ["/tag/network/","/tag/security/"]
@@ -43,7 +43,7 @@ adguard/adguardhome
 
 然后添加容器
 
-![](http://154.17.6.113/wp-content/uploads/2023/11/image.png)
+![登入宝塔面板 - 大学生白嫖阿里云服务器搭建私人DOT/DOH 操作截图](/wp-content/uploads/2023/11/image.png)
 
 按照如图所示参数添加容器（重启规则可设置错误时重启）
 
@@ -61,7 +61,7 @@ adguard/adguardhome
 
 过滤器-DNS黑名单主要设置这两个，其中第二个对国内广告命中率较高
 
-![](http://154.17.6.113/wp-content/uploads/2023/11/image-1-1024x304.png)
+![其它设置 - 大学生白嫖阿里云服务器搭建私人DOT/DOH 操作截图](/wp-content/uploads/2023/11/image-1-1024x304.png)
 
 ## 宝塔设置反向代理以将二级域名重定向指容器
 
@@ -83,6 +83,6 @@ https://127.0.0.1:853
 
 Win11可在网络设置中DNS设置直接使用DOH
 
-![](http://154.17.6.113/wp-content/uploads/2023/11/image-2-752x1024.png)
+![如何使用 - 大学生白嫖阿里云服务器搭建私人DOT/DOH 操作截图](/wp-content/uploads/2023/11/image-2-752x1024.png)
 
 安卓则只能在设置中设置DOT（即私人DNS）

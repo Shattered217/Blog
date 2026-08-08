@@ -1,7 +1,7 @@
 ---
 title: "ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容"
 published: 2026-01-11
-description: "本文将为你揭秘一个进阶技巧，通过一个关键配置文件，实现自定义编译的固件与官方源内核模块的完美兼容，将一劳永逸地解决这个痛点，构建出既灵活又便捷的个性化路由器系统。"
+description: "通过对齐内核版本配置，使自编译 ImmortalWrt 固件兼容官方软件源的 kmod 内核模块。"
 image: "/wp-content/uploads/2026/01/1768100612-Gemini_Generated_Image_7jlexa7jlexa7jle-scaled.png"
 tags: ["OpenWrt","系统运维"]
 tagPermalinks: ["/tag/openwrt/","/tag/sysadmin/"]
@@ -43,7 +43,7 @@ https://downloads.immortalwrt.org/releases/24.10.4/targets/mediatek/filogic/
 
 拉到最底下，就是我们需要的配置
 
-![](/wp-content/uploads/2026/01/1768099674-image-1024x569.png)
+![准备环境 - ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容 操作截图](/wp-content/uploads/2026/01/1768099674-image-1024x569.png)
 
 我们将它下载到编译目录下，并复制 (注意要找到适合自己的，不要直接复制我的)
 
@@ -78,10 +78,10 @@ make -j64
 
 检查文件 kernel 字段 ./immortalwrt/bin/targets/mediatek/filogic/immortalwrt-24.10.4-xxx.manifest
 
-![](/wp-content/uploads/2026/01/1768100172-image.png)
+![检查对齐 - ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容 操作截图 1](/wp-content/uploads/2026/01/1768100172-image.png)
 
 我们再返回之前的页面进入 kmods 文件夹，对比二者一致就算成功了！
 
-![](/wp-content/uploads/2026/01/1768100375-image-1024x569.png)
+![检查对齐 - ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容 操作截图 2](/wp-content/uploads/2026/01/1768100375-image-1024x569.png)
 
-![](/wp-content/uploads/2026/01/1768100434-image-1024x278.png)
+![检查对齐 - ImmortalWrt 编译进阶：实现与官方源 kmod 的完美兼容 操作截图 3](/wp-content/uploads/2026/01/1768100434-image-1024x278.png)

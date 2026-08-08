@@ -1,7 +1,7 @@
 ---
-title: "UCSC\\_CTF2025高校网络安全联合选拔赛 WP"
+title: "UCSC_CTF2025 高校网络安全联合选拔赛 WP"
 published: 2025-04-20
-description: "这篇文章分享了 UCSC\\_CTF2025高校网络安全联合选拔赛 的比赛题解，涵盖了 MISC、Web、Crypto、Reverse 和 Pwn 五个领域的具体解题方法。内容包括代码分析、解密算法，以及题目背后的思路"
+description: "UCSC_CTF2025 高校网络安全联合选拔赛题解，涵盖 MISC、Web、Crypto、Reverse 和 Pwn 的分析与解题过程。"
 image: "/wp-content/uploads/2025/04/02169529E69E633A9A52953240D607AC.jpg"
 tags: ["安全"]
 tagPermalinks: ["/tag/security/"]
@@ -12,25 +12,25 @@ permalink: "/2025/04/20/ucsc-ctf2025-writeup/"
 ---
 感谢大神队友带飞
 
-![](/wp-content/uploads/2025/04/image.png)
+![UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图](/wp-content/uploads/2025/04/image.png)
 
-## **MISC****：**                                                          [](af://n26)
+## **MISC****：**
 
 第一题：**小套不是套****\-ucsc**
 
 先扫二维码拿到!@#QWE123987解压tess.zip 再用crc32爆破可得密钥： SecretIsY0u
 
-![](/wp-content/uploads/2025/04/image.jpeg)
+![MISC - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 1](/wp-content/uploads/2025/04/image.jpeg)
 
 打开mushroom.jpg,用010打开查看png模块发现有png图片，补全头部
 
-![](/wp-content/uploads/2025/04/image-1.jpeg)
+![MISC - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 2](/wp-content/uploads/2025/04/image-1.jpeg)
 
 最后用oursecret解密即可
 
-![](/wp-content/uploads/2025/04/image-2.jpeg)
+![MISC - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 3](/wp-content/uploads/2025/04/image-2.jpeg)
 
-![](/wp-content/uploads/2025/04/image-3.jpeg)
+![MISC - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 4](/wp-content/uploads/2025/04/image-3.jpeg)
 
 ## **Misc**
 
@@ -38,7 +38,7 @@ permalink: "/2025/04/20/ucsc-ctf2025-writeup/"
 
 提示Cat，猜测是猫脸变换
 
-![](/wp-content/uploads/2025/04/image.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 1](/wp-content/uploads/2025/04/image.jpg)
 
 ```
 import cv2
@@ -86,15 +86,15 @@ flag{46962f4d-8d29-
 
 使用工具跑出QRcode
 
-![](/wp-content/uploads/2025/04/image-2.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 2](/wp-content/uploads/2025/04/image-2.jpg)
 
 扫描出Y0U\_Fi8d\_ItHa@aaHH，根据Snow猜测是雪花隐写的密钥
 
-![](/wp-content/uploads/2025/04/image-4.jpeg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 3](/wp-content/uploads/2025/04/image-4.jpeg)
 
 找到含“雪”的html文件
 
-![](/wp-content/uploads/2025/04/image-3.jpeg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 4](/wp-content/uploads/2025/04/image-3.jpeg)
 
 雪花隐写解出11ef-b3b6-a4b1c1c5a2d2}
 
@@ -104,27 +104,27 @@ flag{46962f4d-8d29-
 
 **Ctf-nat****直接出**
 
-![](/wp-content/uploads/2025/04/image-4.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 1](/wp-content/uploads/2025/04/image-4.jpg)
 
 **three-ucsc**
 
 **Part1****是盲水印**
 
-![](/wp-content/uploads/2025/04/image-5.jpeg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 2](/wp-content/uploads/2025/04/image-5.jpeg)
 
-![](/wp-content/uploads/2025/04/image-6.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 3](/wp-content/uploads/2025/04/image-6.jpg)
 
-![](/wp-content/uploads/2025/04/image-7.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 4](/wp-content/uploads/2025/04/image-7.jpg)
 
 Part2
 
 是解密就行了2进制，base64，摩斯即可
 
-![](/wp-content/uploads/2025/04/image-8.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 5](/wp-content/uploads/2025/04/image-8.jpg)
 
 Part3
 
-![](/wp-content/uploads/2025/04/image-9.jpg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 6](/wp-content/uploads/2025/04/image-9.jpg)
 
 **看到流量找到密码一个一个试试**
 
@@ -132,7 +132,7 @@ Part3
 
 **解出来就行了**
 
-![](/wp-content/uploads/2025/04/image-10.jpeg)
+![Misc - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 7](/wp-content/uploads/2025/04/image-10.jpeg)
 
 **然后将三个部分拼起来即可**
 
@@ -295,34 +295,34 @@ r.interactive()
 
 题目只做了一件事--进行异或，且输入的值直接与结果进行对比，所以直接动调拿然后Shift+F12就可以看到(或者你也可以自己解密)
 
-![](/wp-content/uploads/2025/04/image-11.jpg)
+![Reverse - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图](/wp-content/uploads/2025/04/image-11.jpg)
 
-## **REVERSE**                                                 [](af://n2)
+## **REVERSE**
 
 第一题：**simplere-ucsc**
 
 64位，因为加了upx的壳子，并且标志位改了
 
-![](/wp-content/uploads/2025/04/image-5.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 1](/wp-content/uploads/2025/04/image-5.jpeg)
 
 所以在010改标志位为upx，进行upx脱壳。打开IDA：
 
-![](/wp-content/uploads/2025/04/image-6.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 2](/wp-content/uploads/2025/04/image-6.jpeg)
 
 先进行base58加密(换表了)，再进行异或，但是这里的异或是反向拿的，所以解密要逆序输出。
 
 <table class="has-fixed-layout"><tbody><tr><td>enc = [0x72, 0x7A, 0x32, 0x48, 0x34, 0x4E, 0x3F, 0x3A, 0x42, 0x33, 0x47, 0x69, 0x75, 0x63, 0x7C, 0x7D, 0x77, 0x62, 0x65, 0x64, 0x7B, 0x6F, 0x62, 0x50, 0x73, 0x2B, 0x68, 0x6C, 0x67, 0x47, 0x69, 0x15, 0x42, 0x75, 0x65, 0x40, 0x76, 0x61, 0x56, 0x41, 0x11, 0x44, 0x7F, 0x19, 0x65, 0x4C, 0x40, 0x48, 0x65, 0x60, 0x01, 0x40, 0x50, 0x01, 0x61, 0x6F, 0x69, 0x57] enc1 = list() for i in range(0,len(enc), 1): result = enc[i] ^ (i + 1)&nbsp; enc1.append(result) for i in range(len(enc)-1,-1, -1): print(chr(enc1[i]),end="")</td></tr></tbody></table>
 
-![](/wp-content/uploads/2025/04/image-7.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 3](/wp-content/uploads/2025/04/image-7.jpeg)
 
 第二题： **EZ\_debug-ucsc** CTRL+E找到程序入口点：
 
-![](/wp-content/uploads/2025/04/image-8.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 4](/wp-content/uploads/2025/04/image-8.jpeg)
 
-![](/wp-content/uploads/2025/04/image-9.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 5](/wp-content/uploads/2025/04/image-9.jpeg)
 
 这里可以很容易知道就是将v5数组的值进行的RC4加密，直接动调拿v5加密后的值即可。
 
-![](/wp-content/uploads/2025/04/image-10.jpeg)
+![REVERSE - UCSC_CTF2025 高校网络安全联合选拔赛 WP 操作截图 6](/wp-content/uploads/2025/04/image-10.jpeg)
 
 flag{709e9bdd-0858-9750-8c37-9b135b31f16d}

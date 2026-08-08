@@ -1,4 +1,3 @@
-import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
@@ -23,6 +22,7 @@ import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
+import { rehypeImageAttributes } from "./src/plugins/rehype-image-attributes.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -100,7 +100,6 @@ export default defineConfig({
 			}
 		}),
         svelte(),
-		sitemap(),
 	],
 	markdown: {
 		remarkPlugins: [
@@ -151,6 +150,7 @@ export default defineConfig({
 					},
 				},
 			],
+			rehypeImageAttributes,
 		],
 	},
 	vite: {

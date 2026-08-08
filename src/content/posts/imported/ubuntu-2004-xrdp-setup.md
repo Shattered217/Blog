@@ -2,7 +2,7 @@
 title: "Ubuntu20.04 XRDP配置"
 published: 2025-10-05
 updated: 2026-01-10
-description: "在Ubuntu 20.04系统中安装配置XRDP远程桌面使用默认桌面的方法。"
+description: "在 Ubuntu 20.04 上安装 XRDP，配置默认桌面、会话权限与启动参数，从 Windows 远程连接 Linux 图形界面。"
 image: "/wp-content/uploads/2025/10/1768031767-Gemini_Generated_Image_y0lvmjy0lvmjy0lv-scaled.png"
 tags: ["网络","系统运维"]
 tagPermalinks: ["/tag/network/","/tag/sysadmin/"]
@@ -68,10 +68,10 @@ sudo systemctl restart xrdp
 
 Windows搜索RDP即可
 
-![](/wp-content/uploads/2025/10/1759652603-image.webp)
+![登录XRDP - Ubuntu20.04 XRDP配置 操作截图 1](/wp-content/uploads/2025/10/1759652603-image.webp)
 
 输入主机的IP、用户名、勾选 允许我保存凭据，然后输入密码后即可进入
 
-![](/wp-content/uploads/2025/10/1759652626-image.webp)
+![登录XRDP - Ubuntu20.04 XRDP配置 操作截图 2](/wp-content/uploads/2025/10/1759652626-image.webp)
 
-![](/wp-content/uploads/2025/10/1759652694-image-1024x576.webp)
+![登录XRDP - Ubuntu20.04 XRDP配置 操作截图 3](/wp-content/uploads/2025/10/1759652694-image-1024x576.webp)

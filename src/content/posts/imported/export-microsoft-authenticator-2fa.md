@@ -1,7 +1,7 @@
 ---
-title: "手动导出 Microsoft Authenticator 中的2FA密钥"
+title: "手动导出 Microsoft Authenticator 的 2FA 密钥"
 published: 2024-01-29
-description: "手动导出 Microsoft Authenticator 中的2FA密钥"
+description: "从 Android 设备备份 Microsoft Authenticator 的 PhoneFactor 数据库，并使用脚本导出其中保存的 2FA 密钥。"
 image: "/wp-content/uploads/2024/01/OIP-C.jpg"
 tags: ["安全"]
 tagPermalinks: ["/tag/security/"]
@@ -21,7 +21,7 @@ permalink: "/2024/01/29/export-microsoft-authenticator-2fa/"
 -   找到数据
     Microsoft Authenticator 中的2FA密钥数据存储路径为 /data/data/com.azure.authenticator/databases/PhoneFactor。由于是在/data/目录下，所以需要手机Root才能查看到。如果你没有Root也不用怕，完全可以迂回的通过云备份功能同步到其他Root后的手机或者模拟器中再进行操作。
 -   读取数据
-    PhoneFactor 文件本身是Sqlite数据库文件，所以复制文件时候需要复制PhoneFactor-shm和PhoneFactor-wal这两兄弟（如果有），可以通过Sqlite数据库操作软件来查看具体的数据信息。![](https://img.lu/upload/e62474f70b4288d7edfba.png)想要的数据就在 accounts 表中。我这里就直接让chatgpt写了一个导出脚本。
+    PhoneFactor 文件本身是Sqlite数据库文件，所以复制文件时候需要复制PhoneFactor-shm和PhoneFactor-wal这两兄弟（如果有），可以通过Sqlite数据库操作软件来查看具体的数据信息。想要的数据就在 accounts 表中。我这里就直接让chatgpt写了一个导出脚本。
 
 ```
 import sqlite3
