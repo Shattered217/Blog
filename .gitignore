@@ -4,6 +4,7 @@ dist/
 # WordPress media is uploaded to R2 instead of Git.
 media/
 .wrangler/
+.worker/
 
 # generated types
 .astro/

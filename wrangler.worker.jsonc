@@ -1,0 +1,58 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "nvcc-v-blog-worker-preview",
+	"main": "./.worker/index.js",
+	"compatibility_date": "2026-08-07",
+	"workers_dev": true,
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "404-page",
+		"run_worker_first": true
+	},
+	"d1_databases": [
+		{
+			"binding": "BLOG_DB",
+			"database_name": "nvcc-v-blog-preview",
+			"database_id": "4ceaa5ca-a6ea-4cbc-abdb-64307159853d"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "nvcc-v-media-preview"
+		}
+	],
+	"observability": {
+		"enabled": true
+	},
+	"env": {
+		"production": {
+			"name": "nvcc-v-blog-worker",
+			"routes": [
+				{
+					"pattern": "nvcc-v.com/*",
+					"zone_name": "nvcc-v.com"
+				},
+				{
+					"pattern": "www.nvcc-v.com/*",
+					"zone_name": "nvcc-v.com"
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "BLOG_DB",
+					"database_name": "nvcc-v-blog",
+					"database_id": "1138d96d-5dc8-4bf2-9cfd-6e14ecf6133c"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "MEDIA",
+					"bucket_name": "nvcc-v-media"
+				}
+			]
+		}
+	}
+}

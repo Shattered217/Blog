@@ -8,5 +8,22 @@ export const onRequest: PagesFunction = async ({ request, next }) => {
 		return Response.redirect(url, 301);
 	}
 
-	return next();
+	const response = await next();
+	const location = response.headers.get("Location");
+	if (response.status !== 307 || !location) return response;
+
+	const destination = new URL(location, url);
+	if (
+		destination.origin !== url.origin ||
+		destination.pathname !== `${url.pathname}/` ||
+		destination.search !== url.search
+	) {
+		return response;
+	}
+
+	return new Response(response.body, {
+		status: 308,
+		statusText: "Permanent Redirect",
+		headers: response.headers,
+	});
 };
