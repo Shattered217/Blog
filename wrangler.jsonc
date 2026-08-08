@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "shattered217-blog",
+	"name": "nvcc-v-blog",
 	"pages_build_output_dir": "./dist",
 	"compatibility_date": "2026-08-07",
 	"d1_databases": [
