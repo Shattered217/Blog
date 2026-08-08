@@ -12,7 +12,8 @@ const minDepth = Math.min(...headings.map((heading) => heading.depth));
 const visibleHeadings = headings.filter(
 	(heading) => heading.depth < minDepth + siteConfig.toc.depth,
 );
-const cleanHeading = (text: string) => text.endsWith("#") ? text.slice(0, -1) : text;
+const cleanHeading = (text: string) =>
+	text.endsWith("#") ? text.slice(0, -1) : text;
 let topLevelIndex = 0;
 const numberedHeadings = visibleHeadings.map((heading) => ({
 	...heading,

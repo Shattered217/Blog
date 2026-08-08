@@ -2,11 +2,17 @@ import { readFileSync } from "node:fs";
 import { visit } from "unist-util-visit";
 
 const dimensions = JSON.parse(
-	readFileSync(new URL("../data/media-dimensions.json", import.meta.url), "utf8"),
+	readFileSync(
+		new URL("../data/media-dimensions.json", import.meta.url),
+		"utf8",
+	),
 );
 
 function mediaPath(source) {
-	if (typeof source !== "string" || !source.startsWith("/wp-content/uploads/")) {
+	if (
+		typeof source !== "string" ||
+		!source.startsWith("/wp-content/uploads/")
+	) {
 		return undefined;
 	}
 	let pathname = source.split(/[?#]/, 1)[0];

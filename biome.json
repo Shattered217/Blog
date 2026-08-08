@@ -10,6 +10,7 @@
 		"includes": [
 			"**",
 			"!**/src/**/*.css",
+			"!**/src/data/media-dimensions.json",
 			"!**/src/public/**/*",
 			"!**/dist/**/*",
 			"!**/node_modules/**/*"

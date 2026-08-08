@@ -1,6 +1,6 @@
-import type { APIRoute } from "astro";
 import { PAGE_SIZE } from "@constants/constants";
 import { getSeriesGroups, getSortedPosts } from "@utils/content-utils";
+import type { APIRoute } from "astro";
 
 const site = new URL("https://nvcc-v.com/");
 
@@ -50,9 +50,7 @@ export const GET: APIRoute = async () => {
 		pages.set(
 			`/series/${series.slug}/`,
 			latestDate(
-				series.posts.map(
-					(post) => post.data.updated ?? post.data.published,
-				),
+				series.posts.map((post) => post.data.updated ?? post.data.published),
 			),
 		);
 	}

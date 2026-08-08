@@ -1,6 +1,6 @@
-import type { APIRoute } from "astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { getPostUrl } from "@utils/url-utils";
+import type { APIRoute } from "astro";
 
 const site = new URL("https://nvcc-v.com/");
 

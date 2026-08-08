@@ -33,8 +33,7 @@ const descriptions: Record<string, string> = {
 		"Docker 与 Compose 服务部署示例，整理镜像、网络、存储和硬件加速配置。",
 	"/tag/cuda/":
 		"NVIDIA CUDA 驱动、工具链和多版本环境管理，覆盖虚拟机、服务器与 NAS。",
-	"/tag/nas/":
-		"UNRAID、群晖、Immich 与媒体服务相关的 NAS 部署和数据管理实践。",
+	"/tag/nas/": "UNRAID、群晖、Immich 与媒体服务相关的 NAS 部署和数据管理实践。",
 	"/tag/mcu/":
 		"单片机联网和 MicroPython 调试记录，目前主要围绕 ESP32 的 Wi-Fi 兼容问题。",
 	"/tag/media-server/":

@@ -1,22 +1,25 @@
 ---
 import path from "node:path";
+import Giscus from "@components/comments/Giscus.astro";
+import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts } from "@utils/content-utils";
-import { getDir, getPostUrl } from "@utils/url-utils";
-import { Icon } from "astro-icon/components";
-import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import PostMetadata from "@components/PostMeta.astro";
-import Giscus from "@components/comments/Giscus.astro";
 import PostViewCounter from "@components/PostViewCounter.astro";
 import RelatedPosts from "@components/RelatedPosts.astro";
 import SeriesNavigation from "@components/SeriesNavigation.astro";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import {
+	getRelatedPosts,
+	getSeriesPosts,
+	getSortedPosts,
+} from "@utils/content-utils";
+import { getDir, getPostUrl } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
 import { licenseConfig, profileConfig, siteConfig } from "@/config";
 import { historicalPostViews } from "@/data/historical-views";
-import { getRelatedPosts, getSeriesPosts } from "@utils/content-utils";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -26,9 +29,7 @@ export async function getStaticPaths() {
 			entry.data.published,
 			entry.data.permalink,
 		);
-		const match = postUrl.match(
-			/^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/$/,
-		);
+		const match = postUrl.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/$/);
 		if (!match) {
 			throw new Error(`Unsupported post permalink: ${postUrl}`);
 		}

@@ -59,7 +59,8 @@ export function getRelatedPosts(
 			);
 			return {
 				post,
-				score: sharedTags * 4 + Number(sameCategory) * 2 + Number(sameSeries) * 6,
+				score:
+					sharedTags * 4 + Number(sameCategory) * 2 + Number(sameSeries) * 6,
 			};
 		})
 		.filter(({ score }) => score > 0)
@@ -80,10 +81,7 @@ export function getSeriesPosts(
 	if (!seriesSlug) return [];
 	return posts
 		.filter((post) => post.data.series?.slug === seriesSlug)
-		.sort(
-			(a, b) =>
-				(a.data.series?.order ?? 0) - (b.data.series?.order ?? 0),
-		);
+		.sort((a, b) => (a.data.series?.order ?? 0) - (b.data.series?.order ?? 0));
 }
 
 export type SeriesGroup = {
@@ -110,8 +108,7 @@ export function getSeriesGroups(
 	return Array.from(groups.values()).map((group) => ({
 		...group,
 		posts: group.posts.sort(
-			(a, b) =>
-				(a.data.series?.order ?? 0) - (b.data.series?.order ?? 0),
+			(a, b) => (a.data.series?.order ?? 0) - (b.data.series?.order ?? 0),
 		),
 	}));
 }

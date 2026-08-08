@@ -1,8 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
 import PostPage from "@components/PostPage.astro";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSeriesGroups, getSortedPosts, type SeriesGroup } from "@utils/content-utils";
+import {
+	getSeriesGroups,
+	getSortedPosts,
+	type SeriesGroup,
+} from "@utils/content-utils";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
 	const groups = getSeriesGroups(await getSortedPosts());

@@ -1,14 +1,14 @@
 ---
-import type { GetStaticPaths, Page } from "astro";
-import { getEntry, render, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
-import FriendLinks from "../components/FriendLinks.astro";
+import type { GetStaticPaths, Page } from "astro";
 import Pagination from "../components/control/Pagination.astro";
+import FriendLinks from "../components/FriendLinks.astro";
 import PostPage from "../components/PostPage.astro";
-import { PAGE_SIZE } from "../constants/constants";
-import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { siteConfig } from "../config";
+import { PAGE_SIZE } from "../constants/constants";
 import { getTaxonomyDescription } from "../data/taxonomy-descriptions";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -84,7 +84,9 @@ const taxonomyTitle = taxonomy
 	? `${taxonomy.type === "category" ? "分类" : "标签"}：${taxonomy.name}`
 	: undefined;
 const paginationTitle =
-	page && page.currentPage > 1 ? `文章列表 · 第 ${page.currentPage} 页` : undefined;
+	page && page.currentPage > 1
+		? `文章列表 · 第 ${page.currentPage} 页`
+		: undefined;
 const listTitle = taxonomyTitle ?? paginationTitle;
 const listDescription = taxonomy
 	? getTaxonomyDescription(
@@ -97,12 +99,15 @@ const listDescription = taxonomy
 		? `${siteConfig.title} 第 ${page.currentPage} 页，继续浏览技术教程、部署记录与排障文章。`
 		: undefined;
 
-let LegacyContent;
-if (legacy) {
-	const entry = await getEntry("spec", legacy);
-	if (!entry) throw new Error(`Legacy page content not found: ${legacy}`);
-	LegacyContent = (await render(entry)).Content;
-}
+const LegacyContent = legacy
+	? await (async () => {
+			const entry = await getEntry("spec", legacy);
+			if (!entry) {
+				throw new Error(`Legacy page content not found: ${legacy}`);
+			}
+			return (await render(entry)).Content;
+		})()
+	: undefined;
 
 const len = listPage?.data.length ?? 0;
 ---

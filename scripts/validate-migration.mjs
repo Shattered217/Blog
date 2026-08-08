@@ -4,6 +4,7 @@ import path from "node:path";
 const postsRoot = path.resolve("src/content/posts/imported");
 const distRoot = path.resolve("dist");
 const mediaRoot = path.resolve("media");
+const mediaManifestPath = path.resolve("media-manifest.json");
 const site = "https://nvcc-v.com";
 
 async function walk(directory, extension) {
@@ -46,6 +47,11 @@ function normalizeMediaPath(source) {
 }
 
 const failures = [];
+const mediaManifest = JSON.parse(await readFile(mediaManifestPath, "utf8"));
+const manifestMedia = new Set(
+	mediaManifest.objects.map((object) => object.key),
+);
+const hasLocalMedia = await exists(mediaRoot);
 const postFiles = await walk(postsRoot, ".md");
 const articleUrls = [];
 const taxonomyUrls = new Set();
@@ -137,7 +143,11 @@ for (const [source, target] of legacyTagRedirects) {
 }
 
 for (const mediaPath of referencedMedia) {
-	if (!(await exists(path.join(mediaRoot, mediaPath)))) {
+	if (
+		!(hasLocalMedia
+			? await exists(path.join(mediaRoot, mediaPath))
+			: manifestMedia.has(mediaPath))
+	) {
 		failures.push(`/${mediaPath}: missing R2 source object`);
 	}
 }
