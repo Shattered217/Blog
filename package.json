@@ -22,6 +22,8 @@
     "worker:dev": "corepack pnpm worker:build && wrangler dev --config wrangler.worker.jsonc",
     "worker:deploy:preview": "corepack pnpm worker:build && wrangler deploy --config wrangler.worker.jsonc",
     "worker:deploy": "corepack pnpm worker:build && wrangler deploy --config wrangler.worker.jsonc --env production",
+    "editor:dev": "wrangler dev --config editor/wrangler.jsonc --var REQUIRE_ACCESS:false",
+    "editor:deploy": "wrangler deploy --config editor/wrangler.jsonc",
     "validate:migration": "node scripts/validate-migration.mjs",
     "seo:audit": "node scripts/audit-built-seo.mjs",
     "seo:submit:indexnow": "node scripts/submit-indexnow.mjs",

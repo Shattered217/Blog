@@ -1,0 +1,19 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "nvcc-v-blog-editor",
+	"main": "./src/index.ts",
+	"compatibility_date": "2026-08-08",
+	"workers_dev": false,
+	"routes": [
+		{
+			"pattern": "editor.nvcc-v.com",
+			"custom_domain": true
+		}
+	],
+	"vars": {
+		"REQUIRE_ACCESS": "true"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

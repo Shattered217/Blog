@@ -2,7 +2,7 @@
 title: "Jetson Orin TorchAudio whl 自编译指南"
 published: 2026-01-13
 description: "在 Jetson Orin aarch64 环境中编译 TorchAudio whl，配置 libsox 与 CUDA 依赖并验证音频处理功能。"
-image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"

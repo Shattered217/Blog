@@ -2,7 +2,7 @@
 title: "Tensor-LLM 1.0.0rc4 量化推理QwQ-32B int4"
 published: 2025-07-25
 description: "在 A100 上使用 TensorRT-LLM 对 QwQ-32B 进行 INT4 量化，转换检查点、构建引擎并运行吞吐基准测试。"
-image: "/wp-content/uploads/2025/07/1753435410-Google_AI_Studio_2025-07-25T09_23_11.933Z.webp"
+image: "https://nvcc-v.com/wp-content/uploads/2025/07/1753435410-Google_AI_Studio_2025-07-25T09_23_11.933Z.webp"
 tags: ["AI","TensorRT"]
 tagPermalinks: ["/tag/ai/","/tag/tensorrt/"]
 category: "Linux"
@@ -93,7 +93,7 @@ head_dim = getattr(
             hf_config.hidden_size // hf_config.num_attention_heads)
 ```
 
-![关于Qwen3 - Tensor-LLM 1.0.0rc4 量化推理QwQ-32B int4 操作截图](/wp-content/uploads/2025/07/1753408629-image-1024x240.webp)
+![关于Qwen3 - Tensor-LLM 1.0.0rc4 量化推理QwQ-32B int4 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1753408629-image-1024x240.webp)
 
 然后按照上面的方法量化推理后，正常输出几个tokens后就会输出乱码，搞不定...
 

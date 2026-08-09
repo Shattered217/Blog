@@ -2,7 +2,7 @@
 title: "UNRAID部署Immich并启用cuda加速"
 published: 2025-07-11
 description: "在 UNRAID 上通过 Docker Compose 部署 Immich，配置 NVIDIA GPU 并验证 CUDA 机器学习加速。"
-image: "/wp-content/uploads/2025/07/1752212557-65d97ac1c14b36223.png_fo742.webp"
+image: "https://nvcc-v.com/wp-content/uploads/2025/07/1752212557-65d97ac1c14b36223.png_fo742.webp"
 tags: ["NAS","CUDA"]
 tagPermalinks: ["/tag/nas/","/tag/cuda/"]
 category: "Linux"
@@ -15,15 +15,15 @@ series: { slug: "unraid-immich", name: "UNRAID 上的 Immich", order: 1 }
 
 如图所示
 
-![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 1](/wp-content/uploads/2025/07/1752211255-image-1024x442.webp)
+![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/07/1752211255-image-1024x442.webp)
 
 创建一个immich的compose项目
 
-![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 2](/wp-content/uploads/2025/07/1752211624-image-1024x524.webp)
+![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/07/1752211624-image-1024x524.webp)
 
 编辑compose文件
 
-![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 3](/wp-content/uploads/2025/07/1752211665-image-1024x553.webp)
+![安装并配置docker-compose - UNRAID部署Immich并启用cuda加速 操作截图 3](https://nvcc-v.com/wp-content/uploads/2025/07/1752211665-image-1024x553.webp)
 
 注意以下几个点
 
@@ -113,7 +113,7 @@ nvidia-smi
 
 输出显卡信息代表容器调用GPU成功
 
-![检查GPU状态 - UNRAID部署Immich并启用cuda加速 操作截图](/wp-content/uploads/2025/07/1752212691-image.webp)
+![检查GPU状态 - UNRAID部署Immich并启用cuda加速 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1752212691-image.webp)
 
 ## 访问并配置immich
 
@@ -123,12 +123,12 @@ nvidia-smi
 XLM-Roberta-Large-Vit-B-16Plus
 ```
 
-![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 1](/wp-content/uploads/2025/07/1752212440-image-1024x889.webp)
+![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/07/1752212440-image-1024x889.webp)
 
 进入immich\_machine\_learning日志界面，如果识别日志包含CUDA字样表示启用成功
 
-![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 2](/wp-content/uploads/2025/07/1752212502-e3bc0f54dc94ffe5a6a677b1bea49d80-1024x600.webp)
+![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/07/1752212502-e3bc0f54dc94ffe5a6a677b1bea49d80-1024x600.webp)
 
 机器学习设置-视频转码设置-硬件加速-加速器API 选择 NVENC
 
-![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 3](/wp-content/uploads/2025/07/1752212423-image-1024x304.webp)
+![访问并配置immich - UNRAID部署Immich并启用cuda加速 操作截图 3](https://nvcc-v.com/wp-content/uploads/2025/07/1752212423-image-1024x304.webp)

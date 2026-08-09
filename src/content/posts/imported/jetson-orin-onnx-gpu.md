@@ -3,7 +3,7 @@ title: "Jetson Orin Nano编译ONNX Runtime GPU"
 published: 2025-11-03
 updated: 2026-06-09
 description: "在 Jetson Orin Nano 上从源码构建支持 CUDA 的 ONNX Runtime，并用于运行 Immich 深度学习模块。"
-image: "/wp-content/uploads/2025/11/1768031675-Gemini_Generated_Image_z76cp0z76cp0z76c-scaled.png"
+image: "https://nvcc-v.com/wp-content/uploads/2025/11/1768031675-Gemini_Generated_Image_z76cp0z76cp0z76c-scaled.png"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
@@ -31,7 +31,7 @@ sudo apt install -y cmake
 cmake --version
 ```
 
-![编译环境准备 - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 1](/wp-content/uploads/2025/11/1762158110-image.webp)
+![编译环境准备 - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/11/1762158110-image.webp)
 
 升级 GCC 到 11
 
@@ -45,7 +45,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
 gcc --version
 ```
 
-![编译环境准备 - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 2](/wp-content/uploads/2025/11/1762158124-image.webp)
+![编译环境准备 - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/11/1762158124-image.webp)
 
 ## 编译ONNX
 
@@ -74,7 +74,7 @@ cmake --build build/Linux/Release --config Release -j$(nproc)
   --tensorrt_home /usr/lib/aarch64-linux-gnu
 ```
 
-![编译ONNX - Jetson Orin Nano编译ONNX Runtime GPU 操作截图](/wp-content/uploads/2025/11/1762173021-image.webp)
+![编译ONNX - Jetson Orin Nano编译ONNX Runtime GPU 操作截图](https://nvcc-v.com/wp-content/uploads/2025/11/1762173021-image.webp)
 
 ## 安装并测试ONNXruntime-GPU
 
@@ -85,7 +85,7 @@ uv pip install ~/onnxruntime/build/Linux/Release/dist/onnxruntime_gpu-*
 
 ```
 
-![安装并测试ONNXruntime-GPU - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 1](/wp-content/uploads/2025/11/1762173310-image.webp)
+![安装并测试ONNXruntime-GPU - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/11/1762173310-image.webp)
 
 测试代码
 
@@ -100,7 +100,7 @@ EOF
 
 恭喜 TensorRT 和 CUDA 都已启用加速（在Jetson平台上这条 W：警告⚠️可以忽略）
 
-![安装并测试ONNXruntime-GPU - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 2](/wp-content/uploads/2025/11/1762173484-image.webp)
+![安装并测试ONNXruntime-GPU - Jetson Orin Nano编译ONNX Runtime GPU 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/11/1762173484-image.webp)
 
 ## 推理immich-machine-learning
 
@@ -152,4 +152,4 @@ export IMMICH_PORT=3003
 python3 -m immich_ml
 ```
 
-![推理immich-machine-learning - Jetson Orin Nano编译ONNX Runtime GPU 操作截图](/wp-content/uploads/2025/11/1762176481-image-1024x343.webp)
+![推理immich-machine-learning - Jetson Orin Nano编译ONNX Runtime GPU 操作截图](https://nvcc-v.com/wp-content/uploads/2025/11/1762176481-image-1024x343.webp)

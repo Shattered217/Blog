@@ -2,7 +2,7 @@
 title: "手动导出 Microsoft Authenticator 的 2FA 密钥"
 published: 2024-01-29
 description: "从 Android 设备备份 Microsoft Authenticator 的 PhoneFactor 数据库，并使用脚本导出其中保存的 2FA 密钥。"
-image: "/wp-content/uploads/2024/01/OIP-C.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2024/01/OIP-C.jpg"
 tags: ["安全"]
 tagPermalinks: ["/tag/security/"]
 category: "Android"

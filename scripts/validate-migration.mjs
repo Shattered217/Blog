@@ -1,4 +1,4 @@
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 const postsRoot = path.resolve("src/content/posts/imported");
@@ -12,8 +12,10 @@ async function walk(directory, extension) {
 	const files = [];
 	for (const entry of entries) {
 		const absolutePath = path.join(directory, entry.name);
-		if (entry.isDirectory()) files.push(...(await walk(absolutePath, extension)));
-		if (entry.isFile() && entry.name.endsWith(extension)) files.push(absolutePath);
+		if (entry.isDirectory())
+			files.push(...(await walk(absolutePath, extension)));
+		if (entry.isFile() && entry.name.endsWith(extension))
+			files.push(absolutePath);
 	}
 	return files;
 }
@@ -37,7 +39,20 @@ function outputPath(urlPath) {
 }
 
 function normalizeMediaPath(source) {
-	let pathname = source.split(/[?#]/, 1)[0];
+	let url;
+	try {
+		url = new URL(source, site);
+	} catch {
+		return undefined;
+	}
+	if (
+		url.origin !== new URL(site).origin ||
+		!url.pathname.startsWith("/wp-content/uploads/")
+	) {
+		return undefined;
+	}
+
+	let pathname = url.pathname;
 	try {
 		pathname = decodeURIComponent(pathname);
 	} catch {
@@ -82,20 +97,26 @@ for (const postFile of postFiles) {
 	}
 
 	const localImages = new Set();
-	if (cover) localImages.add(normalizeMediaPath(cover));
-	for (const [, alt, source] of markdown.matchAll(
-		/!\[([^\n]*)\]\((\/wp-content\/uploads\/[^)\s]+)(?:\s+["'][^"']*["'])?\)/g,
-	)) {
-		if (!alt.trim()) failures.push(`${permalink}: contains an image without alt text`);
-		localImages.add(normalizeMediaPath(source));
+	if (cover) {
+		const coverPath = normalizeMediaPath(cover);
+		if (coverPath) localImages.add(coverPath);
+		else failures.push(`${permalink}: contains invalid cover image ${cover}`);
 	}
-	for (const [, source] of markdown.matchAll(
-		/!\[[^\n]*\]\((https?:\/\/[^)\s]+)/gi,
+	for (const [, alt, source] of markdown.matchAll(
+		/!\[([^\n]*)\]\((<?[^)\s>]+>?)(?:\s+["'][^"']*["'])?\)/g,
 	)) {
-		failures.push(`${permalink}: contains external image ${source}`);
+		if (!alt.trim())
+			failures.push(`${permalink}: contains an image without alt text`);
+		const cleanSource = source.replace(/^<|>$/g, "");
+		const mediaPath = normalizeMediaPath(cleanSource);
+		if (mediaPath) localImages.add(mediaPath);
+		else if (/^https?:\/\//i.test(cleanSource)) {
+			failures.push(`${permalink}: contains external image ${cleanSource}`);
+		}
 	}
 	postImages.set(permalink, localImages);
-	for (const image of localImages) referencedMedia.add(image.replace(/^\//, ""));
+	for (const image of localImages)
+		referencedMedia.add(image.replace(/^\//, ""));
 	if (categoryPermalink) taxonomyUrls.add(categoryPermalink);
 	for (const tagPermalink of tagPermalinks) taxonomyUrls.add(tagPermalink);
 
@@ -113,7 +134,9 @@ for (const postFile of postFiles) {
 		failures.push(`${permalink}: unexpectedly marked noindex`);
 	}
 
-	for (const match of html.matchAll(/(?:src|href)="(\/wp-content\/uploads\/[^"#?]+)["#?]/g)) {
+	for (const match of html.matchAll(
+		/(?:src|href)="(\/wp-content\/uploads\/[^"#?]+)["#?]/g,
+	)) {
 		const mediaPath = normalizeMediaPath(match[1].replaceAll("&amp;", "&"));
 		referencedMedia.add(mediaPath.replace(/^\//, ""));
 	}
@@ -131,7 +154,9 @@ const legacyTagRedirects = redirects
 	.map((line) => line.trim().split(/\s+/))
 	.filter(
 		([source, target, status]) =>
-			source?.startsWith("/tag/") && target?.startsWith("/tag/") && status === "301",
+			source?.startsWith("/tag/") &&
+			target?.startsWith("/tag/") &&
+			status === "301",
 	);
 for (const [source, target] of legacyTagRedirects) {
 	if (taxonomyUrls.has(source)) {
@@ -164,7 +189,10 @@ if (rssItems !== postFiles.length) {
 	failures.push(`RSS contains ${rssItems} items; expected ${postFiles.length}`);
 }
 
-const sitemapIndex = await readFile(path.join(distRoot, "sitemap-index.xml"), "utf8");
+const sitemapIndex = await readFile(
+	path.join(distRoot, "sitemap-index.xml"),
+	"utf8",
+);
 for (const sitemapName of ["sitemap-pages-0.xml", "sitemap-posts.xml"]) {
 	const sitemapUrl = new URL(sitemapName, site).href;
 	if (!sitemapIndex.includes(`<loc>${sitemapUrl}</loc>`)) {
@@ -176,7 +204,10 @@ const pageSitemap = await readFile(
 	path.join(distRoot, "sitemap-pages-0.xml"),
 	"utf8",
 );
-const sitemap = await readFile(path.join(distRoot, "sitemap-posts.xml"), "utf8");
+const sitemap = await readFile(
+	path.join(distRoot, "sitemap-posts.xml"),
+	"utf8",
+);
 const sitemapEntries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(
 	([, entry]) => entry,
 );

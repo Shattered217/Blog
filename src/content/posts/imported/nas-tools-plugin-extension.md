@@ -3,7 +3,7 @@ title: "给NAS-Tool添加拓展功能，自定义刷流、索引规则"
 published: 2023-10-17
 updated: 2025-12-26
 description: "为 NAS-Tool 安装第三方插件扩展，配置自定义 PT 站索引与自动刷流规则。"
-image: "/wp-content/uploads/2023/10/logo-blue.png"
+image: "https://nvcc-v.com/wp-content/uploads/2023/10/logo-blue.png"
 tags: ["NAS","媒体服务"]
 tagPermalinks: ["/tag/nas/","/tag/media-server/"]
 category: "Linux"
@@ -68,7 +68,7 @@ curl -O https://github.com/Mattoids/nas-tools-plugin/raw/master/package/unload.s
 https://github.com/Mattoids/nas-tools-plugin/raw/master/source.json
 ```
 
-![安装第三方插件拓展包 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](/wp-content/uploads/2023/10/image-1024x513.png)
+![安装第三方插件拓展包 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](https://nvcc-v.com/wp-content/uploads/2023/10/image-1024x513.png)
 
 打开第三方插件-点击设置按钮-填入地址-保存即可
 
@@ -76,7 +76,7 @@ https://github.com/Mattoids/nas-tools-plugin/raw/master/source.json
 
 通过配置此插件以对NT不支持的站点进行索引，搜索影片
 
-![配置自定义索引器 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](/wp-content/uploads/2023/10/image-1-1024x690.png)
+![配置自定义索引器 - 给NAS-Tool添加拓展功能，自定义刷流、索引规则 操作截图](https://nvcc-v.com/wp-content/uploads/2023/10/image-1-1024x690.png)
 
 第一个框填写你需要添加的站点，第二框填写NT已经支持的站点，用于替换数据，然后点击第三个框，双击复制所有内容，打开JSON处理网站
 

@@ -3,7 +3,7 @@ title: "基于Jetson与HA的拓竹3D打印机炒面检测方案"
 published: 2026-01-01
 updated: 2026-01-10
 description: "通过 Jetson 部署 Obico 视觉检测服务，并结合 Home Assistant 实现拓竹 3D 打印异常监控、暂停和消息通知。"
-image: "/wp-content/uploads/2026/01/1767261352-Gemini_Generated_Image_qnv4cwqnv4cwqnv4-scaled.png"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1767261352-Gemini_Generated_Image_qnv4cwqnv4cwqnv4-scaled.png"
 tags: ["智能家居","AI"]
 tagPermalinks: ["/tag/smart-home/","/tag/ai/"]
 category: "Jetson"
@@ -21,7 +21,7 @@ permalink: "/2026/01/01/jetson-ha-bambu-spaghetti-detection/"
 
 安装HA的教程网上有很多了，可以选择适合自己的方式，例如HAOS，这边只是简单演示，故选择使用docker-compose来快速实现
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](/wp-content/uploads/2026/01/1767251853-image-1024x546.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](https://nvcc-v.com/wp-content/uploads/2026/01/1767251853-image-1024x546.png)
 
 首先当然是安装docker-compose
 
@@ -53,11 +53,11 @@ services:
 sudo docker-compose up -d
 ```
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](/wp-content/uploads/2026/01/1767252200-image.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](https://nvcc-v.com/wp-content/uploads/2026/01/1767252200-image.png)
 
 浏览器进入 IP:8123 ，根据向导页面简单配置一下
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 3](/wp-content/uploads/2026/01/1767252587-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 3](https://nvcc-v.com/wp-content/uploads/2026/01/1767252587-image-1024x519.png)
 
 然后我们接下来需要安装 HACS 以通过 bambu lab 接入 3D打印机
 
@@ -75,19 +75,19 @@ sudo docker-compose restart
 
 进入 设置 - 设备与服务 - 添加集成 - hacs
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 4](/wp-content/uploads/2026/01/1767253093-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 4](https://nvcc-v.com/wp-content/uploads/2026/01/1767253093-image-1024x519.png)
 
 然后就能看到侧边栏多了个 HACS ，进入并且搜索 bambu lab 安装，然后再重启一下HA
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 5](/wp-content/uploads/2026/01/1767253209-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 5](https://nvcc-v.com/wp-content/uploads/2026/01/1767253209-image-1024x519.png)
 
 重启完后再到添加集成里，搜索 bambu lab，根据向导添加打印机即可
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 6](/wp-content/uploads/2026/01/1767253547-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 6](https://nvcc-v.com/wp-content/uploads/2026/01/1767253547-image-1024x519.png)
 
 如图所示添加自定义仓库
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 7](/wp-content/uploads/2026/01/1767253905-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 7](https://nvcc-v.com/wp-content/uploads/2026/01/1767253905-image-1024x519.png)
 
 类型选择 集成，仓库填写
 
@@ -97,15 +97,15 @@ https://github.com/nberktumer/ha-bambu-lab-p1-spaghetti-detection
 
 然后即可安装炒面检测配套的集成
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 8](/wp-content/uploads/2026/01/1767254007-image.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 8](https://nvcc-v.com/wp-content/uploads/2026/01/1767254007-image.png)
 
 重启后记得再去集成里面添加一下
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 9](/wp-content/uploads/2026/01/1767254092-image.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 9](https://nvcc-v.com/wp-content/uploads/2026/01/1767254092-image.png)
 
 最后一步是点击[此链接](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://github.com/nberktumer/ha-bambu-lab-p1-spaghetti-detection/blob/main/blueprints/spaghetti_detection.yaml)添加自动化蓝图，来实现对3D打印机的自动监测与提醒
 
-![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 10](/wp-content/uploads/2026/01/1767254236-image-1024x519.png)
+![安装配置 Home Assistant - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 10](https://nvcc-v.com/wp-content/uploads/2026/01/1767254236-image-1024x519.png)
 
 点击第一个蓝图即可进行配置，当然我们这边还没安装机器学习的服务端，所以暂时先不配置
 
@@ -198,7 +198,7 @@ sudo docker-compose up -d
 sudo docker logs ha_bambu_lab_p1_spaghetti_detection
 ```
 
-![安装 Obico\ML - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图](/wp-content/uploads/2026/01/1767255612-image-1024x370.png)
+![安装 Obico\ML - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图](https://nvcc-v.com/wp-content/uploads/2026/01/1767255612-image-1024x370.png)
 
 如需手动测试可以通过[此脚本](https://github.com/Shattered217/spaghetti_detection/blob/main/test_obico_detection.py)来测试（内嵌了一张炒面图片URL用于测试）
 
@@ -226,7 +226,7 @@ bash scripts/build_jetson.sh
 
 构建大概需要二十分钟（大部分都是拉取，与网速有关）
 
-![安装 Obico\ML For Jetson Orin - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](/wp-content/uploads/2026/01/1767259312-image-1024x640.png)
+![安装 Obico\ML For Jetson Orin - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](https://nvcc-v.com/wp-content/uploads/2026/01/1767259312-image-1024x640.png)
 
 最后是测试启动容器！一次成功！（没问题可以Ctrl+C先停止）
 
@@ -234,7 +234,7 @@ bash scripts/build_jetson.sh
 bash scripts/run_jetson.sh
 ```
 
-![安装 Obico\ML For Jetson Orin - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](/wp-content/uploads/2026/01/1767259409-image-1024x640.png)
+![安装 Obico\ML For Jetson Orin - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](https://nvcc-v.com/wp-content/uploads/2026/01/1767259409-image-1024x640.png)
 
 我们可以编写一个 compose 文件来方便管理这个容器
 
@@ -270,14 +270,14 @@ services:
 -   Printer Stop Button Entity 停止按钮
 -   Printer Chamber Light 机箱灯
 
-![配置自动化 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图](/wp-content/uploads/2026/01/1767260093-image-750x1024.png)
+![配置自动化 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图](https://nvcc-v.com/wp-content/uploads/2026/01/1767260093-image-750x1024.png)
 
 ## TG 推送蓝图
 
 上面的蓝图是通过HA官方APP来推送通知，我这边魔改了一个通过TG推送通知并控制的蓝图，通过[此链接](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://github.com/Shattered217/spaghetti_detection/raw/refs/heads/main/spaghetti_detection.yaml)导入，区别是需要能通过公网来访问HA，其实上面的也需要，不然你在外面岂不是收不到消息了（
 
-![TG 推送蓝图 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](/wp-content/uploads/2026/01/1767260462-image-721x1024.png)
+![TG 推送蓝图 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 1](https://nvcc-v.com/wp-content/uploads/2026/01/1767260462-image-721x1024.png)
 
 设置流程多了一个需要去集成中添加 Telegram Bot，注意一定要选择“投票”，即轮询，这样才能接收到用户发送的指令，添加完后在蓝图中就可以选择了
 
-![TG 推送蓝图 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](/wp-content/uploads/2026/01/1767260540-image.png)
+![TG 推送蓝图 - 基于Jetson与HA的拓竹3D打印机炒面检测方案 操作截图 2](https://nvcc-v.com/wp-content/uploads/2026/01/1767260540-image.png)

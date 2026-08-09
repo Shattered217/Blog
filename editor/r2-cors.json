@@ -1,0 +1,13 @@
+{
+	"rules": [
+		{
+			"allowed": {
+				"origins": ["https://editor.nvcc-v.com"],
+				"methods": ["GET", "PUT", "HEAD"],
+				"headers": ["*"]
+			},
+			"exposeHeaders": ["ETag"],
+			"maxAgeSeconds": 3000
+		}
+	]
+}

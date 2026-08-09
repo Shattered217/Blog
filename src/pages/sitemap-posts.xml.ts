@@ -4,6 +4,22 @@ import type { APIRoute } from "astro";
 
 const site = new URL("https://nvcc-v.com/");
 
+function internalMediaUrl(source: string | undefined): string | undefined {
+	if (!source) return undefined;
+	try {
+		const url = new URL(source, site);
+		if (
+			url.origin === site.origin &&
+			url.pathname.startsWith("/wp-content/uploads/")
+		) {
+			return url.href;
+		}
+	} catch {
+		return undefined;
+	}
+	return undefined;
+}
+
 function escapeXml(value: string): string {
 	return value
 		.replaceAll("&", "&amp;")
@@ -15,15 +31,17 @@ function escapeXml(value: string): string {
 
 function collectPostImages(body: string, cover?: string): string[] {
 	const images = new Set<string>();
-	if (cover?.startsWith("/wp-content/uploads/")) images.add(cover);
+	const coverUrl = internalMediaUrl(cover);
+	if (coverUrl) images.add(coverUrl);
 
 	for (const match of body.matchAll(
-		/(?<![A-Za-z0-9])\/wp-content\/uploads\/[^\s)"'<>]+/g,
+		/(?:https:\/\/nvcc-v\.com)?\/wp-content\/uploads\/[^\s)"'<>]+/g,
 	)) {
-		images.add(match[0]);
+		const imageUrl = internalMediaUrl(match[0]);
+		if (imageUrl) images.add(imageUrl);
 	}
 
-	return [...images].map((image) => new URL(image, site).href);
+	return [...images];
 }
 
 export const GET: APIRoute = async () => {

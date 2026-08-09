@@ -3,7 +3,7 @@ title: "Jetson Orin PyTorch whl 自编译指南"
 published: 2026-01-13
 updated: 2026-06-08
 description: "在 Jetson Orin aarch64 环境中从源码构建 PyTorch whl，记录依赖、编译参数和安装验证。"
-image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"

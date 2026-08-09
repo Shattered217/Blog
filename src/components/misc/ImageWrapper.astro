@@ -14,7 +14,10 @@ interface Props {
 }
 
 import { Image } from "astro:assets";
-import { getMediaDimensions } from "../../utils/media-utils";
+import {
+	getInternalMediaPath,
+	getMediaDimensions,
+} from "../../utils/media-utils";
 import { url } from "../../utils/url-utils";
 
 const {
@@ -35,8 +38,14 @@ const isLocal = !(
 	src.startsWith("https") ||
 	src.startsWith("data:")
 );
+const internalMediaPath = getInternalMediaPath(src);
 const isPublic = src.startsWith("/");
-const dimensions = isPublic ? getMediaDimensions(src) : undefined;
+const dimensions = internalMediaPath ? getMediaDimensions(src) : undefined;
+const displaySource = internalMediaPath
+	? url(internalMediaPath)
+	: isPublic
+		? url(src)
+		: src;
 
 // TODO temporary workaround for images dynamic import
 // https://github.com/withastro/astro/issues/3373
@@ -64,5 +73,5 @@ const imageStyle = `object-position: ${position}`;
 <div id={id} class:list={[className, 'overflow-hidden relative']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
     {isLocal && img && <Image src={img} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} class={imageClass} style={imageStyle}/>}
-    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} width={dimensions?.width} height={dimensions?.height} class={imageClass} style={imageStyle}/>}
+    {!isLocal && <img src={displaySource} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} width={dimensions?.width} height={dimensions?.height} class={imageClass} style={imageStyle}/>}
 </div>

@@ -2,7 +2,7 @@
 title: "Jetson Orin TensorRT whl 自编译指南"
 published: 2026-01-13
 description: "在 Jetson Orin 上从源码编译 TensorRT Python whl，处理依赖路径与架构兼容问题并验证安装结果。"
-image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
 tags: ["Jetson","TensorRT"]
 tagPermalinks: ["/tag/jetson/","/tag/tensorrt/"]
 category: "Jetson"

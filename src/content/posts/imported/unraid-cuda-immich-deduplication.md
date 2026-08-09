@@ -2,7 +2,7 @@
 title: "UNRAID 使用 CUDA 加速 Immich 相似照片去重"
 published: 2025-07-15
 description: "在 UNRAID 上部署 Immich-Mediakit，调用 CUDA 加速相似照片向量分析与去重。"
-image: "/wp-content/uploads/2025/07/1752570293-immich-mediakit.webp"
+image: "https://nvcc-v.com/wp-content/uploads/2025/07/1752570293-immich-mediakit.webp"
 tags: ["NAS","CUDA"]
 tagPermalinks: ["/tag/nas/","/tag/cuda/"]
 category: "Linux"
@@ -159,7 +159,7 @@ volumes:
 
 新建一个.env
 
-![Immich-Mediakit容器 - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图](/wp-content/uploads/2025/07/1752568310-image-1024x538.webp)
+![Immich-Mediakit容器 - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1752568310-image-1024x538.webp)
 
 输入以下内容，重点修改几个地方
 
@@ -197,21 +197,21 @@ PSQL_PASS=postgres
 
 compose up拉取并启动容器，访问http://\[ip\]:8086，等待系统检查全通过即可开始使用
 
-![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 1](/wp-content/uploads/2025/07/1752568655-image.webp)
+![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/07/1752568655-image.webp)
 
 第一步 点击Fetch获取所有媒体内容
 
-![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 2](/wp-content/uploads/2025/07/1752568736-image-1024x293.webp)
+![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/07/1752568736-image-1024x293.webp)
 
 第二步 在Vectors，Quality选择Preview，然后根据自己GPU性能可以选择Batch Size，最后执行Process Assets，开始对内容数据计算并标签
 
-![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 3](/wp-content/uploads/2025/07/1752568774-image-1024x420.webp)
+![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 3](https://nvcc-v.com/wp-content/uploads/2025/07/1752568774-image-1024x420.webp)
 
 第三步 可以使用默认配置进行Find Similar，亦或是启用Related Tree并关闭Multi Mode，使用相关树来检测并管理照片
 
-![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 4](/wp-content/uploads/2025/07/1752569288-image-1024x514.webp)
+![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 4](https://nvcc-v.com/wp-content/uploads/2025/07/1752569288-image-1024x514.webp)
 
-![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 5](/wp-content/uploads/2025/07/1752569631-image-1024x514.webp)
+![使用Immich-Mediakit - UNRAID 使用 CUDA 加速 Immich 相似照片去重 操作截图 5](https://nvcc-v.com/wp-content/uploads/2025/07/1752569631-image-1024x514.webp)
 
 如遇到500错误，如，请检查qdrant的volumes配置是否与本文一致，与硬盘格式有关，详细见[issue](https://github.com/RazgrizHsu/immich-mediakit/issues/17#issuecomment-3013169653)
 

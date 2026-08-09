@@ -7,6 +7,7 @@ import sanitizeHtml from "sanitize-html";
 import { siteConfig } from "@/config";
 
 const parser = new MarkdownIt();
+const siteMediaPrefix = "https://nvcc-v.com/wp-content/uploads/";
 
 function stripInvalidXmlChars(str: string): string {
 	return str.replace(
@@ -26,7 +27,10 @@ export async function GET(context: APIContext) {
 		items: blog.map((post) => {
 			const content =
 				typeof post.body === "string" ? post.body : String(post.body || "");
-			const cleanedContent = stripInvalidXmlChars(content);
+			const cleanedContent = stripInvalidXmlChars(content).replaceAll(
+				siteMediaPrefix,
+				"/wp-content/uploads/",
+			);
 			return {
 				title: post.data.title,
 				pubDate: post.data.published,

@@ -2,7 +2,7 @@
 title: "ESP32连不上wifi的解决方案"
 published: 2025-02-07
 description: "排查 ESP32 无法连接 Wi-Fi 的常见原因，涉及 SSID、加密模式、Wi-Fi 5 兼容设置和 MicroPython 网络状态。"
-image: "/wp-content/uploads/2025/02/61w5cKenUL._AC_SL1500_.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2025/02/61w5cKenUL._AC_SL1500_.jpg"
 tags: ["MCU","网络"]
 tagPermalinks: ["/tag/mcu/","/tag/network/"]
 category: "MCU"

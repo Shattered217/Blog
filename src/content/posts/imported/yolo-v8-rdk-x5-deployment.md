@@ -3,7 +3,7 @@ title: "RDK-x5 量化部署YOLO v8模型推理摄像头视频流"
 published: 2025-09-22
 updated: 2026-01-10
 description: "将 YOLOv8 模型量化为 RDK X5 可用格式，并在开发板上部署摄像头视频流实时推理。"
-image: "/wp-content/uploads/2025/09/1768031798-Gemini_Generated_Image_541q1x541q1x541q-scaled.png"
+image: "https://nvcc-v.com/wp-content/uploads/2025/09/1768031798-Gemini_Generated_Image_541q1x541q1x541q-scaled.png"
 tags: ["AI"]
 tagPermalinks: ["/tag/ai/"]
 category: "Linux"
@@ -96,7 +96,7 @@ uv pip install "numpy<2.0"
 python3 py/Ultralytics_YOLO_Detect_YUV420SP.py
 ```
 
-![RDK端推理模型 - RDK-x5 量化部署YOLO v8模型推理摄像头视频流 操作截图](/wp-content/uploads/2025/09/1758529003-image-965x1024.webp)
+![RDK端推理模型 - RDK-x5 量化部署YOLO v8模型推理摄像头视频流 操作截图](https://nvcc-v.com/wp-content/uploads/2025/09/1758529003-image-965x1024.webp)
 
 ## 调用免驱摄像头检测
 

@@ -2,7 +2,7 @@
 title: "PVE 直通 A100：Ubuntu 驱动与 CUDA 配置"
 published: 2025-07-19
 description: "在 PVE 中为 Ubuntu 虚拟机直通 A100，安装 NVIDIA 驱动、CUDA Toolkit 与 TensorRT 并验证环境。"
-image: "/wp-content/uploads/2025/07/1752892481-Gemini_Generated_Image_zbc58ezbc58ezbc5-scaled-1.webp"
+image: "https://nvcc-v.com/wp-content/uploads/2025/07/1752892481-Gemini_Generated_Image_zbc58ezbc58ezbc5-scaled-1.webp"
 tags: ["CUDA","TensorRT"]
 tagPermalinks: ["/tag/cuda/","/tag/tensorrt/"]
 category: "Linux"
@@ -19,7 +19,7 @@ series: { slug: "a100-tensorrt-llm", name: "A100 与 TensorRT-LLM 实战", order
 
 PVE初始化后安装PVE Tools，可按照网上教程进行配置硬件直通
 
-![PVE - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](/wp-content/uploads/2025/07/1752882938-image.webp)
+![PVE - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1752882938-image.webp)
 
 ## 创建Ubuntu虚拟机
 
@@ -37,7 +37,7 @@ PVE初始化后安装PVE Tools，可按照网上教程进行配置硬件直通
 
 前往[NVIDIA驱动下载页](https://www.nvidia.cn/drivers/lookup/)选择适合的驱动并下载
 
-![安装NVIDIA Driver - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 1](/wp-content/uploads/2025/07/1752883430-image.webp)
+![安装NVIDIA Driver - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/07/1752883430-image.webp)
 
 输入以下命令安装deb包
 
@@ -64,13 +64,13 @@ reboot
 nvidia-smi
 ```
 
-![安装NVIDIA Driver - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 2](/wp-content/uploads/2025/07/1752884146-image.webp)
+![安装NVIDIA Driver - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/07/1752884146-image.webp)
 
 ## 安装CUDA Toolkit
 
 下载历史版本的请前往[归档页](https://developer.nvidia.com/cuda-toolkit-archive)自行寻找适合的包安装，最新版前往[latest下载页](https://developer.nvidia.com/cuda-downloads)按下图选择后下载
 
-![安装CUDA Toolkit - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](/wp-content/uploads/2025/07/1752884282-image-1024x925.webp)
+![安装CUDA Toolkit - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1752884282-image-1024x925.webp)
 
 输入图中的命令，其中 **Driver Installer** 的两条命令分别是安装开源、闭源版本的驱动，一般无特殊需求选择下面的闭源版本即可
 
@@ -100,7 +100,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 下载最新的[TensorRT安装包](https://developer.nvidia.com/tensorrt/download/10x)
 
-![安装TensorRT - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](/wp-content/uploads/2025/07/1752886904-image-1024x524.webp)
+![安装TensorRT - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图](https://nvcc-v.com/wp-content/uploads/2025/07/1752886904-image-1024x524.webp)
 
 输入以下命令安装
 
@@ -117,7 +117,7 @@ sudo apt install tensorrt
 
 进入[官网](https://www.anaconda.com/download/success)下载安装脚本
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 1](/wp-content/uploads/2025/07/1752888372-image-1024x524.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 1](https://nvcc-v.com/wp-content/uploads/2025/07/1752888372-image-1024x524.webp)
 
 运行脚本并安装
 
@@ -128,15 +128,15 @@ chmod +x Anaconda3-2025.06-0-Linux-x86_64.sh
 
 前三项默认回车即可
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 2](/wp-content/uploads/2025/07/1752888721-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 2](https://nvcc-v.com/wp-content/uploads/2025/07/1752888721-image.webp)
 
 最后询问是否初始化填yes
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 3](/wp-content/uploads/2025/07/1752888799-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 3](https://nvcc-v.com/wp-content/uploads/2025/07/1752888799-image.webp)
 
 重新打开一个Terminal，发现conda已经初始化完成
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 4](/wp-content/uploads/2025/07/1752888971-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 4](https://nvcc-v.com/wp-content/uploads/2025/07/1752888971-image.webp)
 
 如果你不想进入Terminal自动进入base环境，请输入以下命令
 
@@ -150,7 +150,7 @@ conda config --set auto_activate_base false
 python3 --version
 ```
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 5](/wp-content/uploads/2025/07/1752889200-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 5](https://nvcc-v.com/wp-content/uploads/2025/07/1752889200-image.webp)
 
 ```
 conda create -n tensor_rt python=3.12.3
@@ -164,7 +164,7 @@ python3 -m pip install --upgrade pip # 更新pip
 python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
 ```
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 6](/wp-content/uploads/2025/07/1752891998-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 6](https://nvcc-v.com/wp-content/uploads/2025/07/1752891998-image.webp)
 
 确认系统环境的trt包目录
 
@@ -172,7 +172,7 @@ python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(
 ls /usr/lib/python3.12/dist-packages
 ```
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 7](/wp-content/uploads/2025/07/1752892074-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 7](https://nvcc-v.com/wp-content/uploads/2025/07/1752892074-image.webp)
 
 开始复制
 
@@ -186,6 +186,6 @@ cp -r /usr/lib/python3.12/dist-packages/tensorrt* /home/ros/anaconda3/envs/tenso
 python -c "import tensorrt as trt; print(trt.__version__)"
 ```
 
-![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 8](/wp-content/uploads/2025/07/1752892330-image.webp)
+![配置Python-TRT环境 - PVE 直通 A100：Ubuntu 驱动与 CUDA 配置 操作截图 8](https://nvcc-v.com/wp-content/uploads/2025/07/1752892330-image.webp)
 
 大功告成~

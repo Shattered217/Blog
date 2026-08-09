@@ -2,7 +2,7 @@
 title: "FRP 面板(Basic Auth)接入 Authentik 单点登录指南"
 published: 2026-01-23
 description: "通过 Authentik Proxy Provider 与 NGINX 为带 Basic Auth 的 FRP 面板接入单点登录，包含应用、Outpost 和反向代理配置。"
-image: "/wp-content/uploads/2026/01/1769168468-Gemini_Generated_Image_ocvw1kocvw1kocvw-scaled.png"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1769168468-Gemini_Generated_Image_ocvw1kocvw1kocvw-scaled.png"
 tags: ["网络","安全"]
 tagPermalinks: ["/tag/network/","/tag/security/"]
 category: "Linux"
@@ -18,29 +18,29 @@ permalink: "/2026/01/23/frp-panel-authentik-sso-guide/"
 
 首先先在 Providers 处添加一个 Proxy Provider
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 1](/wp-content/uploads/2026/01/1769157944-image-1024x520.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 1](https://nvcc-v.com/wp-content/uploads/2026/01/1769157944-image-1024x520.png)
 
 -   名称 FRP Proxy
 -   授权流程 default-provider-authorization-implicit-consent (Authorize Application)
 -   外部主机（你的FRP面板地址） https://frp.example.com
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 2](/wp-content/uploads/2026/01/1769167090-image-1024x537.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 2](https://nvcc-v.com/wp-content/uploads/2026/01/1769167090-image-1024x537.png)
 
 这边可以全选作用域（可能用不上，但是全选总没错）
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 3](/wp-content/uploads/2026/01/1769167235-image-1024x604.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 3](https://nvcc-v.com/wp-content/uploads/2026/01/1769167235-image-1024x604.png)
 
 身份验证设置可以保持默认（不要在这边填写 Basic Auth，等会会让 NGINX 处理账户密码这部分，或者你可以试试，反正主播搞不定），联邦式 OIDC 提供程序可以把 FRP Proxy 选上
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 4](/wp-content/uploads/2026/01/1769167349-image-1024x760.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 4](https://nvcc-v.com/wp-content/uploads/2026/01/1769167349-image-1024x760.png)
 
 然后在 Application 处创建，名称 FRP Dash，提供程序选择刚刚创建的 FRP Proxy，策略引擎模式选择 ALL
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 5](/wp-content/uploads/2026/01/1769167544-image-1024x678.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 5](https://nvcc-v.com/wp-content/uploads/2026/01/1769167544-image-1024x678.png)
 
 最后在 Outposts 处编辑 authentik Embedded Outpost，把 FRP Dash 选上，还要保证下面的 authentik\_host 是外网可访问的地址
 
-![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 6](/wp-content/uploads/2026/01/1769167640-image-1024x844.png)
+![Authentik 端配置 - FRP 面板(Basic Auth)接入 Authentik 单点登录指南 操作截图 6](https://nvcc-v.com/wp-content/uploads/2026/01/1769167640-image-1024x844.png)
 
 ## NGINX 配置
 

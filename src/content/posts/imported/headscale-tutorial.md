@@ -3,7 +3,7 @@ title: "国内云 Headscale 0.26.1 组网方案教程"
 published: 2025-09-26
 updated: 2026-01-10
 description: "在国内云服务器上部署 Headscale 0.26.1，配置 Docker、HeadPlane 管理面板、反向代理和客户端组网。"
-image: "/wp-content/uploads/2025/09/1768031773-Gemini_Generated_Image_9a4rn49a4rn49a4r-scaled.png"
+image: "https://nvcc-v.com/wp-content/uploads/2025/09/1768031773-Gemini_Generated_Image_9a4rn49a4rn49a4r-scaled.png"
 tags: ["网络","Docker"]
 tagPermalinks: ["/tag/network/","/tag/docker/"]
 category: "Linux"
@@ -746,7 +746,7 @@ systemctl reload nginx
 
 http://你的域名/damin，输入之前生成的apikey
 
-![访问HeadPlane控制台 - 国内云 Headscale 0.26.1 组网方案教程 操作截图](/wp-content/uploads/2025/09/1758894043-image.webp)
+![访问HeadPlane控制台 - 国内云 Headscale 0.26.1 组网方案教程 操作截图](https://nvcc-v.com/wp-content/uploads/2025/09/1758894043-image.webp)
 
 ## 使用预授权密钥认证设备
 

@@ -7,21 +7,24 @@ const dimensions = JSON.parse(
 		"utf8",
 	),
 );
+const siteOrigin = "https://nvcc-v.com";
 
 function mediaPath(source) {
-	if (
-		typeof source !== "string" ||
-		!source.startsWith("/wp-content/uploads/")
-	) {
-		return undefined;
+	if (typeof source !== "string") return undefined;
+	const cleanSource = source.split(/[?#]/, 1)[0];
+	let pathname = cleanSource;
+	if (cleanSource.startsWith(`${siteOrigin}/wp-content/uploads/`)) {
+		pathname = cleanSource.slice(siteOrigin.length);
 	}
-	let pathname = source.split(/[?#]/, 1)[0];
+	if (!pathname.startsWith("/wp-content/uploads/")) return undefined;
+
+	let dimensionKey = pathname;
 	try {
-		pathname = decodeURIComponent(pathname);
+		dimensionKey = decodeURIComponent(pathname);
 	} catch {
 		// WordPress filenames are not guaranteed to be URI encoded.
 	}
-	return pathname;
+	return { dimensionKey, pathname };
 }
 
 export function rehypeImageAttributes() {
@@ -32,8 +35,9 @@ export function rehypeImageAttributes() {
 			node.properties.loading ??= "lazy";
 			node.properties.decoding ??= "async";
 
-			const pathname = mediaPath(node.properties.src);
-			const size = pathname ? dimensions[pathname] : undefined;
+			const media = mediaPath(node.properties.src);
+			if (media) node.properties.src = media.pathname;
+			const size = media ? dimensions[media.dimensionKey] : undefined;
 			if (!size) return;
 			node.properties.width ??= size.width;
 			node.properties.height ??= size.height;

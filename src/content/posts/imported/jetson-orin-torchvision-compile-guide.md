@@ -2,7 +2,7 @@
 title: "Jetson Orin TorchVision whl 自编译指南"
 published: 2026-01-13
 description: "在 Jetson Orin 上从源码构建 TorchVision whl，记录版本对应、环境变量、依赖安装和功能验证。"
-image: "/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
+image: "https://nvcc-v.com/wp-content/uploads/2026/01/1768296864-Embedded_Computing_Homepage-Highlights-GenAI-Lab.jpg"
 tags: ["Jetson","AI"]
 tagPermalinks: ["/tag/jetson/","/tag/ai/"]
 category: "Jetson"
