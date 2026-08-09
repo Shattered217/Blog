@@ -1,5 +1,7 @@
 interface Env {
 	BLOG_DB: D1Database;
+	TELEGRAM_BOT_TOKEN?: string;
+	TELEGRAM_CHAT_ID?: string;
 	TURNSTILE_SECRET_KEY: string;
 }
 
@@ -29,7 +31,8 @@ function normalizedHttpUrl(value: string, required: boolean): string | null {
 	if (!value && !required) return "";
 	try {
 		const parsed = new URL(value);
-		if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
+		if (parsed.protocol !== "http:" && parsed.protocol !== "https:")
+			return null;
 		parsed.hash = "";
 		return parsed.toString();
 	} catch {
@@ -37,7 +40,67 @@ function normalizedHttpUrl(value: string, required: boolean): string | null {
 	}
 }
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+function escapeTelegramHtml(value: string): string {
+	return value.replace(/[&<>]/g, (character) => {
+		if (character === "&") return "&amp;";
+		if (character === "<") return "&lt;";
+		return "&gt;";
+	});
+}
+
+async function notifyTelegram(
+	env: Env,
+	application: {
+		name: string;
+		siteUrl: string;
+		avatarUrl: string;
+		description: string;
+	},
+): Promise<void> {
+	if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
+	const details = [
+		"🔗 <b>新友链申请</b>",
+		`<b>名称：</b>${escapeTelegramHtml(application.name)}`,
+		`<b>地址：</b><a href="${escapeTelegramHtml(application.siteUrl)}">${escapeTelegramHtml(application.siteUrl)}</a>`,
+		`<b>简介：</b>${escapeTelegramHtml(application.description)}`,
+	];
+	if (application.avatarUrl) {
+		details.push(
+			`<b>头像：</b><a href="${escapeTelegramHtml(application.avatarUrl)}">查看</a>`,
+		);
+	}
+
+	const response = await fetch(
+		`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+		{
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				chat_id: env.TELEGRAM_CHAT_ID,
+				text: details.join("\n"),
+				parse_mode: "HTML",
+				link_preview_options: { is_disabled: true },
+				reply_markup: {
+					inline_keyboard: [
+						[
+							{
+								text: "审核友链",
+								url: "https://editor.nvcc-v.com/friends/",
+							},
+						],
+					],
+				},
+			}),
+		},
+	);
+	if (!response.ok) throw new Error(`Telegram API returned ${response.status}`);
+}
+
+export const onRequestPost: PagesFunction<Env> = async ({
+	request,
+	env,
+	waitUntil,
+}) => {
 	const requestUrl = new URL(request.url);
 	const origin = request.headers.get("Origin");
 	if (origin && origin !== requestUrl.origin) {
@@ -103,6 +166,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 	)
 		.bind(name, siteUrl, avatarUrl || null, description)
 		.run();
+	waitUntil(
+		notifyTelegram(env, {
+			name,
+			siteUrl,
+			avatarUrl: avatarUrl || "",
+			description,
+		}).catch(() => undefined),
+	);
 
 	return json({ ok: true, message: "申请已提交，审核后会出现在友链页。" }, 201);
 };

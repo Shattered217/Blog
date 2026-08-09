@@ -1,6 +1,13 @@
 /// <reference types="@cloudflare/workers-types" />
 
-interface Env {
+import {
+	type FriendAdminEnv,
+	friendAdminHtml,
+	friendAdminScript,
+	handleFriendAdminApi,
+} from "./friends-admin";
+
+interface Env extends FriendAdminEnv {
 	R2_ACCESS_KEY_ID?: string;
 	REQUIRE_ACCESS?: string;
 }
@@ -27,7 +34,7 @@ const contentSecurityPolicy = [
 	"form-action 'self' https://github.com",
 	"frame-ancestors 'none'",
 	"frame-src blob:",
-	"img-src 'self' blob: data: https://nvcc-v.com https://*.githubusercontent.com",
+	"img-src 'self' blob: data: https:",
 	"manifest-src blob:",
 	"media-src blob:",
 	"script-src 'self' https://unpkg.com",
@@ -144,8 +151,10 @@ function editorHtml(): string {
   <meta name="theme-color" content="#aeade3">
   <link rel="icon" href="https://nvcc-v.com/favicon/favicon-32.png" sizes="32x32">
   <title>NVCC Blog Studio</title>
+  <style>.friend-review-link{position:fixed;right:1rem;bottom:1rem;z-index:9999;padding:.7rem 1rem;border-radius:999px;color:#272536;background:#aeade3;text-decoration:none;font:700 14px/1 sans-serif;box-shadow:0 .75rem 2rem #37325a33}</style>
 </head>
 <body>
+  <a class="friend-review-link" href="/friends/">友链审核</a>
   <script src="/manual-init.js"></script>
   <script src="https://unpkg.com/@sveltia/cms@${CMS_VERSION}/dist/sveltia-cms.js" integrity="${CMS_SCRIPT_INTEGRITY}" crossorigin="anonymous"></script>
   <script src="/editor-hooks.js"></script>
@@ -370,12 +379,6 @@ const manualInitScript = `window.CMS_MANUAL_INIT = true;
 const worker: ExportedHandler<Env> = {
 	async fetch(request, env) {
 		const url = new URL(request.url);
-		if (request.method !== "GET" && request.method !== "HEAD") {
-			return textResponse("Method Not Allowed", "text/plain; charset=utf-8", {
-				status: 405,
-				headers: { Allow: "GET, HEAD" },
-			});
-		}
 
 		if (
 			env.REQUIRE_ACCESS !== "false" &&
@@ -384,12 +387,22 @@ const worker: ExportedHandler<Env> = {
 		) {
 			return accessRequiredPage();
 		}
+		if (url.pathname === "/api/friend-applications") {
+			return handleFriendAdminApi(request, env);
+		}
+		if (request.method !== "GET" && request.method !== "HEAD") {
+			return textResponse("Method Not Allowed", "text/plain; charset=utf-8", {
+				status: 405,
+				headers: { Allow: "GET, HEAD" },
+			});
+		}
 
 		if (url.pathname === "/health") {
 			return textResponse(
 				JSON.stringify({
 					ok: true,
 					cms: CMS_VERSION,
+					d1: Boolean(env.BLOG_DB),
 					r2: Boolean(env.R2_ACCESS_KEY_ID),
 				}),
 				"application/json; charset=utf-8",
@@ -400,6 +413,12 @@ const worker: ExportedHandler<Env> = {
 				"User-agent: *\nDisallow: /\n",
 				"text/plain; charset=utf-8",
 			);
+		}
+		if (url.pathname === "/friends" || url.pathname === "/friends/") {
+			return htmlResponse(friendAdminHtml());
+		}
+		if (url.pathname === "/friends-admin.js") {
+			return textResponse(friendAdminScript, "text/javascript; charset=utf-8");
 		}
 		if (!env.R2_ACCESS_KEY_ID) return setupRequiredPage();
 		if (url.pathname.startsWith("/wp-content/uploads/")) {
