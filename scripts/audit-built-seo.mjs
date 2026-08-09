@@ -197,7 +197,13 @@ for (const [canonical, pages] of canonicalPages) {
 	if (pages.length > 1) failures.push(`duplicate canonical ${canonical}`);
 }
 
-if (articlePages !== 45) failures.push(`found ${articlePages} article pages; expected 45`);
+const postSitemap = await readFile(path.join(distRoot, "sitemap-posts.xml"), "utf8");
+const postSitemapEntries = postSitemap.match(/<url>/g)?.length ?? 0;
+if (articlePages !== postSitemapEntries) {
+	failures.push(
+		`found ${articlePages} article pages; sitemap contains ${postSitemapEntries}`,
+	);
+}
 
 const pageSitemap = await readFile(path.join(distRoot, "sitemap-pages-0.xml"), "utf8");
 const pageSitemapEntries = pageSitemap.match(/<url>/g)?.length ?? 0;

@@ -52,7 +52,11 @@ export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
 	}
 
 	const row = await env.BLOG_DB.prepare(
-		"UPDATE post_views SET views = views + 1, updated_at = CURRENT_TIMESTAMP WHERE path = ? RETURNING views",
+		[
+			"INSERT INTO post_views (path, views) VALUES (?, 1)",
+			"ON CONFLICT(path) DO UPDATE SET views = post_views.views + 1,",
+			"updated_at = CURRENT_TIMESTAMP RETURNING views",
+		].join(" "),
 	)
 		.bind(path)
 		.first<ViewRow>();

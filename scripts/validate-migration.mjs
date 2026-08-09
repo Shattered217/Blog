@@ -1,7 +1,7 @@
 import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
-const postsRoot = path.resolve("src/content/posts/imported");
+const postsRoot = path.resolve("src/content/posts");
 const distRoot = path.resolve("dist");
 const mediaRoot = path.resolve("media");
 const mediaManifestPath = path.resolve("media-manifest.json");
@@ -67,14 +67,17 @@ const manifestMedia = new Set(
 	mediaManifest.objects.map((object) => object.key),
 );
 const hasLocalMedia = await exists(mediaRoot);
-const postFiles = await walk(postsRoot, ".md");
+const discoveredPostFiles = await walk(postsRoot, ".md");
+const postFiles = [];
 const articleUrls = [];
 const taxonomyUrls = new Set();
 const referencedMedia = new Set();
 const postImages = new Map();
 
-for (const postFile of postFiles) {
+for (const postFile of discoveredPostFiles) {
 	const markdown = await readFile(postFile, "utf8");
+	if (frontmatterJson(markdown, "draft") === true) continue;
+	postFiles.push(postFile);
 	const permalink = frontmatterJson(markdown, "permalink");
 	const cover = frontmatterJson(markdown, "image");
 	const categoryPermalink = frontmatterJson(markdown, "categoryPermalink");
