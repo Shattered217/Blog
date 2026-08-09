@@ -48,11 +48,21 @@ const legacyPostIds: Record<string, string> = {
 	"626": "/2025/07/20/ubuntu-multi-cuda-setup/",
 };
 
+const temporaryLegacyPostIds: Record<string, string> = {
+	"788": "/2025/08/09/linux-llama-deploy-gguf/",
+	"667": "/2025/07/20/ubuntu-multi-cuda-setup/",
+	"657": "/2025/07/20/ubuntu-stable-diffusion-aki/",
+	"648": "/2025/07/19/a100-tensorrt-llm-qwen3-8b/",
+	"607": "/2025/07/15/unraid-cuda-immich-deduplication/",
+	"582": "/2025/07/10/cf-ssl-dnssec-error/",
+};
+
 export const onRequest: PagesFunction<unknown, "id"> = async (context) => {
 	const id = Array.isArray(context.params.id)
 		? context.params.id.join("/")
 		: context.params.id;
-	const target = legacyPostIds[id ?? ""];
+	const permanentTarget = legacyPostIds[id ?? ""];
+	const target = permanentTarget ?? temporaryLegacyPostIds[id ?? ""];
 	if (!target) return context.next();
 	if (context.request.method !== "GET" && context.request.method !== "HEAD") {
 		return new Response("Method Not Allowed", {
@@ -62,10 +72,12 @@ export const onRequest: PagesFunction<unknown, "id"> = async (context) => {
 	}
 
 	return new Response(null, {
-		status: 301,
+		status: permanentTarget ? 301 : 302,
 		headers: {
 			Location: new URL(target, context.request.url).href,
-			"Cache-Control": "public, max-age=86400",
+			"Cache-Control": permanentTarget
+				? "public, max-age=86400"
+				: "public, max-age=300",
 		},
 	});
 };
