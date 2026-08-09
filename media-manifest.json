@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-08-07T08:58:43.088Z",
-  "count": 2404,
-  "totalBytes": 431431059,
+  "count": 2405,
+  "totalBytes": 431558873,
   "objects": [
     {
       "key": "wp-content/uploads/2023/06/004B520B.png",
@@ -11977,6 +11977,11 @@
       "key": "wp-content/uploads/2026/06/1781372812-ChatGPT-Image-2026年6月14日-01_46_41.png",
       "size": 1931924,
       "contentType": "image/png"
+    },
+    {
+      "key": "wp-content/uploads/2026/08/20260809-wordpress-to-astro-workers-migration.webp",
+      "size": 127814,
+      "contentType": "image/webp"
     },
     {
       "key": "wp-content/uploads/iro_gallery/backup/伊蕾娜.png",

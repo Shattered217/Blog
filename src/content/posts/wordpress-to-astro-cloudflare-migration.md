@@ -3,8 +3,9 @@ title: "从 WordPress 迁移到 Astro 的一些心得"
 slug: "wordpress-to-astro-cloudflare-migration"
 published: "2026-08-09"
 updated: "2026-08-09"
-draft: true
+draft: false
 description: "记录本站从 WordPress 迁移到 Astro 与 Cloudflare Workers 的过程，以及文章、图片、旧链接、动态功能和编辑体验迁移时遇到的问题与解决方法。"
+image: "https://nvcc-v.com/wp-content/uploads/2026/08/20260809-wordpress-to-astro-workers-migration.webp"
 tags:
 - "开发工具"
 - "系统运维"
