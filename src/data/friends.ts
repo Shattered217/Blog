@@ -73,4 +73,10 @@ export const friendLinks: FriendLink[] = [
 		avatar: "https://清凤.fun/images/logo/logo.webp",
 		description: "QwQ，Kilock For You，怎么都比我搭的好看啊喂！",
 	},
+	{
+		name: "雪诺的小博客",
+		url: "https://blog.4365754.xyz/",
+		avatar: "https://photos.4365754.xyz/ac0cf34feb992487db7e63382418382dba213210.jpg",
+		description: "技术小博客，每日分享网络相关知识，理解网络技术。",
+	},
 ];
