@@ -83,7 +83,7 @@ function existingFriendUrls(source: string): string[] {
 		.filter(Boolean);
 }
 
-function friendSource(application: FriendApplication): string {
+export function friendSource(application: FriendApplication): string {
 	const avatar =
 		application.avatar_url ||
 		new URL("/favicon.ico", application.site_url).href;
@@ -94,13 +94,17 @@ function friendSource(application: FriendApplication): string {
 		["description", application.description],
 	] as const;
 	return [
+		"\t// biome-ignore format: Friend applications can contain long submitted values.",
 		"\t{",
 		...fields.map(([name, value]) => `\t\t${name}: ${JSON.stringify(value)},`),
 		"\t},",
 	].join("\n");
 }
 
-function addFriend(source: string, application: FriendApplication): string {
+export function addFriend(
+	source: string,
+	application: FriendApplication,
+): string {
 	const insertionPoint = source.lastIndexOf("\n];");
 	if (insertionPoint === -1) {
 		throw new Error("友链数据文件格式无法识别，未执行提交");

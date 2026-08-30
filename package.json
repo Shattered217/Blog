@@ -23,6 +23,7 @@
     "worker:deploy:preview": "corepack pnpm worker:build && wrangler deploy --config wrangler.worker.jsonc",
     "worker:deploy": "corepack pnpm worker:build && wrangler deploy --config wrangler.worker.jsonc --env production",
     "editor:dev": "wrangler dev --config editor/wrangler.jsonc --var REQUIRE_ACCESS:false",
+    "editor:test": "node --experimental-strip-types --test editor/src/friends-admin.test.ts",
     "editor:deploy": "wrangler deploy --config editor/wrangler.jsonc",
     "validate:migration": "node scripts/validate-migration.mjs",
     "seo:audit": "node scripts/audit-built-seo.mjs",

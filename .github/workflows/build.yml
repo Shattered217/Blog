@@ -40,6 +40,9 @@ jobs:
       - name: Run Astro Check
         run: pnpm astro check
 
+      - name: Test friend link source generation
+        run: pnpm editor:test
+
   build:
     strategy:
       matrix:
