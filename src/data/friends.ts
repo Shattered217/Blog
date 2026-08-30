@@ -76,7 +76,8 @@ export const friendLinks: FriendLink[] = [
 	{
 		name: "雪诺的小博客",
 		url: "https://blog.4365754.xyz/",
-		avatar: "https://photos.4365754.xyz/ac0cf34feb992487db7e63382418382dba213210.jpg",
+		avatar:
+			"https://photos.4365754.xyz/ac0cf34feb992487db7e63382418382dba213210.jpg",
 		description: "技术小博客，每日分享网络相关知识，理解网络技术。",
 	},
 ];
