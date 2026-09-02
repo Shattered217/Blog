@@ -15,6 +15,7 @@
     "content:compact": "node scripts/compact-imported-content.mjs",
     "media:manifest": "node scripts/media-manifest.mjs",
     "media:dimensions": "node scripts/media-dimensions.mjs",
+    "test:media-references": "node --test scripts/media-reference-paths.test.mjs",
     "content:image-alt": "node scripts/enrich-image-alt.mjs",
     "media:upload": "node scripts/upload-media-r2.mjs",
     "worker:functions": "wrangler pages functions build functions --outdir .worker --project-directory . --build-output-directory dist --fallback-service ASSETS --compatibility-date 2026-08-07 --minify",

@@ -1046,5 +1046,45 @@
   "/wp-content/uploads/2026/08/20260809-wordpress-to-astro-workers-migration.webp": {
     "width": 1672,
     "height": 941
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-cover.webp": {
+    "width": 1600,
+    "height": 900
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-nodequality-basic.webp": {
+    "width": 1312,
+    "height": 1499
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-nodequality-ip-quality.webp": {
+    "width": 1189,
+    "height": 1591
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-nodequality-network-quality.webp": {
+    "width": 1312,
+    "height": 1782
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-nodequality-return-route.webp": {
+    "width": 1989,
+    "height": 2454
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-tcpquality-cernet.png": {
+    "width": 1840,
+    "height": 2064
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-tcpquality-international.png": {
+    "width": 1640,
+    "height": 2906
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-tcpquality-ipv4-large.png": {
+    "width": 1840,
+    "height": 2125
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-tcpquality-ipv4.png": {
+    "width": 1840,
+    "height": 2125
+  },
+  "/wp-content/uploads/2026/09/666clouds-us-cn2-gia-tcpquality-speedtest.png": {
+    "width": 1680,
+    "height": 1617
   }
 }

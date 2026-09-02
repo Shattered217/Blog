@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { collectMediaPathnames } from "./media-reference-paths.mjs";
 
 const sourceRoot = path.resolve("src");
 const mediaRoot = path.resolve("media");
@@ -23,15 +24,7 @@ async function walk(directory) {
 const references = new Set();
 for (const sourceFile of await walk(sourceRoot)) {
 	const source = await readFile(sourceFile, "utf8");
-	for (const match of source.matchAll(
-		/(?<![A-Za-z0-9])\/wp-content\/uploads\/[^\s)"'<>]+/g,
-	)) {
-		let pathname = match[0];
-		try {
-			pathname = decodeURIComponent(pathname);
-		} catch {
-			// WordPress filenames are not guaranteed to be URI encoded.
-		}
+	for (const pathname of collectMediaPathnames(source)) {
 		references.add(pathname);
 	}
 }

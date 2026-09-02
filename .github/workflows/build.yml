@@ -43,6 +43,9 @@ jobs:
       - name: Test friend link source generation
         run: pnpm editor:test
 
+      - name: Test media URL normalization
+        run: pnpm test:media-references
+
   build:
     strategy:
       matrix:
