@@ -80,4 +80,11 @@ export const friendLinks: FriendLink[] = [
 			"https://photos.4365754.xyz/ac0cf34feb992487db7e63382418382dba213210.jpg",
 		description: "技术小博客，每日分享网络相关知识，理解网络技术。",
 	},
+	// biome-ignore format: Friend applications can contain long submitted values.
+	{
+		name: "知海图书馆",
+		url: "https://www.zhihailib.com/",
+		avatar: "https://www.zhihailib.com/wp-content/uploads/2025/04/favicon_z.png",
+		description: "干净的中文电子书站，可按书名、作者、出版社、ISBN 精确找书，能在线读，没有弹窗广告。",
+	},
 ];
