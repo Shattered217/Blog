@@ -68,7 +68,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "/wp-content/uploads/2026/01/1769071791-250x250nobk.webp",
+	avatar: "/avatar.webp",
 	name: "Shattered217",
 	bio: "一个有趣的白日梦想家",
 	links: [

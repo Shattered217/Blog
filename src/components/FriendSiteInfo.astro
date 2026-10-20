@@ -1,0 +1,73 @@
+---
+import { Icon } from "astro-icon/components";
+import { profileConfig, siteConfig } from "../config";
+
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const avatarPath = profileConfig.avatar || "/favicon/favicon-192.png";
+const avatarUrl = new URL(avatarPath, siteUrl).href;
+const fields = [
+	{ label: "站点名称", value: siteConfig.title },
+	{ label: "站点地址", value: siteUrl, href: siteUrl },
+	{ label: "头像地址", value: avatarUrl, href: avatarUrl },
+	{ label: "一句话简介", value: siteConfig.subtitle },
+];
+const copyText = fields
+	.map(({ label, value }) => `${label}：${value}`)
+	.join("\n");
+---
+
+<friend-site-info data-copy-text={copyText} class="block card-base rounded-[var(--radius-large)] px-6 py-6 md:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+        <div class="flex items-center gap-4 min-w-0">
+            <img src={avatarPath} alt={`${profileConfig.name} 的头像`} width="56" height="56" loading="lazy" decoding="async" class="size-14 shrink-0 rounded-2xl object-cover bg-[var(--primary)]/15" />
+            <div>
+                <h2 class="text-2xl font-bold text-90">本站信息</h2>
+                <p class="text-sm text-50 mt-1">添加本站友链时，可直接复制以下信息。</p>
+            </div>
+        </div>
+        <button type="button" data-copy-button class="btn-regular h-11 rounded-xl px-4 gap-2 font-semibold shrink-0 self-start sm:self-auto active:scale-95 transition">
+            <Icon name="fa6-regular:copy" />
+            复制本站信息
+        </button>
+    </div>
+
+    <dl class="grid gap-4 sm:grid-cols-2 rounded-2xl bg-black/[0.035] dark:bg-white/[0.06] p-4">
+        {fields.map(({ label, value, href }, index) => (
+            <div class:list={["min-w-0", { "sm:col-span-2": index > 1 }]}>
+                <dt class="text-xs text-50 mb-1">{label}</dt>
+                <dd class="text-sm text-90 select-text [overflow-wrap:anywhere]">
+                    {href ? <a href={href} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--primary)] transition">{value}</a> : value}
+                </dd>
+            </div>
+        ))}
+    </dl>
+    <p data-copy-status role="status" aria-live="polite" class="text-sm text-50 mt-3 empty:hidden"></p>
+</friend-site-info>
+
+<script>
+class FriendSiteInfo extends HTMLElement {
+    handleCopy = async () => {
+        const status = this.querySelector<HTMLElement>("[data-copy-status]");
+        if (!status) return;
+
+        try {
+            await navigator.clipboard.writeText(this.dataset.copyText || "");
+            status.textContent = "已复制本站信息。";
+        } catch {
+            status.textContent = "复制失败，请手动选择上方信息。";
+        }
+    };
+
+    connectedCallback() {
+        this.querySelector("[data-copy-button]")?.addEventListener("click", this.handleCopy);
+    }
+
+    disconnectedCallback() {
+        this.querySelector("[data-copy-button]")?.removeEventListener("click", this.handleCopy);
+    }
+}
+
+if (!customElements.get("friend-site-info")) {
+    customElements.define("friend-site-info", FriendSiteInfo);
+}
+</script>

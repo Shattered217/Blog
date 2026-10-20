@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { friendLinks } from "../data/friends";
 import FriendApplicationForm from "./FriendApplicationForm.astro";
+import FriendSiteInfo from "./FriendSiteInfo.astro";
 ---
 
 <div class="space-y-5">
@@ -50,5 +51,6 @@ import FriendApplicationForm from "./FriendApplicationForm.astro";
         ))}
     </div>
 
+    <FriendSiteInfo />
     <FriendApplicationForm />
 </div>

@@ -11,6 +11,8 @@ interface Props {
 	loading?: "eager" | "lazy";
 	decoding?: "async" | "auto" | "sync";
 	fetchpriority?: "high" | "low" | "auto";
+	width?: number;
+	height?: number;
 }
 
 import { Image } from "astro:assets";
@@ -29,6 +31,8 @@ const {
 	loading = "lazy",
 	decoding = "async",
 	fetchpriority,
+	width,
+	height,
 } = Astro.props;
 const className = Astro.props.class;
 
@@ -73,5 +77,5 @@ const imageStyle = `object-position: ${position}`;
 <div id={id} class:list={[className, 'overflow-hidden relative']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
     {isLocal && img && <Image src={img} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} class={imageClass} style={imageStyle}/>}
-    {!isLocal && <img src={displaySource} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} width={dimensions?.width} height={dimensions?.height} class={imageClass} style={imageStyle}/>}
+    {!isLocal && <img src={displaySource} alt={alt || ""} loading={loading} decoding={decoding} fetchpriority={fetchpriority} width={width ?? dimensions?.width} height={height ?? dimensions?.height} class={imageClass} style={imageStyle}/>}
 </div>
