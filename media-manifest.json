@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-22T10:28:53.962Z",
-  "count": 2448,
-  "totalBytes": 452864370,
+  "generatedAt": "2026-10-22T14:21:36.081Z",
+  "count": 2449,
+  "totalBytes": 452964344,
   "objects": [
     {
       "key": "wp-content/uploads/2023/06/004B520B.png",
@@ -12176,6 +12176,11 @@
     {
       "key": "wp-content/uploads/2026/10/club-sim-convert-to-esim.webp",
       "size": 35354,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/10/club-sim-passport-renewal-cover.webp",
+      "size": 99974,
       "contentType": "image/webp"
     },
     {

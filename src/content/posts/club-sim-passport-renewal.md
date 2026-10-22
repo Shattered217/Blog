@@ -2,9 +2,9 @@
 title: "Club SIM 实名认证证件过期更新"
 slug: "club-sim-passport-renewal"
 published: "2026-10-22"
-draft: true
+draft: false
 description: "记录 Club SIM 实名证件更新与实体卡转 eSIM 的过程，包括中文网页跳回首页、切换英文版解决、通过移民局微信小程序查询旧护照号码，以及在 App 内获取 eSIM 二维码和 SM-DP+ 地址的方法。"
-image: ""
+image: "https://nvcc-v.com/wp-content/uploads/2026/10/club-sim-passport-renewal-cover.webp"
 tags: ["网络"]
 tagPermalinks: ["/tag/network/"]
 category: ""
