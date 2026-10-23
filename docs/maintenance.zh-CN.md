@@ -2,6 +2,8 @@
 
 需要 Node.js 22.23.4 及以上版本，CI 使用 Node 22 和 24。安装依赖使用 `corepack pnpm install --frozen-lockfile`。
 
+CI 的 `setup-node` 启用 `check-latest`，避免运行器预装的旧补丁版本低于依赖要求。
+
 ## 发布检查
 
 ```bash
