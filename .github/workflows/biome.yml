@@ -18,4 +18,4 @@ jobs:
           # Keep aligned with the version in pnpm-lock.yaml.
           version: 2.2.5
       - name: Run Biome
-        run: biome ci ./src --reporter=github
+        run: biome ci ./src ./functions ./editor/src ./scripts --reporter=github

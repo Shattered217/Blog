@@ -23,7 +23,7 @@ const { posts } = Astro.props;
         <div class="grid gap-2">
             {posts.map((post, index) => (
                 <a
-                    href={getPostUrl(post.slug, post.data.published, post.data.permalink)}
+                    href={getPostUrl(post.id, post.data.published, post.data.permalink)}
                     class="group flex items-center gap-4 rounded-2xl p-3 bg-black/[0.025] dark:bg-white/[0.035] hover:bg-[var(--primary)]/10 transition"
                 >
                     <span class="size-9 shrink-0 rounded-xl bg-[var(--primary)]/15 text-[var(--primary)] font-bold flex items-center justify-center">

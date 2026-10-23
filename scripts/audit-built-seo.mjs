@@ -1,4 +1,4 @@
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 const distRoot = path.resolve("dist");
@@ -10,7 +10,8 @@ async function walk(directory) {
 	for (const entry of entries) {
 		const absolutePath = path.join(directory, entry.name);
 		if (entry.isDirectory()) files.push(...(await walk(absolutePath)));
-		if (entry.isFile() && entry.name.endsWith(".html")) files.push(absolutePath);
+		if (entry.isFile() && entry.name.endsWith(".html"))
+			files.push(absolutePath);
 	}
 	return files;
 }
@@ -53,7 +54,8 @@ function pagePath(filePath) {
 
 async function internalTargetExists(href) {
 	const pathname = href.split(/[?#]/, 1)[0];
-	if (!pathname || pathname === "/") return exists(path.join(distRoot, "index.html"));
+	if (!pathname || pathname === "/")
+		return exists(path.join(distRoot, "index.html"));
 	if (pathname.startsWith("/wp-content/uploads/")) return true;
 
 	let decoded = pathname;
@@ -115,8 +117,10 @@ for (const htmlFile of htmlFiles) {
 
 	const ogImage = metaValue(html, "property", "og:image");
 	const twitterImage = metaValue(html, "name", "twitter:image");
-	if (!ogImage?.startsWith(`${site}/`)) failures.push(`${pathname}: invalid og:image`);
-	if (twitterImage !== ogImage) failures.push(`${pathname}: twitter:image mismatch`);
+	if (!ogImage?.startsWith(`${site}/`))
+		failures.push(`${pathname}: invalid og:image`);
+	if (twitterImage !== ogImage)
+		failures.push(`${pathname}: twitter:image mismatch`);
 	if (!metaValue(html, "property", "og:image:alt")) {
 		failures.push(`${pathname}: missing og:image:alt`);
 	}
@@ -127,14 +131,19 @@ for (const htmlFile of htmlFiles) {
 		if (metaValue(html, "property", "og:type") !== "article") {
 			failures.push(`${pathname}: og:type is not article`);
 		}
-		for (const property of ["article:published_time", "article:modified_time"]) {
+		for (const property of [
+			"article:published_time",
+			"article:modified_time",
+		]) {
 			if (!metaValue(html, "property", property)) {
 				failures.push(`${pathname}: missing ${property}`);
 			}
 		}
 
 		const jsonLdSource =
-			/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html)?.[1];
+			/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(
+				html,
+			)?.[1];
 		try {
 			const jsonLd = JSON.parse(jsonLdSource ?? "");
 			if (jsonLd["@type"] !== "BlogPosting") throw new Error("wrong @type");
@@ -143,18 +152,26 @@ for (const htmlFile of htmlFiles) {
 				throw new Error("wrong mainEntityOfPage");
 			}
 			if (jsonLd.image !== ogImage) throw new Error("image mismatch");
-			if (!jsonLd.publisher?.logo?.url) throw new Error("missing publisher logo");
+			if (!jsonLd.publisher?.logo?.url)
+				throw new Error("missing publisher logo");
 		} catch (error) {
-			failures.push(`${pathname}: invalid BlogPosting JSON-LD (${error.message})`);
+			failures.push(
+				`${pathname}: invalid BlogPosting JSON-LD (${error.message})`,
+			);
 		}
 
-		const coverContainer = /<div id="post-cover"[\s\S]*?<img\b[^>]*>/.exec(html)?.[0];
+		const coverContainer = /<div id="post-cover"[\s\S]*?<img\b[^>]*>/.exec(
+			html,
+		)?.[0];
 		if (!coverContainer) {
 			failures.push(`${pathname}: missing article cover`);
 		} else {
 			const coverTag = /<img\b[^>]*>/.exec(coverContainer)?.[0] ?? "";
 			const coverAttrs = attributes(coverTag);
-			if (coverAttrs.loading !== "eager" || coverAttrs.fetchpriority !== "high") {
+			if (
+				coverAttrs.loading !== "eager" ||
+				coverAttrs.fetchpriority !== "high"
+			) {
 				failures.push(`${pathname}: article cover is not eager/high priority`);
 			}
 		}
@@ -166,7 +183,8 @@ for (const htmlFile of htmlFiles) {
 		const attrs = attributes(imageTag);
 		if (!attrs.src?.startsWith("/wp-content/uploads/")) continue;
 		checkedLocalImages++;
-		if (!attrs.alt?.trim()) failures.push(`${pathname}: local image has empty alt`);
+		if (!attrs.alt?.trim())
+			failures.push(`${pathname}: local image has empty alt`);
 		if (!attrs.width || !attrs.height) {
 			failures.push(`${pathname}: local image is missing intrinsic dimensions`);
 		}
@@ -186,18 +204,24 @@ for (const htmlFile of htmlFiles) {
 }
 
 for (const [title, pages] of titlePages) {
-	if (pages.length > 1) failures.push(`duplicate title on ${pages.join(", ")}: ${title}`);
+	if (pages.length > 1)
+		failures.push(`duplicate title on ${pages.join(", ")}: ${title}`);
 }
 for (const [description, pages] of descriptionPages) {
 	if (pages.length > 1) {
-		failures.push(`duplicate description on ${pages.join(", ")}: ${description}`);
+		failures.push(
+			`duplicate description on ${pages.join(", ")}: ${description}`,
+		);
 	}
 }
 for (const [canonical, pages] of canonicalPages) {
 	if (pages.length > 1) failures.push(`duplicate canonical ${canonical}`);
 }
 
-const postSitemap = await readFile(path.join(distRoot, "sitemap-posts.xml"), "utf8");
+const postSitemap = await readFile(
+	path.join(distRoot, "sitemap-posts.xml"),
+	"utf8",
+);
 const postSitemapEntries = postSitemap.match(/<url>/g)?.length ?? 0;
 if (articlePages !== postSitemapEntries) {
 	failures.push(
@@ -205,7 +229,10 @@ if (articlePages !== postSitemapEntries) {
 	);
 }
 
-const pageSitemap = await readFile(path.join(distRoot, "sitemap-pages-0.xml"), "utf8");
+const pageSitemap = await readFile(
+	path.join(distRoot, "sitemap-pages-0.xml"),
+	"utf8",
+);
 const pageSitemapEntries = pageSitemap.match(/<url>/g)?.length ?? 0;
 if (pageSitemapEntries !== nonArticleUrls.size) {
 	failures.push(

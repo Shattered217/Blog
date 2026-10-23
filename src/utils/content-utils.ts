@@ -22,13 +22,13 @@ export async function getSortedPosts() {
 	const sorted = await getRawSortedPosts();
 
 	for (let i = 1; i < sorted.length; i++) {
-		sorted[i].data.nextSlug = sorted[i - 1].slug;
+		sorted[i].data.nextSlug = sorted[i - 1].id;
 		sorted[i].data.nextTitle = sorted[i - 1].data.title;
 		sorted[i].data.nextPublished = sorted[i - 1].data.published;
 		sorted[i].data.nextPermalink = sorted[i - 1].data.permalink;
 	}
 	for (let i = 0; i < sorted.length - 1; i++) {
-		sorted[i].data.prevSlug = sorted[i + 1].slug;
+		sorted[i].data.prevSlug = sorted[i + 1].id;
 		sorted[i].data.prevTitle = sorted[i + 1].data.title;
 		sorted[i].data.prevPublished = sorted[i + 1].data.published;
 		sorted[i].data.prevPermalink = sorted[i + 1].data.permalink;
@@ -122,7 +122,7 @@ export async function getSortedPostsList(): Promise<PostForList[]> {
 
 	// delete post.body
 	const sortedPostsList = sortedFullPosts.map((post) => ({
-		slug: post.slug,
+		slug: post.id,
 		data: {
 			...post.data,
 			image: getInternalMediaPath(post.data.image) ?? post.data.image,

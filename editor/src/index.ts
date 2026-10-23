@@ -1,13 +1,14 @@
 /// <reference types="@cloudflare/workers-types" />
 
+import { type AccessEnv, hasAccessIdentity } from "./access.ts";
 import {
 	type FriendAdminEnv,
 	friendAdminHtml,
 	friendAdminScript,
 	handleFriendAdminApi,
-} from "./friends-admin";
+} from "./friends-admin.ts";
 
-interface Env extends FriendAdminEnv {
+interface Env extends FriendAdminEnv, AccessEnv {
 	R2_ACCESS_KEY_ID?: string;
 	REQUIRE_ACCESS?: string;
 }
@@ -59,14 +60,6 @@ function htmlResponse(body: string, status = 200): Response {
 	const response = textResponse(body, "text/html; charset=utf-8", { status });
 	response.headers.set("Content-Security-Policy", contentSecurityPolicy);
 	return response;
-}
-
-function isLocalRequest(url: URL): boolean {
-	return url.hostname === "localhost" || url.hostname === "127.0.0.1";
-}
-
-function hasAccessIdentity(request: Request): boolean {
-	return Boolean(request.headers.get("Cf-Access-Jwt-Assertion"));
 }
 
 async function proxyMedia(request: Request, url: URL): Promise<Response> {
@@ -238,7 +231,7 @@ collections:
       - { label: 更新日期, name: updated, widget: datetime, type: date, format: "YYYY-MM-DD", input_timezone: Asia/Shanghai, required: false }
       - { label: 草稿, name: draft, widget: boolean, default: true, required: false, hint: 开启时不会出现在生产站点；关闭并保存后才正式发布。 }
       - { label: SEO 摘要, name: description, widget: text, minlength: 50, maxlength: 160, hint: 建议 80 到 140 个中文字符，准确概括文章内容。 }
-      - { label: 封面图, name: image, widget: image, required: false, hint: 上传到 R2；建议 16:9 WebP，文件名保持唯一。 }
+      - { label: 封面图, name: image, widget: image, required: false, hint: 正式发布必填。上传到 R2；建议 16:9 WebP，文件名保持唯一。 }
       - label: 标签
         name: tags
         widget: select
@@ -338,6 +331,11 @@ const editorHooks = `(() => {
       const published = String(data.get('published') || '').slice(0, 10);
       const slug = String(data.get('slug') || entry.get('slug') || '').trim();
 
+      if (data.get('draft') !== true) {
+        if (!String(data.get('image') || '').trim()) throw new Error('正式发布前请上传封面图。');
+        if (!String(data.get('description') || '').trim()) throw new Error('正式发布前请填写 SEO 摘要。');
+      }
+
       data = data
         .set('tagPermalinks', tags.map((tag) => tagPermalinks[tag]).filter(Boolean))
         .set('categoryPermalink', categoryPermalinks[category] || '')
@@ -380,11 +378,7 @@ const worker: ExportedHandler<Env> = {
 	async fetch(request, env) {
 		const url = new URL(request.url);
 
-		if (
-			env.REQUIRE_ACCESS !== "false" &&
-			!isLocalRequest(url) &&
-			!hasAccessIdentity(request)
-		) {
+		if (!(await hasAccessIdentity(request, env))) {
 			return accessRequiredPage();
 		}
 		if (url.pathname === "/api/friend-applications") {

@@ -11,7 +11,9 @@
 		}
 	],
 	"vars": {
-		"REQUIRE_ACCESS": "true"
+		"REQUIRE_ACCESS": "true",
+		"ACCESS_TEAM_DOMAIN": "shattered.cloudflareaccess.com",
+		"ACCESS_AUD": "b3d775cf6a64be109a4d5069a1c5482dd1cf8252b5d4872f25a9977f1a7c9524"
 	},
 	"d1_databases": [
 		{

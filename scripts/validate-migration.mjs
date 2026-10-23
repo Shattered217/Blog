@@ -1,5 +1,6 @@
 import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { parseFrontmatter } from "./frontmatter.mjs";
 
 const postsRoot = path.resolve("src/content/posts");
 const distRoot = path.resolve("dist");
@@ -27,11 +28,6 @@ async function exists(filePath) {
 	} catch {
 		return false;
 	}
-}
-
-function frontmatterJson(markdown, field) {
-	const match = new RegExp(`^${field}: (.+)$`, "m").exec(markdown);
-	return match ? JSON.parse(match[1]) : undefined;
 }
 
 function outputPath(urlPath) {
@@ -76,13 +72,16 @@ const postImages = new Map();
 
 for (const postFile of discoveredPostFiles) {
 	const markdown = await readFile(postFile, "utf8");
-	if (frontmatterJson(markdown, "draft") === true) continue;
+	const data = parseFrontmatter(markdown);
+	if (data.draft === true) continue;
 	postFiles.push(postFile);
-	const permalink = frontmatterJson(markdown, "permalink");
-	const cover = frontmatterJson(markdown, "image");
-	const categoryPermalink = frontmatterJson(markdown, "categoryPermalink");
-	const tags = frontmatterJson(markdown, "tags") ?? [];
-	const tagPermalinks = frontmatterJson(markdown, "tagPermalinks") ?? [];
+	const {
+		permalink,
+		image: cover,
+		categoryPermalink,
+		tags = [],
+		tagPermalinks = [],
+	} = data;
 	if (!permalink) {
 		failures.push(`${postFile}: missing permalink`);
 		continue;

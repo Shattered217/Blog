@@ -9,7 +9,7 @@ function plainText(markdown) {
 		.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
 		.replace(/[`*_~]/g, "")
 		.replace(/<[^>]+>/g, "")
-		.replace(/\\([\[\]_`])/g, "$1")
+		.replace(/\\([[\]_`])/g, "$1")
 		.replace(/\s+/g, " ")
 		.trim();
 }
@@ -31,7 +31,9 @@ for (const file of files) {
 	const filePath = path.join(postsRoot, file);
 	const markdown = await readFile(filePath, "utf8");
 	const titleMatch = /^title: (.+)$/m.exec(markdown);
-	const title = titleMatch ? JSON.parse(titleMatch[1]) : path.basename(file, ".md");
+	const title = titleMatch
+		? JSON.parse(titleMatch[1])
+		: path.basename(file, ".md");
 	const lines = markdown.split("\n");
 	const records = [];
 	let sectionKey = "article";

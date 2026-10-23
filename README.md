@@ -5,3 +5,5 @@
 访问：[nvcc-v.com](https://nvcc-v.com)
 
 基于 [Fuwari](https://github.com/saicaca/fuwari) 与 Astro 构建。
+
+本站维护与发布检查见 [仓库维护说明](docs/maintenance.zh-CN.md)。

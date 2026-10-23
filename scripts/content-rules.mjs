@@ -71,21 +71,24 @@ function classifyTag(value) {
 	if (/docker|容器/.test(text)) return "docker";
 	if (/openwrt|immortalwrt|固件|路由器|内核模块/.test(text)) return "openwrt";
 	if (/jellyfin|emby|媒体|影音|插件|刷流|索引器/.test(text)) return "media";
-	if (/nas|unraid|群晖|synology|immich|照片|云盘|可道云/.test(text)) return "nas";
+	if (/nas|unraid|群晖|synology|immich|照片|云盘|可道云/.test(text))
+		return "nas";
 	if (/ctf|安全|加密|2fa|密钥|authenticator|证书/.test(text)) return "security";
 	if (/esp32|mcu|micropython|wifi/.test(text)) return "mcu";
 	if (/智能家居|3d打印/.test(text)) return "smarthome";
 	if (/vscode|rime|输入法|adb|应用|开发|脚本/.test(text)) return "devtools";
-	if (/vpn|frp|headscale|tailscale|dns|cdn|网络|内网|远程|ssh|xrdp/.test(text)) return "network";
-	if (/ai|yolo|模型|pytorch|深度学习|llama|sam|qwen|opencv|推理/.test(text)) return "ai";
+	if (/vpn|frp|headscale|tailscale|dns|cdn|网络|内网|远程|ssh|xrdp/.test(text))
+		return "network";
+	if (/ai|yolo|模型|pytorch|深度学习|llama|sam|qwen|opencv|推理/.test(text))
+		return "ai";
 	return "sysadmin";
 }
 
 export function compactTags(slug, sourceTags = []) {
 	const configured = POST_TAG_KEYS[slug];
-	const keys = configured ?? [
-		...new Set(sourceTags.map((tag) => classifyTag(String(tag)))),
-	].slice(0, 2);
+	const keys =
+		configured ??
+		[...new Set(sourceTags.map((tag) => classifyTag(String(tag))))].slice(0, 2);
 	return keys.map((key) => TAGS[key]);
 }
 

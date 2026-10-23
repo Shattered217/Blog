@@ -1,59 +1,32 @@
-/* This is a script to create a new post markdown file with front-matter */
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { stringify } from "yaml";
 
-import fs from "fs"
-import path from "path"
-
-function getDate() {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = String(today.getMonth() + 1).padStart(2, "0")
-  const day = String(today.getDate()).padStart(2, "0")
-
-  return `${year}-${month}-${day}`
+const [argument] = process.argv.slice(2);
+const slug = argument?.replace(/\.md$/i, "");
+if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+	console.error("Usage: pnpm new-post <lowercase-slug>");
+	process.exit(1);
 }
-
-const args = process.argv.slice(2)
-
-if (args.length === 0) {
-  console.error(`Error: No filename argument provided
-Usage: npm run new-post -- <filename>`)
-  process.exit(1) // Terminate the script and return error code 1
-}
-
-let fileName = args[0]
-
-// Add .md extension if not present
-const fileExtensionRegex = /\.(md|mdx)$/i
-if (!fileExtensionRegex.test(fileName)) {
-  fileName += ".md"
-}
-
-const targetDir = "./src/content/posts/"
-const fullPath = path.join(targetDir, fileName)
-
-if (fs.existsSync(fullPath)) {
-  console.error(`Error: File ${fullPath} already exists `)
-  process.exit(1)
-}
-
-// recursive mode creates multi-level directories
-const dirPath = path.dirname(fullPath)
-if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true })
-}
-
-const content = `---
-title: ${args[0]}
-published: ${getDate()}
-description: ''
-image: ''
-tags: []
-category: ''
-draft: false 
-lang: ''
----
-`
-
-fs.writeFileSync(path.join(targetDir, fileName), content)
-
-console.log(`Post ${fullPath} created`)
+const published = new Intl.DateTimeFormat("en-CA", {
+	timeZone: "Asia/Shanghai",
+	year: "numeric",
+	month: "2-digit",
+	day: "2-digit",
+}).format(new Date());
+const metadata = {
+	title: slug,
+	published,
+	description: "",
+	image: "",
+	tags: [],
+	category: "",
+	draft: true,
+	lang: "zh-CN",
+	permalink: `/${published.replaceAll("-", "/")}/${slug}/`,
+};
+const directory = path.resolve("src/content/posts");
+await mkdir(directory, { recursive: true });
+const target = path.join(directory, `${slug}.md`);
+await writeFile(target, `---\n${stringify(metadata)}---\n`, { flag: "wx" });
+console.log(`Created draft ${target}`);

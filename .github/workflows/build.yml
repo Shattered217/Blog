@@ -37,14 +37,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run Astro Check
-        run: pnpm astro check
-
-      - name: Test friend link source generation
-        run: pnpm editor:test
-
-      - name: Test media URL normalization
-        run: pnpm test:media-references
+      - name: Validate source, types and regression tests
+        run: pnpm validate:source
 
   build:
     strategy:
@@ -69,11 +63,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run production build
-        run: pnpm build
-
-      - name: Validate migration output
-        run: pnpm validate:migration
-
-      - name: Audit built SEO
-        run: pnpm seo:audit
+      - name: Validate production build and deployment bundles
+        run: pnpm validate:build

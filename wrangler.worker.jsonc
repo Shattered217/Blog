@@ -27,9 +27,15 @@
 	"observability": {
 		"enabled": true
 	},
+	"ratelimits": [
+		{ "name": "VIEW_RATE_LIMIT", "namespace_id": "1001", "simple": { "limit": 1, "period": 60 } }
+	],
 	"env": {
 		"production": {
 			"name": "nvcc-v-blog-worker",
+			"ratelimits": [
+				{ "name": "VIEW_RATE_LIMIT", "namespace_id": "1002", "simple": { "limit": 1, "period": 60 } }
+			],
 			"routes": [
 				{
 					"pattern": "nvcc-v.com/*",

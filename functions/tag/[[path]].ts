@@ -32,5 +32,5 @@ export const onRequest: PagesFunction<unknown, "path"> = async (context) => {
 	}
 
 	const location = new URL(target, context.request.url);
-	return Response.redirect(location, 301);
+	return Response.redirect(location.href, 301);
 };

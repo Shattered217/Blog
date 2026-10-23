@@ -21,7 +21,10 @@ turndown.use(gfm);
 turndown.keep(["audio", "iframe", "video"]);
 
 function plainText(html) {
-	return turndown.turndown(html || "").replace(/\s+/g, " ").trim();
+	return turndown
+		.turndown(html || "")
+		.replace(/\s+/g, " ")
+		.trim();
 }
 
 function normalizeInternalUrls(content) {
@@ -31,7 +34,9 @@ function normalizeInternalUrls(content) {
 
 async function repairImportedContent(content) {
 	let repaired = content.replace(/!\[[^\]]*\]\(blob:[^)]+\)/g, "");
-	const jpgPaths = [...new Set(repaired.match(/\/wp-content\/uploads\/[^)\s"']+\.jpg/g) || [])];
+	const jpgPaths = [
+		...new Set(repaired.match(/\/wp-content\/uploads\/[^)\s"']+\.jpg/g) || []),
+	];
 	for (const jpgPath of jpgPaths) {
 		const jpegPath = jpgPath.replace(/\.jpg$/, ".jpeg");
 		try {

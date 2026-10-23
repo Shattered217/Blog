@@ -45,7 +45,9 @@ function uploadOnce(file) {
 			if (code === 0) {
 				resolve();
 			} else {
-				reject(new Error(`Failed to upload ${file.key}: ${errorOutput.trim()}`));
+				reject(
+					new Error(`Failed to upload ${file.key}: ${errorOutput.trim()}`),
+				);
 			}
 		});
 	});

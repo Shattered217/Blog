@@ -54,7 +54,7 @@ const legacyPostSlugs: Record<string, string> = {
 };
 
 function normalizedSegment(value: string | string[] | undefined): string {
-	let decoded = Array.isArray(value) ? value.join("/") : value ?? "";
+	let decoded = Array.isArray(value) ? value.join("/") : (value ?? "");
 	try {
 		for (let attempt = 0; attempt < 3; attempt += 1) {
 			const next = decodeURIComponent(decoded);

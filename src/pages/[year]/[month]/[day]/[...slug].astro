@@ -1,4 +1,5 @@
 ---
+import { render } from "astro:content";
 import path from "node:path";
 import Giscus from "@components/comments/Giscus.astro";
 import ImageWrapper from "@components/misc/ImageWrapper.astro";
@@ -25,7 +26,7 @@ export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	return blogEntries.map((entry) => {
 		const postUrl = getPostUrl(
-			entry.slug,
+			entry.id,
 			entry.data.published,
 			entry.data.permalink,
 		);
@@ -51,12 +52,12 @@ export async function getStaticPaths() {
 }
 
 const { entry, relatedPosts, seriesPosts } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 
-const { remarkPluginFrontmatter } = await entry.render();
+const { remarkPluginFrontmatter } = await render(entry);
 
 const postUrl = new URL(
-	getPostUrl(entry.slug, entry.data.published, entry.data.permalink),
+	getPostUrl(entry.id, entry.data.published, entry.data.permalink),
 	Astro.site,
 );
 const initialViews = historicalPostViews[postUrl.pathname] ?? 0;
@@ -172,7 +173,7 @@ const jsonLd = {
                 <Content />
             </Markdown>
 
-            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+            {licenseConfig.enable && <License title={entry.data.title} slug={entry.id} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
     </div>

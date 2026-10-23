@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { resolveMediaFile } from "./media-files.mjs";
 import { collectMediaPathnames } from "./media-reference-paths.mjs";
 
 const sourceRoot = path.resolve("src");
@@ -22,14 +23,27 @@ async function walk(directory) {
 }
 
 const references = new Set();
-for (const sourceFile of await walk(sourceRoot)) {
+const args = process.argv.slice(2);
+const check = args.includes("--check");
+const selection = args.filter((value) => value !== "--check");
+for (const file of selection)
+	references.add(
+		`/${path.relative(mediaRoot, resolveMediaFile(file)).split(path.sep).join("/")}`,
+	);
+for (const sourceFile of selection.length ? [] : await walk(sourceRoot)) {
 	const source = await readFile(sourceFile, "utf8");
 	for (const pathname of collectMediaPathnames(source)) {
 		references.add(pathname);
 	}
 }
 
-const dimensions = {};
+let previous = {};
+try {
+	previous = JSON.parse(await readFile(outputPath, "utf8"));
+} catch (error) {
+	if (error.code !== "ENOENT") throw error;
+}
+const dimensions = { ...previous };
 const paths = [...references].sort((a, b) => a.localeCompare(b));
 for (let index = 0; index < paths.length; index += 16) {
 	const batch = paths.slice(index, index + 16);
@@ -42,6 +56,7 @@ for (let index = 0; index < paths.length; index += 16) {
 				if (!metadata.width || !metadata.height) return null;
 				return [pathname, { width: metadata.width, height: metadata.height }];
 			} catch (error) {
+				if (selection.length) throw error;
 				console.warn(`${pathname}: ${error.message}`);
 				return null;
 			}
@@ -52,7 +67,20 @@ for (let index = 0; index < paths.length; index += 16) {
 	}
 }
 
-await writeFile(outputPath, `${JSON.stringify(dimensions, null, 2)}\n`, "utf8");
+const sorted = Object.fromEntries(
+	Object.entries(dimensions).sort(([a], [b]) => a.localeCompare(b)),
+);
+const changed = JSON.stringify(previous) !== JSON.stringify(sorted);
+if (check) {
+	process.exitCode = changed ? 1 : 0;
+	console.log(
+		changed
+			? "Media dimensions would change; no files written."
+			: "Media dimensions are up to date.",
+	);
+} else if (changed) {
+	await writeFile(outputPath, `${JSON.stringify(sorted, null, 2)}\n`, "utf8");
+}
 console.log(
 	`Recorded dimensions for ${Object.keys(dimensions).length}/${references.size} referenced media files.`,
 );

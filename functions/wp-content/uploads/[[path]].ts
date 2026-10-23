@@ -88,13 +88,21 @@ function isNotModified(
 	modifiedAt: Date,
 ): boolean {
 	const etag = request.headers.get("If-None-Match");
-	if (etag && etag.split(",").map((value) => value.trim()).includes(etagValue)) {
-		return true;
+	if (etag !== null) {
+		// GET/HEAD use weak comparison; this header takes precedence over dates.
+		return etag.split(",").some((value) => {
+			const candidate = value.trim();
+			return (
+				candidate === "*" ||
+				candidate.replace(/^W\//, "") === etagValue.replace(/^W\//, "")
+			);
+		});
 	}
 	const modifiedSince = request.headers.get("If-Modified-Since");
 	return Boolean(
 		modifiedSince &&
-			modifiedAt.getTime() <= new Date(modifiedSince).getTime(),
+			Math.floor(modifiedAt.getTime() / 1000) <=
+				Math.floor(new Date(modifiedSince).getTime() / 1000),
 	);
 }
 
@@ -119,9 +127,7 @@ export const onRequest: PagesFunction<Env, "path"> = async (context) => {
 		const cached = await cache.match(cacheRequest);
 		if (cached) {
 			const cachedEtag = cached.headers.get("ETag") ?? "";
-			const cachedModified = new Date(
-				cached.headers.get("Last-Modified") ?? 0,
-			);
+			const cachedModified = new Date(cached.headers.get("Last-Modified") ?? 0);
 			if (isNotModified(request, cachedEtag, cachedModified)) {
 				return new Response(null, { status: 304, headers: cached.headers });
 			}
@@ -154,7 +160,12 @@ export const onRequest: PagesFunction<Env, "path"> = async (context) => {
 		object,
 		request.headers.get("Range"),
 	);
-	const response = new Response(object.body, { status, headers });
+	if (!("body" in object))
+		return new Response("Media body unavailable", { status: 502 });
+	const response = new Response((object as R2ObjectBody).body, {
+		status,
+		headers,
+	});
 	if (!hasRange && status === 200) {
 		context.waitUntil(cache.put(cacheRequest, response.clone()));
 	}

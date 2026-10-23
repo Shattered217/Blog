@@ -35,11 +35,26 @@ async function walk(directory) {
 	return files;
 }
 
-export async function collectMediaFiles() {
-	const files = await walk(MEDIA_ROOT);
+export function resolveMediaFile(input) {
+	const file = path.resolve(
+		input.startsWith("wp-content/uploads/") ? path.join("media", input) : input,
+	);
+	const relative = path.relative(MEDIA_ROOT, file);
+	if (!relative || relative.startsWith("..") || path.isAbsolute(relative))
+		throw new Error(`Not a media file: ${input}`);
+	return file;
+}
+
+export async function collectMediaFiles(selection = []) {
+	const files = selection.length
+		? selection.map(resolveMediaFile)
+		: await walk(MEDIA_ROOT);
 	return Promise.all(
 		files.map(async (filePath) => {
-			const relativePath = path.relative(MEDIA_ROOT, filePath).split(path.sep).join("/");
+			const relativePath = path
+				.relative(MEDIA_ROOT, filePath)
+				.split(path.sep)
+				.join("/");
 			const metadata = await stat(filePath);
 			return {
 				filePath,

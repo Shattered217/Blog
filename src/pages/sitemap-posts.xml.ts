@@ -48,11 +48,11 @@ export const GET: APIRoute = async () => {
 	const posts = await getSortedPosts();
 	const entries = posts.map((post) => {
 		const postUrl = new URL(
-			getPostUrl(post.slug, post.data.published, post.data.permalink),
+			getPostUrl(post.id, post.data.published, post.data.permalink),
 			site,
 		).href;
 		const lastModified = post.data.updated ?? post.data.published;
-		const images = collectPostImages(post.body, post.data.image);
+		const images = collectPostImages(post.body ?? "", post.data.image);
 		const imageEntries = images
 			.map(
 				(image) =>

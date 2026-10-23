@@ -29,5 +29,5 @@ export const onRequest: PagesFunction<unknown, "legacy"> = async (context) => {
 		});
 	}
 
-	return Response.redirect(new URL(target, context.request.url), 302);
+	return Response.redirect(new URL(target, context.request.url).href, 302);
 };

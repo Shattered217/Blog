@@ -29,7 +29,7 @@ const series = posts[0]?.data.series;
                 return (
                     <li>
                         <a
-                            href={getPostUrl(post.slug, post.data.published, post.data.permalink)}
+                            href={getPostUrl(post.id, post.data.published, post.data.permalink)}
                             aria-current={active ? "page" : undefined}
                             class:list={[
                                 "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
