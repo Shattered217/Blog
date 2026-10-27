@@ -90,8 +90,8 @@
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.12",
-    "@biomejs/biome": "2.2.5",
-    "@cloudflare/workers-types": "^5.20261022.1",
+    "@biomejs/biome": "2.6.3",
+    "@cloudflare/workers-types": "^5.20261024.1",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/hast": "^3.0.5",
     "@types/markdown-it": "^14.2.0",
