@@ -4,7 +4,7 @@ slug: "sing-box-campus-networking"
 published: "2026-11-08"
 draft: false
 description: "记录使用 sing-box、WireGuard、VLESS 和校园 VPN 实现学校A与学校B局域网互访，以及手机、电脑在异地访问两边内网的配置思路。"
-image: "https://nvcc-v.com/wp-content/uploads/2026/11/sing-box-campus-networking-cover.webp"
+image: "https://nvcc-v.com/wp-content/uploads/2026/11/sing-box-campus-networking-cover-v2.webp"
 tags: ["网络", "OpenWrt"]
 tagPermalinks: ["/tag/network/", "/tag/openwrt/"]
 category: "Linux"
