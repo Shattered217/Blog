@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-22T14:21:36.081Z",
-  "count": 2449,
-  "totalBytes": 452964344,
+  "generatedAt": "2026-11-08T09:34:32.039Z",
+  "count": 2450,
+  "totalBytes": 453039232,
   "objects": [
     {
       "key": "wp-content/uploads/2023/06/004B520B.png",
@@ -12201,6 +12201,11 @@
     {
       "key": "wp-content/uploads/2026/10/club-sim-view-profile.webp",
       "size": 26390,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/sing-box-campus-networking-cover.webp",
+      "size": 74888,
       "contentType": "image/webp"
     },
     {
