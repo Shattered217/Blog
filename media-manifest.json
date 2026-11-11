@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-08T09:42:04.693Z",
-  "count": 2451,
-  "totalBytes": 453125666,
+  "generatedAt": "2026-11-10T15:19:13.320Z",
+  "count": 2463,
+  "totalBytes": 458379676,
   "objects": [
     {
       "key": "wp-content/uploads/2023/06/004B520B.png",
@@ -12201,6 +12201,66 @@
     {
       "key": "wp-content/uploads/2026/10/club-sim-view-profile.webp",
       "size": 26390,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-ip-quality.webp",
+      "size": 256150,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-network-quality.webp",
+      "size": 388878,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-nodequality-basic.webp",
+      "size": 280046,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-nodequality-return-route-ipv4.webp",
+      "size": 965998,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-nodequality-return-route-ipv6.webp",
+      "size": 857232,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-cernet.webp",
+      "size": 327872,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-intl.webp",
+      "size": 563296,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-ipv4.webp",
+      "size": 380970,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-ipv6.webp",
+      "size": 337088,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-large4.webp",
+      "size": 379624,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-speedtest.webp",
+      "size": 255316,
+      "contentType": "image/webp"
+    },
+    {
+      "key": "wp-content/uploads/2026/11/isif-us-lax-bs-tcpquality-udp_route.webp",
+      "size": 261540,
       "contentType": "image/webp"
     },
     {
